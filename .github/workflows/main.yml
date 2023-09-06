@@ -37,15 +37,14 @@ jobs:
       - run: npm run build
       - run: npm test
 
-      - run: cp -R ./dist ./_site
+      - run: cp -R dist build/_site
+      - run: ls -R
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
-          path: | 
-            ./dist
-            ./_site
+          path: build
           retention-days: 1
   # only on master
   deploy:
