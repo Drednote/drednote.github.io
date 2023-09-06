@@ -63,7 +63,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: github-pages
-#          path: ./_site
+          path: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
