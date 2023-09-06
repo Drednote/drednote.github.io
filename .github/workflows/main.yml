@@ -38,7 +38,6 @@ jobs:
       - run: npm test
 
       - run: mkdir build
-#      - run: cp -R dist build/_site
       - run: cp -R dist/. build
 
       - name: Upload artifact
@@ -49,7 +48,7 @@ jobs:
           retention-days: 1
   # only on master
   deploy:
-#    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
