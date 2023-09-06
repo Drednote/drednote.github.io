@@ -12,6 +12,15 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true
   },
-  "include": ["src/**/**.ts*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "**/*.test.js",
+    "**/*.test.jsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.e2e-test.ts",
+    "dist",
+    "node_modules",
+    "babel.config.js",
+    "jest.init.js"
+  ]
 }
