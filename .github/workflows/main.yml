@@ -40,12 +40,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          name: build-archive
+          name: github-pages
           path: dist
           retention-days: 1
   # only on master
   deploy:
-    if: github.ref == 'refs/heads/master'
+#    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -62,8 +62,13 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: build-archive
-          path: ./_site
+          name: github-pages
+#          path: ./_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          name: github-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
