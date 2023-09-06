@@ -21,4 +21,3 @@ module.exports = {
     'prettier/prettier': 'error',
   },
 }
-// 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
