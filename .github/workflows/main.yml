@@ -37,7 +37,9 @@ jobs:
       - run: npm run build
       - run: npm test
 
+      - run: mkdir build
       - run: cp -R dist build/_site
+      - run: cp -R dist build
       - run: ls -R
 
       - name: Upload artifact
