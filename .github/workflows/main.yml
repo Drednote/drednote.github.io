@@ -39,14 +39,13 @@ jobs:
 
       - run: mkdir build
       - run: cp -R dist build/_site
-      - run: cp -R dist build
-      - run: ls -R
+      - run: cp -R dist/. build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
-          path: build
+          path: ./build
           retention-days: 1
   # only on master
   deploy:
