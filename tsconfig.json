@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
+    "moduleResolution": "node",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
@@ -10,7 +11,13 @@
     "noEmit": true,
     "isolatedModules": true,
     "strictNullChecks": true,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "paths": {
+      "@icons/*": ["src/icons/*"],
+      "@modules/*": ["src/modules/*"],
+      "@const/*": ["src/const/*"],
+      "@components/*": ["src/components/*"]
+    }
   },
   "exclude": [
     "**/*.test.js",

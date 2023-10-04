@@ -1,0 +1,14 @@
+.anchor-ink {
+  &.ant-anchor-wrapper .ant-anchor .ant-anchor-link {
+    padding-inline: 0;
+  }
+  &.ant-anchor-wrapper:not(.ant-anchor-wrapper-horizontal) .ant-anchor .ant-anchor-ink.ant-anchor-ink-visible {
+    display: none
+  }
+  & .ant-anchor::before {
+    display: none;
+  }
+  & .ant-anchor-link-title:hover {
+    color: var(--color-primary-hover);
+  }
+}
