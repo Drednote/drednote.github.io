@@ -8,7 +8,13 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    modules: ['node_modules', path.resolve('src')],
+    alias: {
+      '@icons': path.resolve('src/icons'),
+      '@modules': path.resolve('src/modules'),
+      '@components': path.resolve('src/components'),
+    },
   },
   module: {
     rules: [
@@ -20,6 +26,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jp(e*)g|gif)$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
