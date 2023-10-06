@@ -15,7 +15,7 @@ const marginMap = {
 const size = 32
 
 const FooterButton: React.FC<Props> = (props) => {
-  const { custom = false, shape = 'circle' } = props
+  const { custom = false, shape = 'circle', ...otherProps } = props
   const margin = custom ? marginMap.custom : marginMap.ant
 
   return (
@@ -27,7 +27,8 @@ const FooterButton: React.FC<Props> = (props) => {
       size="middle"
       shape={shape}
       styles={{ icon: { margin } }}
-      {...props}
+      target="_blank"
+      {...otherProps}
     />
   )
 }
