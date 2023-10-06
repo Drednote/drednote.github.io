@@ -11,8 +11,6 @@ interface Props {
   lang: Lang
 }
 
-const width = '224px'
-
 const App: React.FC<Props> = ({ lang }) => {
   const { i18n } = useTranslation()
 
@@ -35,9 +33,7 @@ const App: React.FC<Props> = ({ lang }) => {
       }}
     >
       <Row className="App">
-        <Col style={{ backgroundColor: mainColors.secondary, width }}>
-          <Navigation width={width} />
-        </Col>
+        <Navigation />
         <Col>
           {menu.en.map((t) => {
             return <div id={t.key} key={t.key} style={{ height: '1600px' }}></div>
