@@ -1,8 +1,9 @@
 import React, { type CSSProperties } from 'react'
-import { Avatar, Col, Row } from 'antd'
+import { Avatar, Col, Row, Space } from 'antd'
 import AvatarIcon from '@icons/AvatarIcon'
 import Menu from '@modules/navigation/menu/Menu'
-import NavigationFooter from '@modules/navigation/footer/NavigationFooter'
+import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
+import LinkToAnotherLang from '@modules/navigation/footer/LinkToAnotherLang'
 
 const Navigation: React.FC<CSSProperties> = (props) => {
   return (
@@ -15,10 +16,15 @@ const Navigation: React.FC<CSSProperties> = (props) => {
           <Menu />
         </Row>
       </Col>
-      <Col style={{ position: 'fixed', bottom: '5vh', ...props }}>
-        <Row className="dre-center">
-          <NavigationFooter />
-        </Row>
+      <Col style={{ position: 'fixed', bottom: '1vh', ...props }}>
+        <Space direction="vertical" style={{ width: '100%' }} size={12}>
+          <Row className="dre-center">
+            <SocialNetwork />
+          </Row>
+          <Row className="dre-center">
+            <LinkToAnotherLang />
+          </Row>
+        </Space>
       </Col>
     </>
   )

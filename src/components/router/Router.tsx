@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     element: <App lang={Lang.en} />,
   },
   {
-    path: '/ru*',
+    path: '/ru',
     element: <App lang={Lang.ru} />,
   },
   {

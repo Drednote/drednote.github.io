@@ -33,7 +33,7 @@ const FooterButton: React.FC<Props> = (props) => {
   )
 }
 
-const NavigationFooter: React.FC = () => {
+const SocialNetwork: React.FC = () => {
   return (
     <Space>
       <FooterButton icon={<TelegramIconFill style={{ fontSize: size + 4 }} />} href="https://t.me/mr_drednote" custom />
@@ -43,4 +43,4 @@ const NavigationFooter: React.FC = () => {
   )
 }
 
-export default NavigationFooter
+export default SocialNetwork

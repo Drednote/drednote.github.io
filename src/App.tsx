@@ -11,10 +11,11 @@ interface Props {
   lang: Lang
 }
 
-const App: React.FC<Props> = ({ lang }) => {
-  const width = '224px'
+const width = '224px'
 
+const App: React.FC<Props> = ({ lang }) => {
   const { i18n } = useTranslation()
+
   useEffect(() => {
     void i18n.changeLanguage(lang)
   }, [lang])

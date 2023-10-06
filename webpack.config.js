@@ -16,6 +16,8 @@ module.exports = {
       '@modules': path.resolve('src/modules'),
       '@const': path.resolve('src/const'),
       '@components': path.resolve('src/components'),
+      '@utils': path.resolve('src/utils'),
+      '@public': path.resolve('public'),
     },
   },
   module: {
