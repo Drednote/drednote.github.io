@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -13,6 +14,7 @@ module.exports = {
     alias: {
       '@icons': path.resolve('src/icons'),
       '@modules': path.resolve('src/modules'),
+      '@const': path.resolve('src/const'),
       '@components': path.resolve('src/components'),
     },
   },
@@ -43,13 +45,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
     }),
   ],
   devServer: {
     static: {
       directory: path.resolve('dist'),
     },
+    historyApiFallback: true,
     compress: true,
     port: 3000,
   },

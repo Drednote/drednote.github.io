@@ -1,12 +1,23 @@
 import './App.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, ConfigProvider, Row } from 'antd'
-import { menu } from './modules/navigation/menu/const'
-import Navigation from './modules/navigation/Navigation'
-import { mainColors } from './const/colors'
+import { menu } from '@modules/navigation/menu/const'
+import Navigation from '@modules/navigation/Navigation'
+import { mainColors } from '@const/colors'
+import { type Lang } from '@const/lang'
+import { useTranslation } from 'react-i18next'
 
-const App: React.FC = () => {
+interface Props {
+  lang: Lang
+}
+
+const App: React.FC<Props> = ({ lang }) => {
   const width = '224px'
+
+  const { i18n } = useTranslation()
+  useEffect(() => {
+    void i18n.changeLanguage(lang)
+  }, [lang])
 
   return (
     <ConfigProvider
@@ -27,7 +38,7 @@ const App: React.FC = () => {
           <Navigation width={width} />
         </Col>
         <Col>
-          {menu.map((t) => {
+          {menu.en.map((t) => {
             return <div id={t.key} key={t.key} style={{ height: '1600px' }}></div>
           })}
         </Col>
