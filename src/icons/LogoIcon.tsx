@@ -1,7 +1,5 @@
 import React, { type CSSProperties } from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import logo from './logo/logo.svg'
+import logo from '@icons/logo/logo.svg'
 
 interface Props {
   style?: CSSProperties

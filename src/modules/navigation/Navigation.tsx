@@ -10,7 +10,10 @@ import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
 import './navigation.scss'
 import { useTranslation } from 'react-i18next'
 
-const width = '224px'
+interface Props {
+  mobileHeight: number | string
+  desktopWidth: number | string
+}
 
 const NavigationContent: React.FC = () => (
   <>
@@ -35,15 +38,23 @@ const NavigationContent: React.FC = () => (
   </>
 )
 
-const DesktopNavigation: React.FC = () => {
+const DesktopNavigation: React.FC<Pick<Props, 'desktopWidth'>> = ({ desktopWidth }) => {
   return (
-    <Col style={{ backgroundColor: mainColors.secondary, width }}>
+    <Col
+      style={{
+        backgroundColor: mainColors.secondary,
+        width: desktopWidth,
+        minHeight: window.screen.height,
+        position: 'fixed',
+        zIndex: 100,
+      }}
+    >
       <NavigationContent />
     </Col>
   )
 }
 
-const MobileNavigation: React.FC = () => {
+const MobileNavigation: React.FC<Props> = ({ mobileHeight, desktopWidth }) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const showDrawer = (): void => {
@@ -57,11 +68,12 @@ const MobileNavigation: React.FC = () => {
   return (
     <Row
       style={{
+        zIndex: 100,
         width: '100%',
         top: 0,
         position: 'fixed',
         backgroundColor: mainColors.secondary,
-        height: 48,
+        height: mobileHeight,
         display: 'flex',
         alignItems: 'center',
       }}
@@ -79,8 +91,8 @@ const MobileNavigation: React.FC = () => {
         open={open}
         key="left"
         closeIcon={<CloseOutlined className="drawer-close-icon" />}
-        contentWrapperStyle={{ width }}
-        style={{ backgroundColor: mainColors.secondary, width }}
+        contentWrapperStyle={{ width: desktopWidth }}
+        style={{ backgroundColor: mainColors.secondary, width: desktopWidth }}
         bodyStyle={{ display: 'flex', justifyContent: 'center' }}
       >
         <NavigationContent />
@@ -89,14 +101,14 @@ const MobileNavigation: React.FC = () => {
   )
 }
 
-const Navigation: React.FC = () => {
+const Navigation: React.FC<Props> = (props) => {
   return (
     <>
       <Desktop>
-        <DesktopNavigation />
+        <DesktopNavigation {...props} />
       </Desktop>
       <Mobile>
-        <MobileNavigation />
+        <MobileNavigation {...props} />
       </Mobile>
     </>
   )

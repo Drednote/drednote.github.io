@@ -1,6 +1,8 @@
 .anchor-ink {
   &.ant-anchor-wrapper .ant-anchor .ant-anchor-link {
     padding-inline: 0;
+    display: flex;
+    justify-content: center;
   }
   &.ant-anchor-wrapper:not(.ant-anchor-wrapper-horizontal) .ant-anchor .ant-anchor-ink.ant-anchor-ink-visible {
     display: none

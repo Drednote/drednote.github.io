@@ -1,13 +1,13 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+    'Droid Sans', 'Helvetica Neue', 'Jost', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace, 'Jost', sans-serif;
 }
 
 :root {
@@ -19,4 +19,20 @@ code {
 .dre-center {
   display: flex;
   justify-content: center;
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: local('Jost'), url('./fonts/Jost/static/Jost-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+  src: local('Jost'), url('./fonts/Jost/static/Jost-Italic.ttf') format('truetype');
 }

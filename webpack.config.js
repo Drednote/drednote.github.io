@@ -17,6 +17,7 @@ module.exports = {
       '@const': path.resolve('src/const'),
       '@components': path.resolve('src/components'),
       '@utils': path.resolve('src/utils'),
+      '@types': path.resolve('src/types'),
       '@public': path.resolve('public'),
     },
   },
@@ -42,6 +43,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.md$/,
+        use: 'raw-loader',
       },
     ],
   },
