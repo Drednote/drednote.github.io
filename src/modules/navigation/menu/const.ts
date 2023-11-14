@@ -1,7 +1,9 @@
 import { Lang } from '@const/lang'
 
+export type MenuKey = 'about' | 'resume'
+
 export interface MenuType {
-  key: string
+  key: MenuKey
   title: string
   href: string
 }

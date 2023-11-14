@@ -19,6 +19,7 @@
       "@const/*": ["src/const/*"],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
+      "@types/*": ["src/types/*"],
       "@public/*": ["public/*"]
     }
   },

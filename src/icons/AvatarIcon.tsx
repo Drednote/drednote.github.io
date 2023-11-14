@@ -1,7 +1,5 @@
 import React, { type CSSProperties } from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import photo from './avatar/avatar.png'
+import photo from '@icons/avatar/avatar.png'
 
 interface Props {
   size: number
