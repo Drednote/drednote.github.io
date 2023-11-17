@@ -1,6 +1,7 @@
 {
-  "button-link-lang": "Change language to Russian",
+  "button-link-lang": "ru",
   "link-lang-to": "/ru",
   "navigation-drawer-title": "Menu",
-  "body-about-me": "aboutMeEn"
+  "body-about-me": "aboutMeEn",
+  "body-name": "Ivan Galushko"
 }

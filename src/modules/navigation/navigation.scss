@@ -4,3 +4,18 @@
     color: var(--color-primary-hover);
   }
 }
+
+@keyframes appear {
+  from {
+    background-color: transparent;
+  }
+  to {
+    backdrop-filter: blur(32px);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    //borderLeftWidth: '0',
+    //borderRightWidth: '0',
+    border-style: solid;
+  }
+}

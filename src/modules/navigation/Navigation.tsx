@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Avatar, Button, Col, Drawer, Row, Space } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Avatar, Button, Col, Drawer, Row, Space, Typography } from 'antd'
 import AvatarIcon from '@icons/AvatarIcon'
 import Menu from '@modules/navigation/menu/Menu'
 import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
@@ -9,28 +9,29 @@ import { mainColors } from '@const/colors'
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
 import './navigation.scss'
 import { useTranslation } from 'react-i18next'
+import { menuKeys } from '@modules/navigation/menu/const'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface Props {
-  mobileHeight: number | string
-  desktopWidth: number | string
+  height: number | string
 }
 
 const NavigationContent: React.FC = () => (
   <>
     <Col style={{ position: 'fixed', top: '30vh', width: 'inherit' }}>
-      <Row className="dre-center">
+      <Row className="abs-center">
         <Avatar icon={<AvatarIcon size={128} />} size={128} />
       </Row>
-      <Row className="dre-center" style={{ paddingTop: '24px' }}>
+      <Row className="abs-center" style={{ paddingTop: '24px' }}>
         <Menu />
       </Row>
     </Col>
     <Col style={{ position: 'fixed', bottom: '1vh', width: 'inherit' }}>
       <Space direction="vertical" style={{ width: '100%' }} size={12}>
-        <Row className="dre-center">
+        <Row className="abs-center">
           <SocialNetwork />
         </Row>
-        <Row className="dre-center">
+        <Row className="abs-center">
           <LinkToAnotherLang />
         </Row>
       </Space>
@@ -38,23 +39,75 @@ const NavigationContent: React.FC = () => (
   </>
 )
 
-const DesktopNavigation: React.FC<Pick<Props, 'desktopWidth'>> = ({ desktopWidth }) => {
+const DesktopNavigationContent: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
-    <Col
-      style={{
-        backgroundColor: mainColors.secondary,
-        width: desktopWidth,
-        minHeight: window.screen.height,
-        position: 'fixed',
-        zIndex: 100,
-      }}
-    >
-      <NavigationContent />
-    </Col>
+    <>
+      <Col style={{ position: 'fixed', left: '48px', height: 'inherit' }} className="abs-center">
+        <Button
+          type="link"
+          className="abs-center"
+          style={{
+            backgroundColor: 'transparent',
+            height: '100%',
+          }}
+          href={`#${menuKeys.main}`}
+        >
+          <Space direction="horizontal" size="middle">
+            <Avatar icon={<AvatarIcon size={48} />} size={48} />
+            <Typography.Title level={3} className="dre-center" style={{ margin: 0 }}>
+              {t('body-name')}
+            </Typography.Title>
+          </Space>
+        </Button>
+      </Col>
+      <Col style={{ position: 'fixed', right: '48px', height: 'inherit' }} className="abs-center">
+        <Space>
+          <Menu />
+          {/*<SocialNetwork />*/}
+          <LinkToAnotherLang />
+        </Space>
+      </Col>
+    </>
   )
 }
 
-const MobileNavigation: React.FC<Props> = ({ mobileHeight, desktopWidth }) => {
+const DesktopNavigation: React.FC<Pick<Props, 'height'>> = ({ height }) => {
+  const [opacity, setOpacity] = useState(0)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const domRect = document.body.getBoundingClientRect()
+      const rate = domRect.y !== 0 ? domRect.y / domRect.height : 0
+      setOpacity(Math.min(0.5, rate * -1))
+    })
+  }, [])
+
+  return (
+    <Row
+      style={{
+        height,
+        position: 'fixed',
+        width: '100%',
+        top: 0,
+        zIndex: 100,
+        backgroundColor: mainColors.droppedNav(opacity),
+        backdropFilter: 'blur(32px)',
+        borderColor: `rgba(255, 255, 255, ${Math.min(opacity, 0.1)})`,
+        borderBottomWidth: '1px',
+        borderTopWidth: '0',
+        borderLeftWidth: '0',
+        borderRightWidth: '0',
+        borderStyle: 'solid',
+      }}
+    >
+      <DesktopNavigationContent />
+    </Row>
+  )
+}
+
+const MobileNavigation: React.FC<Props> = ({ height }) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const showDrawer = (): void => {
@@ -73,7 +126,7 @@ const MobileNavigation: React.FC<Props> = ({ mobileHeight, desktopWidth }) => {
         top: 0,
         position: 'fixed',
         backgroundColor: mainColors.secondary,
-        height: mobileHeight,
+        height,
         display: 'flex',
         alignItems: 'center',
       }}
@@ -91,8 +144,8 @@ const MobileNavigation: React.FC<Props> = ({ mobileHeight, desktopWidth }) => {
         open={open}
         key="left"
         closeIcon={<CloseOutlined className="drawer-close-icon" />}
-        contentWrapperStyle={{ width: desktopWidth }}
-        style={{ backgroundColor: mainColors.secondary, width: desktopWidth }}
+        contentWrapperStyle={{ width: height }}
+        style={{ backgroundColor: mainColors.secondary, width: height }}
         bodyStyle={{ display: 'flex', justifyContent: 'center' }}
       >
         <NavigationContent />
@@ -103,14 +156,14 @@ const MobileNavigation: React.FC<Props> = ({ mobileHeight, desktopWidth }) => {
 
 const Navigation: React.FC<Props> = (props) => {
   return (
-    <>
+    <nav>
       <Desktop>
         <DesktopNavigation {...props} />
       </Desktop>
       <Mobile>
         <MobileNavigation {...props} />
       </Mobile>
-    </>
+    </nav>
   )
 }
 

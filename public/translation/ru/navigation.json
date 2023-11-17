@@ -1,6 +1,7 @@
 {
-  "button-link-lang": "Английская версия сайта",
+  "button-link-lang": "en",
   "link-lang-to": "/en",
   "navigation-drawer-title": "Меню",
-  "body-about-me": "aboutMeRu"
+  "body-about-me": "aboutMeRu",
+  "body-name": "Иван Галушко"
 }

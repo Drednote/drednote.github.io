@@ -1,6 +1,12 @@
 import { Lang } from '@const/lang'
 
-export type MenuKey = 'about' | 'resume'
+export type MenuKey = 'about' | 'resume' | 'main'
+
+export const menuKeys: Record<MenuKey, MenuKey> = {
+  about: 'about',
+  resume: 'resume',
+  main: 'main',
+}
 
 export interface MenuType {
   key: MenuKey
