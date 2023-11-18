@@ -1,11 +1,11 @@
 import { Lang } from '@const/lang'
 
-export type MenuKey = 'about' | 'resume' | 'main'
+export type MenuKey = 'about' | 'resume' | 'home'
 
 export const menuKeys: Record<MenuKey, MenuKey> = {
   about: 'about',
   resume: 'resume',
-  main: 'main',
+  home: 'home',
 }
 
 export interface MenuType {
@@ -16,6 +16,11 @@ export interface MenuType {
 
 export const menu: Record<string, MenuType[]> = {
   [Lang.ru]: [
+    {
+      key: 'home',
+      href: '#home',
+      title: 'Главная',
+    },
     {
       key: 'about',
       href: '#about',
@@ -28,6 +33,11 @@ export const menu: Record<string, MenuType[]> = {
     },
   ],
   [Lang.en]: [
+    {
+      key: 'home',
+      href: '#home',
+      title: 'Home',
+    },
     {
       key: 'about',
       href: '#about',

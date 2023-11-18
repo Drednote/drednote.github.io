@@ -1,5 +1,4 @@
 .App {
-  background-color: white;
   display: flex;
   min-height: 100vh;
 }
@@ -20,7 +19,7 @@
   }
   50% {
     top: 10px;
-    opacity: 0.1;
+    opacity: 0.3;
   }
   100% {
     top: 0;
@@ -39,4 +38,3 @@
     top: 0;
   }
 }
-

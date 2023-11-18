@@ -52,7 +52,7 @@ const DesktopNavigationContent: React.FC = () => {
             backgroundColor: 'transparent',
             height: '100%',
           }}
-          href={`#${menuKeys.main}`}
+          href={`#${menuKeys.home}`}
         >
           <Space direction="horizontal" size="middle">
             <Avatar icon={<AvatarIcon size={48} />} size={48} />

@@ -1,12 +1,11 @@
 import './App.css'
 import React, { useEffect } from 'react'
-import { ConfigProvider, Row } from 'antd'
+import { ConfigProvider } from 'antd'
 import Navigation from '@modules/navigation/Navigation'
 import { mainColors } from '@const/colors'
 import { type Lang } from '@const/lang'
 import { useTranslation } from 'react-i18next'
-import Body from '@modules/body/Body'
-import image from './animation/13182208_5166950.jpeg'
+import CardContent from '@modules/card-content/CardContent'
 
 interface Props {
   lang: Lang
@@ -37,10 +36,10 @@ const App: React.FC<Props> = ({ lang }) => {
         },
       }}
     >
-      <Row className="App" style={{}}>
+      <div className="App">
         <Navigation height={height} />
-        <Body height={height} />
-      </Row>
+        <CardContent />
+      </div>
     </ConfigProvider>
   )
 }
