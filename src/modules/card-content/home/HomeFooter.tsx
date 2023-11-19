@@ -1,13 +1,15 @@
 import { Col, Row, Typography } from 'antd'
 import { ArrowDownOutlined } from '@ant-design/icons'
-import { mainColors } from '@const/colors'
 import React from 'react'
+import './home-footer.scss'
+import useColorScheme from '@components/color-scheme/useColorScheme'
 
 interface Props {
   opacity: number
 }
 
 const HomeFooter: React.FC<Props> = ({ opacity }) => {
+  const { colors } = useColorScheme()
   return (
     <>
       <Row
@@ -38,7 +40,7 @@ const HomeFooter: React.FC<Props> = ({ opacity }) => {
             >
               <ArrowDownOutlined
                 style={{
-                  color: mainColors.primaryText(opacity),
+                  color: colors.text(opacity),
                 }}
               />
             </div>

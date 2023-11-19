@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     // 'plugin:@typescript-eslint/recommended',
@@ -22,7 +22,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     'no-use-before-define': ['error', { functions: false, variables: false }],
     '@typescript-eslint/strict-boolean-expressions': 'off',
-    // 'max-len': ['error', { code: 100 }],
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-unused-vars': 'off',
   },
   globals: {
     window: true,

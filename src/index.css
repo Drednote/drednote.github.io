@@ -1,39 +1,53 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Jost", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Jost',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace, "Jost", sans-serif;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace, 'Jost', sans-serif;
 }
 
 :root {
-  --color-primary: rgba(255, 255, 255, 0.55);
-  --color-primary-hover: rgba(255, 255, 255, 0.75);
-  --color-second: #27282c;
+  --dark_primary: rgba(255, 255, 255, 1);
+  --light_primary: rgba(0, 0, 0, 1);
+
+  --dark_text: rgba(255, 255, 255, 1);
+  --light_text: rgba(0, 0, 0, 1);
+
+  --dark_backgroundDark: rgba(6, 13, 25, 1);
+  --dark_backgroundLight: rgba(4, 36, 65, 1);
+
+  --light_backgroundDark: rgba(161, 222, 255, 1);
+  --light_backgroundLight: rgba(255, 255, 255, 1);
+
+  --dark_navBorder: rgba(255, 255, 255, 1);
+  --light_navBorder: rgba(0, 0, 0, 1);
 }
 
-.abs-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (prefers-color-scheme: dark) {
 }
 
 @font-face {
-  font-family: "Jost";
+  font-family: 'Jost';
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  src: local("Jost"), url("./fonts/Jost/static/Jost-Regular.ttf") format("truetype");
+  src:
+    local('Jost'),
+    url('./fonts/Jost/static/Jost-Regular.ttf') format('truetype');
 }
+
 @font-face {
-  font-family: "Jost";
+  font-family: 'Jost';
   font-weight: normal;
   font-style: italic;
   font-display: swap;
-  src: local("Jost"), url("./fonts/Jost/static/Jost-Italic.ttf") format("truetype");
+  src:
+    local('Jost'),
+    url('./fonts/Jost/static/Jost-Italic.ttf') format('truetype');
 }
-
-/*# sourceMappingURL=index.css.map */

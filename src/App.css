@@ -3,38 +3,17 @@
   min-height: 100vh;
 }
 
+.abs-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes moveArrow {
-  0% {
-    top: 0;
-    opacity: 1;
-  }
-  50% {
-    top: 10px;
-    opacity: 0.3;
-  }
-  100% {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes moveText {
-  0% {
-    top: 0;
-  }
-  50% {
-    top: -5px;
-  }
-  100% {
-    top: 0;
   }
 }

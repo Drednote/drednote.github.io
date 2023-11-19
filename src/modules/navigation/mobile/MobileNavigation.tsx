@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Col, Drawer } from 'antd'
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
-import { mainColors } from '@const/colors'
 import './mobile-navigation.scss'
+import useColorScheme from '@components/color-scheme/useColorScheme'
 
 interface Props {
   height: number | string
+  indentation: number | string
 }
 
-const MobileNavigation: React.FC<Props> = ({ height }) => {
+const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
+  const { colors } = useColorScheme()
 
   const showDrawer = (): void => {
     setOpen(true)
@@ -24,7 +26,7 @@ const MobileNavigation: React.FC<Props> = ({ height }) => {
   return (
     <>
       <Col
-        style={{ position: 'fixed', right: 48, height: '100%' }}
+        style={{ position: 'fixed', right: indentation, height: '100%' }}
         className="abs-center"
       >
         <Button
@@ -42,7 +44,7 @@ const MobileNavigation: React.FC<Props> = ({ height }) => {
         key="left"
         closeIcon={<CloseOutlined className="drawer-close-icon" />}
         contentWrapperStyle={{ height }}
-        style={{ backgroundColor: mainColors.secondary, height }}
+        style={{ backgroundColor: colors.backgroundDark(), height }}
         bodyStyle={{ display: 'flex', justifyContent: 'center' }}
       >
         {/*<NavigationContainer />*/}

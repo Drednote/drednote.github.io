@@ -2,15 +2,16 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { Avatar, Button, Col, Row, Space, Typography } from 'antd'
 import AvatarIcon from '@icons/AvatarIcon'
 import { Desktop, Mobile } from '@components/responsive'
-import { mainColors } from '@const/colors'
 import { useTranslation } from 'react-i18next'
 import { menuKeys } from '@modules/navigation/menu/const'
 import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
 import DesktopNavigation from '@modules/navigation/desktop/DesktopNavigation'
+import useColorScheme from '@components/color-scheme/useColorScheme'
 
 interface Props {
   height: number | string
 }
+const left = '24px'
 
 const NavigationContainer: React.FC<{ children: ReactNode }> = ({
   children,
@@ -20,7 +21,7 @@ const NavigationContainer: React.FC<{ children: ReactNode }> = ({
   return (
     <>
       <Col
-        style={{ position: 'fixed', left: '48px', height: 'inherit' }}
+        style={{ position: 'fixed', left, height: 'inherit' }}
         className="abs-center"
       >
         <Button
@@ -29,13 +30,14 @@ const NavigationContainer: React.FC<{ children: ReactNode }> = ({
           style={{
             backgroundColor: 'transparent',
             height: '100%',
+            padding: '2px 0',
           }}
           href={`#${menuKeys.home}`}
         >
           <Space direction="horizontal" size="middle">
             <Avatar icon={<AvatarIcon size={48} />} size={48} />
             <Typography.Title
-              level={3}
+              level={4}
               className="dre-center"
               style={{ margin: 0 }}
             >
@@ -51,6 +53,7 @@ const NavigationContainer: React.FC<{ children: ReactNode }> = ({
 
 const Navigation: React.FC<Props> = ({ height }) => {
   const [opacity, setOpacity] = useState(0)
+  const { colors } = useColorScheme()
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -69,9 +72,9 @@ const Navigation: React.FC<Props> = ({ height }) => {
           width: '100%',
           top: 0,
           zIndex: 100,
-          backgroundColor: mainColors.droppedNav(opacity),
+          backgroundColor: colors.backgroundDark(opacity),
           backdropFilter: 'blur(32px)',
-          borderColor: `rgba(255, 255, 255, ${Math.min(opacity, 0.1)})`,
+          borderColor: colors.navBorder(Math.min(opacity, 0.1)),
           borderBottomWidth: '1px',
           borderTopWidth: '0',
           borderLeftWidth: '0',
@@ -81,10 +84,10 @@ const Navigation: React.FC<Props> = ({ height }) => {
       >
         <NavigationContainer>
           <Desktop>
-            <DesktopNavigation />
+            <DesktopNavigation indentation={left} />
           </Desktop>
           <Mobile>
-            <MobileNavigation height={height} />
+            <MobileNavigation indentation={left} height={height} />
           </Mobile>
         </NavigationContainer>
       </Row>
