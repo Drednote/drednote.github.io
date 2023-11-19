@@ -18,9 +18,14 @@ module.exports = {
   },
   ignorePatterns: ['**.json'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error', { singleQuote: true, semi: false }],
     '@typescript-eslint/no-use-before-define': 'off',
     'no-use-before-define': ['error', { functions: false, variables: false }],
     '@typescript-eslint/strict-boolean-expressions': 'off',
+    // 'max-len': ['error', { code: 100 }],
+  },
+  globals: {
+    window: true,
+    document: true,
   },
 }

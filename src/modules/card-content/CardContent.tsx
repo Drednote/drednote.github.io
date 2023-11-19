@@ -1,13 +1,13 @@
 import React from 'react'
-import AboutMe from '@modules/card-content/about/AboutMe'
 import { mainColors } from '@const/colors'
 import About from '@modules/card-content/about/About'
 import { menuKeys } from '@modules/navigation/menu/const'
+import Home from '@modules/card-content/home/Home'
 
 const ContentContainer: React.FC = () => {
   return (
     <>
-      <AboutMe key={menuKeys.home} id={menuKeys.home} />
+      <Home key={menuKeys.home} id={menuKeys.home} />
       <About key={menuKeys.about} id={menuKeys.about} />
     </>
   )
