@@ -13,7 +13,7 @@ interface Props {
 const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
-  const { colors } = useColorScheme()
+  const { isDark, colors } = useColorScheme()
 
   const showDrawer = (): void => {
     setOpen(true)
@@ -44,7 +44,12 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         key="left"
         closeIcon={<CloseOutlined className="drawer-close-icon" />}
         contentWrapperStyle={{ height }}
-        style={{ backgroundColor: colors.backgroundDark(), height }}
+        style={{
+          backgroundColor: isDark
+            ? colors.backgroundDark()
+            : colors.backgroundLight(),
+          height,
+        }}
         bodyStyle={{ display: 'flex', justifyContent: 'center' }}
       >
         {/*<NavigationContainer />*/}
