@@ -1,6 +1,9 @@
 {
-  "button-link-lang": "Английская версия сайта",
+  "button-link-lang": "en",
   "link-lang-to": "/en",
   "navigation-drawer-title": "Меню",
+  "navigation-title": "Иван Галушко",
+  "home_greeting-title": "Привет, меня зовут Иван",
+  "home_greeting-text": "Я Java Spring Разработчик из Москвы",
   "body-about-me": "aboutMeRu"
 }

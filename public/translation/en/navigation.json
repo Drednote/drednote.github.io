@@ -1,6 +1,9 @@
 {
-  "button-link-lang": "Change language to Russian",
+  "button-link-lang": "ru",
   "link-lang-to": "/ru",
   "navigation-drawer-title": "Menu",
+  "navigation-title": "Ivan Galushko",
+  "home_greeting-title": "Hi there, my name is Ivan",
+  "home_greeting-text": "I`m Java Spring Developer from Moscow",
   "body-about-me": "aboutMeEn"
 }

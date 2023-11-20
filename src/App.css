@@ -1,28 +1,31 @@
 .App {
-  background-color: white;
   display: flex;
+  min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.abs-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.drednote-area {
+  max-width: 1200px;
 }
 
-.App-link {
-  color: #61dafb;
+.drednote-col {
+  height: inherit;
 }
 
-@keyframes App-logo-spin {
+.drednote-row {
+  width: inherit;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }

@@ -1,6 +1,5 @@
 .anchor-ink {
   &.ant-anchor-wrapper .ant-anchor .ant-anchor-link {
-    padding-inline: 0;
     display: flex;
     justify-content: center;
   }
@@ -10,7 +9,7 @@
   & .ant-anchor::before {
     display: none;
   }
-  & .ant-anchor-link-title:hover {
-    color: var(--color-primary-hover);
+  &.ant-anchor-wrapper-horizontal::before {
+    display: none;
   }
 }

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 const Menu: React.FC = () => {
   const { i18n } = useTranslation()
-  return <Anchor items={menu[i18n.language]} className="anchor-ink" />
+  return <Anchor items={menu[i18n.language]} className="anchor-ink" direction="horizontal" />
 }
 
 export default Menu

@@ -1,46 +1,45 @@
 import './App.css'
 import React, { useEffect } from 'react'
-import { ConfigProvider, Row } from 'antd'
+import { ConfigProvider } from 'antd'
 import Navigation from '@modules/navigation/Navigation'
-import { mainColors } from '@const/colors'
 import { type Lang } from '@const/lang'
 import { useTranslation } from 'react-i18next'
-import Body from '@modules/body/Body'
+import CardContent from '@modules/card-content/CardContent'
+import useColorScheme from '@components/color-scheme/useColorScheme'
+import { Options } from '@const/global-variables'
 
 interface Props {
   lang: Lang
 }
 
-const width = '224px'
-const height = '48px'
-
 const App: React.FC<Props> = ({ lang }) => {
   const { i18n } = useTranslation()
+  const { colors } = useColorScheme()
 
   useEffect(() => {
-    void i18n.changeLanguage(lang)
+    if (i18n.language !== lang.toString()) void i18n.changeLanguage(lang)
   }, [lang])
 
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: mainColors.primary,
-          colorText: mainColors.primaryText,
+          colorPrimary: colors.primary(),
+          colorText: colors.text(),
           fontFamily: "'Jost', sans-serif;",
           fontSize: 18,
         },
         components: {
           Anchor: {
-            fontSize: 24,
+            fontSize: 20,
           },
         },
       }}
     >
-      <Row className="App">
-        <Navigation mobileHeight={height} desktopWidth={width} />
-        <Body mobileHeight={height} desktopWidth={width} />
-      </Row>
+      <div className="App">
+        <Navigation height={Options.navigationHeight} />
+        <CardContent />
+      </div>
     </ConfigProvider>
   )
 }
