@@ -1,10 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import { useLocalStorage } from 'usehooks-ts'
-import {
-  AppColors,
-  cssColorsVariableNames,
-  getCssVariable,
-} from '@components/color-scheme/helpers'
+import { AppColors, cssColorsVariableNames, getCssVariable } from '@components/color-scheme/helpers'
+import { useEffect, useState } from 'react'
 
 const COLOR_SCHEMA_KEY = 'COLOR_SCHEME'
 const dark = 'dark'
@@ -24,17 +21,22 @@ export function useColorScheme(): ColorScheme {
     },
     undefined,
   )
-
   const [colorScheme, setColorScheme] = useLocalStorage(
     COLOR_SCHEMA_KEY,
     systemPrefersDark ? dark : light,
   )
+  const [colors, setColors] = useState(getColors(colorScheme))
+
+  useEffect(() => {
+    document.getElementById('html')?.setAttribute('data-theme', colorScheme)
+    setColors(getColors(colorScheme))
+  }, [colorScheme])
 
   return {
     colorScheme,
     isDark: colorScheme === dark,
     setIsDark: (val: boolean) => void setColorScheme(val ? dark : light),
-    colors: getColors(colorScheme),
+    colors,
   }
 }
 
@@ -44,8 +46,7 @@ const getColors = (colorScheme: string): AppColors => {
       const key = entry[0]
       const value = entry[1]
       return {
-        [key]: (opacity = 1) =>
-          getCssVariable(`--${colorScheme}_${value}`, opacity),
+        [key]: (opacity = 1) => getCssVariable(`--${colorScheme}_${value}`, opacity),
       }
     })
     .reduce((previousValue, currentValue) => {

@@ -10,17 +10,24 @@ interface Props {
 
 const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
   return (
-    <Col
-      style={{ position: 'fixed', right: indentation, height: 'inherit' }}
-      className="abs-center"
-    >
-      <Space>
+    <>
+      <Col>
         <Menu />
-        {/*<SocialNetwork />*/}
-        <LinkToAnotherLang />
-        <ColorSchemeSwitcher />
-      </Space>
-    </Col>
+      </Col>
+      <Col
+        style={{
+          paddingRight: indentation,
+          justifyContent: 'end',
+        }}
+        className="abs-center drednote-col"
+      >
+        <Space size={36}>
+          {/*<SocialNetwork />*/}
+          <LinkToAnotherLang />
+          <ColorSchemeSwitcher />
+        </Space>
+      </Col>
+    </>
   )
 }
 

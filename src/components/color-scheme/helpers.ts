@@ -18,10 +18,7 @@ export const cssColorsVariableNames: Record<keyof AppColors, string> = {
 }
 
 export const getCssVariable = (name: string, opacity = 1): string => {
-  // eslint-disable-next-line no-undef
-  const propertyValue = getComputedStyle(
-    document.documentElement,
-  ).getPropertyValue(name)
+  const propertyValue = getComputedStyle(document.documentElement).getPropertyValue(name)
 
   if (!propertyValue || opacity === 1) {
     return propertyValue

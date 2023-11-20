@@ -9,7 +9,7 @@
   & .ant-anchor::before {
     display: none;
   }
-  & .ant-anchor-link-title:hover {
-    color: var(--color-primary-hover);
+  &.ant-anchor-wrapper-horizontal::before {
+    display: none;
   }
 }

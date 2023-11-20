@@ -8,8 +8,8 @@
 .anchor-ink .ant-anchor::before {
   display: none;
 }
-.anchor-ink .ant-anchor-link-title:hover {
-  color: var(--color-primary-hover);
+.anchor-ink.ant-anchor-wrapper-horizontal::before {
+  display: none;
 }
 
 /*# sourceMappingURL=menu.css.map */

@@ -9,6 +9,18 @@
   align-items: center;
 }
 
+.drednote-area {
+  max-width: 1200px;
+}
+
+.drednote-col {
+  height: inherit;
+}
+
+.drednote-row {
+  width: inherit;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

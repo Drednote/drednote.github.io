@@ -1,7 +1,7 @@
 import { Col, Row, Typography } from 'antd'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import React from 'react'
-import './home-footer.scss'
+import './home.scss'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 
 interface Props {
