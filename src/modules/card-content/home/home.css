@@ -31,7 +31,8 @@
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: none;
-  line-height: 0.5;
+  margin-bottom: 0.25em;
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=home.css.map */

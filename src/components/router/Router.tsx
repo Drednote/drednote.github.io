@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import React from 'react'
 import App from '../../App'
-import Redirect from '@components/redirect/Redirect'
+import Redirect from '@components/router/Redirect'
 import { Lang } from '@const/lang'
 
 export const router = createBrowserRouter([

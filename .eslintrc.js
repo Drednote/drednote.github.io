@@ -30,6 +30,8 @@ module.exports = {
   globals: {
     window: true,
     document: true,
+    require: true,
+    module: true,
   },
   root: true,
 }

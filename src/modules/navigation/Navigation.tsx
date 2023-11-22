@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 import { Button, Col, Row, Typography } from 'antd'
-import { Desktop, Mobile } from '@components/responsive'
+import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import { useTranslation } from 'react-i18next'
 import { menuKeys } from '@modules/navigation/menu/const'
 import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
@@ -29,7 +29,7 @@ const NavigationContainer: React.FC<{
 
   return (
     <Row
-      className="abs-center drednote-area drednote-row"
+      className="abs-center drednote-area drednote-row drednote-col"
       style={{ justifyContent: 'space-between' }}
     >
       <Col style={{ paddingLeft: 0 }} className="abs-center drednote-col">
@@ -84,6 +84,7 @@ const Navigation: React.FC<Props> = ({ height }) => {
           borderLeftWidth: '0',
           borderRightWidth: '0',
           borderStyle: 'solid',
+          boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
         }}
         className="abs-center"
       >

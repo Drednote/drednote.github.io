@@ -1,0 +1,19 @@
+.fade-bottom-content {
+  animation-name: fadeBottom;
+  animation-duration: 1300ms;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+.fade-bottom-content__disable {
+  opacity: 0;
+}
+
+.content-desktop {
+  min-width: calc(50% - 24px);
+}
+
+/*# sourceMappingURL=about.css.map */

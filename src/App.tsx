@@ -28,10 +28,15 @@ const App: React.FC<Props> = ({ lang }) => {
           colorText: colors.text(),
           fontFamily: "'Jost', sans-serif;",
           fontSize: 18,
+          colorBgLayout: 'inherit',
+          colorBgContainer: 'inherit',
         },
         components: {
           Anchor: {
             fontSize: 20,
+          },
+          Layout: {
+            headerBg: 'inherit',
           },
         },
       }}

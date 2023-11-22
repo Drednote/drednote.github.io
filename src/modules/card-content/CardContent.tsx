@@ -3,6 +3,7 @@ import About from '@modules/card-content/about/About'
 import { menuKeys } from '@modules/navigation/menu/const'
 import Home from '@modules/card-content/home/Home'
 import useColorScheme from '@components/color-scheme/useColorScheme'
+import { Row } from 'antd'
 
 const ContentContainer: React.FC = () => {
   return (
@@ -17,11 +18,10 @@ const CardContent: React.FC = () => {
   const { colors } = useColorScheme()
 
   return (
-    <div
+    <Row
       style={{
         width: '100%',
-        position: 'absolute',
-        height: 'calc(100vh)',
+        height: '100vh',
         // background: `radial-gradient(100% 70% at 50% 0%,
         // ${
         //   isDark
@@ -37,7 +37,7 @@ const CardContent: React.FC = () => {
       }}
     >
       <ContentContainer />
-    </div>
+    </Row>
   )
 }
 

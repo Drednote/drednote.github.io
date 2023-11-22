@@ -20,7 +20,7 @@ void i18n
     resources,
     detection: {
       order: [
-        'customPath',
+        PathDetector.name,
         'querystring',
         'cookie',
         'localStorage',
