@@ -1,52 +1,65 @@
 import React, { useEffect, useState } from 'react'
 import useColorScheme from '@components/color-scheme/useColorScheme'
-import { Col, Layout, Space, Typography } from 'antd'
-import MarkdownAdapter from '@components/markdown/MarkdownAdapter'
-import aboutMeEn from '@public/text/en/about-me.md'
-import aboutMeRu from '@public/text/ru/about-me.md'
+import { Col, Row, Space, Typography } from 'antd'
 import { Options } from '@const/global-variables'
 import './about.scss'
 import { menuKeys } from '@modules/navigation/menu/const'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
-import { Content, Header } from 'antd/es/layout/layout'
+import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
+import AboutText from '@modules/card-content/about/AboutText'
+import Skills from '@modules/card-content/about/Skills'
+import Background from '@modules/card-content/about/background/Background'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   activeFade: boolean
 }
 
-const AboutContainer: React.FC<Props> = ({ activeFade }) => {
+const AboutContent: React.FC<Props> = ({ activeFade }) => {
+  const { t } = useTranslation()
   const classNames = activeFade
     ? 'drednote-area fade-bottom-content'
     : 'drednote-area fade-bottom-content__disable'
 
   return (
-    <Layout className={classNames}>
-      <Header className="abs-center">
-        <Typography.Title level={2}>About me</Typography.Title>
-      </Header>
+    <Col className={classNames}>
+      <Row className="drednote-center">
+        <Typography.Title level={1} style={{ zIndex: 10 }}>
+          {t('about_title')}
+        </Typography.Title>
+      </Row>
       <Desktop>
-        <Content>
-          <Space size={48} direction="horizontal" classNames={{ item: 'content-desktop' }}>
-            <MarkdownAdapter>{aboutMeEn}</MarkdownAdapter>
-            <MarkdownAdapter>{aboutMeRu}</MarkdownAdapter>
+        <Row>
+          <Space
+            size={48}
+            direction="horizontal"
+            classNames={{ item: 'content-desktop' }}
+            style={{
+              alignItems: 'flex-start',
+            }}
+          >
+            <Col>
+              <AboutText />
+            </Col>
+            <Skills />
           </Space>
-        </Content>
+        </Row>
       </Desktop>
       <Mobile>
-        <Content>
+        <Row className="drednote-row-center">
           <Space size={48} direction="vertical">
-            <MarkdownAdapter>{aboutMeEn}</MarkdownAdapter>
-            <MarkdownAdapter>{aboutMeRu}</MarkdownAdapter>
+            <AboutText />
+            <Skills />
           </Space>
-        </Content>
+        </Row>
       </Mobile>
-    </Layout>
+    </Col>
   )
 }
 
 const About: React.FC<{ id?: string }> = ({ id }) => {
   const { colors } = useColorScheme()
   const [activeFade, setActiveFade] = useState(false)
+  const { isMobile, isDesktop } = useAdaptive()
 
   const listener = () => {
     const element = document.getElementById(`${menuKeys.about}`)
@@ -64,20 +77,38 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
     window.addEventListener('scroll', listener)
   }, [])
 
+  const padding = isMobile ? 24 : 48
+
+  const xTranslate = isDesktop ? '-270px' : '0'
+  const yTranslate = !isDesktop ? '450px' : '360px'
+
   return (
     <Col
       id={id}
-      className="abs-center drednote-row"
+      className="drednote-row"
       style={{
-        height: '100vh',
+        minHeight: '100vh',
         backgroundColor: colors.backgroundDark(),
-        paddingTop: Options.navigationHeight + 48,
-        paddingLeft: 48,
-        paddingRight: 48,
-        paddingBottom: 48,
+        paddingTop: Options.navigationHeight + padding,
+        paddingLeft: padding,
+        paddingRight: padding,
+        paddingBottom: padding,
+        display: 'flex',
+        justifyContent: 'center',
       }}
     >
-      <AboutContainer activeFade={activeFade} />
+      <Background
+        fontSize={800}
+        style={{
+          fontSize: 800,
+          position: 'absolute',
+          color: colors.aboutBackground(0.8),
+          height: 0,
+          translate: `${xTranslate} ${yTranslate}`,
+          width: isDesktop ? undefined : '100%',
+        }}
+      />
+      <AboutContent activeFade={activeFade} />
     </Col>
   )
 }

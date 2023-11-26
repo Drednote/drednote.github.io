@@ -29,13 +29,13 @@ const NavigationContainer: React.FC<{
 
   return (
     <Row
-      className="abs-center drednote-area drednote-row drednote-col"
+      className="drednote-center drednote-area drednote-row drednote-col"
       style={{ justifyContent: 'space-between' }}
     >
-      <Col style={{ paddingLeft: 0 }} className="abs-center drednote-col">
+      <Col style={{ paddingLeft: 0 }} className="drednote-center drednote-col">
         <Button
           type="link"
-          className="abs-center"
+          className="drednote-center"
           style={{
             backgroundColor: 'transparent',
             height: '100%',
@@ -63,7 +63,8 @@ const Navigation: React.FC<Props> = ({ height }) => {
     window.addEventListener('scroll', () => {
       const domRect = document.body.getBoundingClientRect()
       const rate = domRect.y !== 0 ? domRect.y / domRect.height : 0
-      setOpacity(Math.min(0.5, rate * -1))
+      const value = Math.min(0.5, rate * -1)
+      if (opacity !== value) setOpacity(value)
     })
   }, [])
 
@@ -86,7 +87,7 @@ const Navigation: React.FC<Props> = ({ height }) => {
           borderStyle: 'solid',
           boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
         }}
-        className="abs-center"
+        className="drednote-center"
       >
         <NavigationContainer height={height}>
           <Desktop>

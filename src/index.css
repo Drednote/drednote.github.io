@@ -27,6 +27,14 @@ code {
 
   --dark_navBorder: rgba(255, 255, 255, 1);
   --light_navBorder: rgba(0, 0, 0, 1);
+
+  --dark_aboutBackground: rgb(0, 115, 121, 1);
+  --light_aboutBackground: rgba(255, 255, 255, 1);
+
+  --dark_aboutSkillsText: var(--dark_aboutBackground);
+  --light_aboutSkillsText: var(--light_text);
+  --dark_aboutSkillsBg: var(--dark_text);
+  --light_aboutSkillsBg: var(--light_aboutBackground);
 }
 
 [data-theme='light'] {
@@ -37,6 +45,11 @@ code {
   --backgroundLight: var(--light_backgroundLight);
 
   --navBorder: var(--light_navBorder);
+
+  --aboutBackground: var(--light_aboutBackground);
+
+  --aboutSkillsText: var(--light_aboutSkillsText);
+  --aboutSkillsBg: var(--light_aboutSkillsBg);
 }
 
 [data-theme='dark'] {
@@ -47,6 +60,11 @@ code {
   --backgroundLight: var(--dark_backgroundLight);
 
   --navBorder: var(--dark_navBorder);
+
+  --aboutBackground: var(--dark_aboutBackground);
+
+  --aboutSkillsText: var(--dark_aboutSkillsText);
+  --aboutSkillsBg: var(--dark_aboutSkillsBg);
 }
 
 @font-face {

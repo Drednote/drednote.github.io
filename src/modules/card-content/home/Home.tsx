@@ -5,17 +5,20 @@ import { useTranslation } from 'react-i18next'
 import './home.scss'
 import { Options } from '@const/global-variables'
 import { useAdaptive } from '@components/adaptive/Adaptive'
+import useColorScheme from '@components/color-scheme/useColorScheme'
 
 const Home: React.FC<{ id?: string }> = ({ id }) => {
   const { t } = useTranslation()
   const [opacity, setOpacity] = useState(1)
   const { isDesktop, isTablet } = useAdaptive()
+  const { colors } = useColorScheme()
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const domRect = document.body.getBoundingClientRect()
       const diff = domRect.height / 2.5
-      setOpacity((domRect.y + diff) / diff)
+      const value = Math.max((domRect.y + diff) / diff, 0)
+      if (opacity !== value) setOpacity(value)
     })
   }, [])
 
@@ -27,17 +30,19 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
       id={id}
       style={{
         paddingTop: Options.navigationHeight,
+        background: `linear-gradient(${colors.backgroundLight()}, ${colors.backgroundDark()})`,
+        height: '100vh',
       }}
-      className="abs-center drednote-row drednote-col"
+      className="drednote-center drednote-row drednote-col"
     >
-      <Row className="abs-center" style={{ marginTop: -48 }}>
+      <Row className="drednote-center" style={{ marginTop: -48 }}>
         <Col>
-          <Row className="abs-center">
+          <Row className="drednote-center">
             <Typography.Title level={titleLevel} className="fade-in-text">
               {t('home_greeting-title')}
             </Typography.Title>
           </Row>
-          <Row className="abs-center">
+          <Row className="drednote-center">
             <Typography.Title level={textLevel} className="fade-in-text">
               {t('home_greeting-text')}
             </Typography.Title>

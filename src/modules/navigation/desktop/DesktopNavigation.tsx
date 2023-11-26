@@ -19,7 +19,7 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
           paddingRight: indentation,
           justifyContent: 'end',
         }}
-        className="abs-center drednote-col"
+        className="drednote-center drednote-col"
       >
         <Space size={36}>
           {/*<SocialNetwork />*/}

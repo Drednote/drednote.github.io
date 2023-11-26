@@ -1,4 +1,5 @@
 import { Lang } from '@const/lang'
+import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
 
 export type MenuKey = 'about' | 'resume' | 'home'
 
@@ -8,10 +9,8 @@ export const menuKeys: Record<MenuKey, MenuKey> = {
   home: 'home',
 }
 
-export interface MenuType {
+export interface MenuType extends AnchorLinkItemProps {
   key: MenuKey
-  title: string
-  href: string
 }
 
 export const menu: Record<string, MenuType[]> = {

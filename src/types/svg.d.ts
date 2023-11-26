@@ -1,4 +1,6 @@
 declare module '*.svg' {
-  const content: string
+  import { ReactSVGElement, ReactElement } from 'react'
+
+  const content: () => ReactElement<{ viewBox: string; children: ReactSVGElement[] }>
   export default content
 }

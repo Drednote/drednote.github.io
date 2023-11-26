@@ -13,7 +13,7 @@ const HomeFooter: React.FC<Props> = ({ opacity }) => {
   return (
     <>
       <Row
-        className="abs-center"
+        className="drednote-center"
         style={{
           position: 'absolute',
           bottom: '2vh',
@@ -31,7 +31,7 @@ const HomeFooter: React.FC<Props> = ({ opacity }) => {
               Scroll
             </Typography.Text>
           </Row>
-          <Row className="abs-center">
+          <Row className="drednote-center">
             <div
               style={{
                 position: 'relative',

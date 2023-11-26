@@ -3,7 +3,7 @@
   min-height: 100vh;
 }
 
-.abs-center {
+.drednote-center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +19,11 @@
 
 .drednote-row {
   width: inherit;
+}
+
+.drednote-row-center {
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes fadeIn {

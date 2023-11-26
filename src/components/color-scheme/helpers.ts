@@ -7,6 +7,9 @@ export interface AppColors {
   backgroundDark: ColorWithOpacity
   backgroundLight: ColorWithOpacity
   navBorder: ColorWithOpacity
+  aboutBackground: ColorWithOpacity
+  aboutSkillsBg: ColorWithOpacity
+  aboutSkillsText: ColorWithOpacity
 }
 
 export const cssColorsVariableNames: Record<keyof AppColors, string> = {
@@ -15,6 +18,9 @@ export const cssColorsVariableNames: Record<keyof AppColors, string> = {
   backgroundDark: 'backgroundDark',
   backgroundLight: 'backgroundLight',
   navBorder: 'navBorder',
+  aboutBackground: 'aboutBackground',
+  aboutSkillsBg: 'aboutSkillsBg',
+  aboutSkillsText: 'aboutSkillsText',
 }
 
 export const getCssVariable = (name: string, opacity = 1): string => {

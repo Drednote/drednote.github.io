@@ -27,7 +27,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
     <>
       <Col
         style={{ position: 'fixed', right: indentation, height: '100%' }}
-        className="abs-center"
+        className="drednote-center"
       >
         <Button
           icon={<MenuOutlined style={{ fontSize: 24 }} />}
