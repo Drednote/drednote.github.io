@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && cp public/404.html dist/404.html",
     "lint": "eslint . --fix",
     "test": "echo 'No tests found'"
   },
