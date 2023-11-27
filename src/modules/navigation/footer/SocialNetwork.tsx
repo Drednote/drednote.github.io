@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { Button, Space } from 'antd'
 import { GithubFilled, LinkedinFilled } from '@ant-design/icons'
 import { type ButtonProps } from 'antd/es/button/button'
 import TelegramIconFill from '@icons/TelegramIconFill'
 
-interface Props extends ButtonProps {
+interface SocialProps extends CSSProperties {
+  fontSize: number
+}
+
+interface Props extends ButtonProps, Pick<SocialProps, 'fontSize'> {
   custom?: boolean
 }
 
@@ -12,10 +16,9 @@ const marginMap = {
   ant: '-5px 0 0 -1px',
   custom: '-9px 0 0 -5px',
 }
-const size = 32
 
 const FooterButton: React.FC<Props> = (props) => {
-  const { custom = false, shape = 'circle', ...otherProps } = props
+  const { custom = false, shape = 'circle', fontSize, ...otherProps } = props
   const margin = custom ? marginMap.custom : marginMap.ant
 
   return (
@@ -23,6 +26,7 @@ const FooterButton: React.FC<Props> = (props) => {
       style={{
         backgroundColor: 'transparent',
         border: 0,
+        fontSize: fontSize,
       }}
       size="middle"
       shape={shape}
@@ -33,12 +37,26 @@ const FooterButton: React.FC<Props> = (props) => {
   )
 }
 
-const SocialNetwork: React.FC = () => {
+const SocialNetwork: React.FC<SocialProps> = ({ fontSize, color = 'inherit' }) => {
   return (
-    <Space>
-      <FooterButton icon={<TelegramIconFill style={{ fontSize: size + 4 }} />} href="https://t.me/mr_drednote" custom />
-      <FooterButton icon={<GithubFilled style={{ fontSize: size }} />} href="https://github.com/Drednote" />
-      <FooterButton icon={<LinkedinFilled style={{ fontSize: size }} />} shape="default" />
+    <Space size={8} direction="horizontal">
+      <FooterButton
+        icon={<TelegramIconFill style={{ fontSize: fontSize + 4, color }} />}
+        href="https://t.me/mr_drednote"
+        custom
+        fontSize={fontSize}
+      />
+      <FooterButton
+        icon={<GithubFilled style={{ fontSize: fontSize, color }} />}
+        fontSize={fontSize}
+        href="https://github.com/Drednote"
+      />
+      <FooterButton
+        icon={<LinkedinFilled style={{ fontSize: fontSize, color }} />}
+        shape="default"
+        fontSize={fontSize}
+        href="https://www.linkedin.com/in/drednote/"
+      />
     </Space>
   )
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 import { Button, Col, Row, Typography } from 'antd'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
+import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
 import { useTranslation } from 'react-i18next'
 import { menuKeys } from '@modules/navigation/menu/const'
 import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
@@ -9,7 +9,7 @@ import useColorScheme from '@components/color-scheme/useColorScheme'
 import LogoIcon from '@icons/LogoIcon'
 
 interface Props {
-  height: number | string
+  height: number
 }
 
 const left = 24
@@ -20,12 +20,13 @@ const NavigationContainer: React.FC<{
 }> = ({ children, height }) => {
   const { t } = useTranslation()
   const { colors } = useColorScheme()
+  const { isMobile } = useAdaptive()
 
   const handleClick = useCallback(() => {
     const element = document.getElementById(`${menuKeys.home}`)
     element?.scrollIntoView({ behavior: 'smooth' })
     history.pushState({}, '', `#${menuKeys.home}`)
-  }, [])
+  }, [document])
 
   return (
     <Row
@@ -45,7 +46,7 @@ const NavigationContainer: React.FC<{
           onClick={handleClick}
         >
           <LogoIcon style={{ fontSize: height }} />
-          <Typography.Title level={4} className="dre-center" style={{ margin: 0 }}>
+          <Typography.Title level={isMobile ? 4 : 3} className="dre-center" style={{ margin: 0 }}>
             {t('navigation-title')}
           </Typography.Title>
         </Button>
@@ -68,6 +69,9 @@ const Navigation: React.FC<Props> = ({ height }) => {
     })
   }, [])
 
+  const backgroundColor = colors.backgroundDark(opacity)
+  const backdropFilter = 'blur(32px)'
+
   return (
     <nav>
       <Row
@@ -77,8 +81,8 @@ const Navigation: React.FC<Props> = ({ height }) => {
           width: '100%',
           top: 0,
           zIndex: 100,
-          backgroundColor: colors.backgroundDark(opacity),
-          backdropFilter: 'blur(32px)',
+          backgroundColor,
+          backdropFilter,
           borderColor: colors.navBorder(Math.min(opacity, 0.1)),
           borderBottomWidth: '1px',
           borderTopWidth: '0',

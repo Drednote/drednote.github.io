@@ -3,6 +3,7 @@ import About from '@modules/card-content/about/About'
 import { menuKeys } from '@modules/navigation/menu/const'
 import Home from '@modules/card-content/home/Home'
 import { Row } from 'antd'
+import CardContentFooter from '@modules/card-content/footer/CardContentFooter'
 
 const CardContent: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const CardContent: React.FC = () => {
     >
       <Home key={menuKeys.home} id={menuKeys.home} />
       <About key={menuKeys.about} id={menuKeys.about} />
+      <CardContentFooter />
     </Row>
   )
 }

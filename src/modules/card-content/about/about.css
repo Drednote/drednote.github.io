@@ -6,7 +6,6 @@
   animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: none;
-  margin-top: 50px;
 }
 
 .fade-bottom-content__disable {
@@ -15,6 +14,10 @@
 
 .content-desktop {
   min-width: calc(50% - 24px);
+}
+
+p.about-text {
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=about.css.map */

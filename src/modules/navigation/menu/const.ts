@@ -1,11 +1,11 @@
 import { Lang } from '@const/lang'
 import { AnchorLinkItemProps } from 'antd/es/anchor/Anchor'
 
-export type MenuKey = 'about' | 'resume' | 'home'
+export type MenuKey = 'about' | 'home' //| 'resume'
 
 export const menuKeys: Record<MenuKey, MenuKey> = {
   about: 'about',
-  resume: 'resume',
+  // resume: 'resume',
   home: 'home',
 }
 
@@ -25,11 +25,11 @@ export const menu: Record<string, MenuType[]> = {
       href: '#about',
       title: 'Обо мне',
     },
-    {
-      key: 'resume',
-      href: '#resume',
-      title: 'Резюме',
-    },
+    // {
+    //   key: 'resume',
+    //   href: '#resume',
+    //   title: 'Резюме',
+    // },
   ],
   [Lang.en]: [
     {
@@ -42,10 +42,10 @@ export const menu: Record<string, MenuType[]> = {
       href: '#about',
       title: 'About',
     },
-    {
-      key: 'resume',
-      href: '#resume',
-      title: 'Resume',
-    },
+    // {
+    //   key: 'resume',
+    //   href: '#resume',
+    //   title: 'Resume',
+    // },
   ],
 }

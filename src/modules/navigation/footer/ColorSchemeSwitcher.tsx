@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch } from 'antd'
 import useColorScheme from '@components/color-scheme/useColorScheme'
-import './switcher.scss'
+import '@components/color-scheme/switcher.scss'
 
 const ColorSchemeSwitcher: React.FC = () => {
   const { isDark, setIsDark } = useColorScheme()
@@ -13,7 +13,7 @@ const ColorSchemeSwitcher: React.FC = () => {
       checkedChildren="🌙"
       unCheckedChildren="🔆"
       className="color-switcher"
-    ></Switch>
+    />
   )
 }
 

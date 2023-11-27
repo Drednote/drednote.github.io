@@ -6,7 +6,7 @@ import { type Lang } from '@const/lang'
 import { useTranslation } from 'react-i18next'
 import CardContent from '@modules/card-content/CardContent'
 import useColorScheme from '@components/color-scheme/useColorScheme'
-import { Options } from '@const/global-variables'
+import { useAdaptive } from '@components/adaptive/Adaptive'
 
 interface Props {
   lang: Lang
@@ -15,9 +15,13 @@ interface Props {
 const App: React.FC<Props> = ({ lang }) => {
   const { i18n } = useTranslation()
   const { colors } = useColorScheme()
+  const { options } = useAdaptive()
 
   useEffect(() => {
-    if (i18n.language !== lang.toString()) void i18n.changeLanguage(lang)
+    if (i18n.language !== lang.toString()) {
+      void i18n.changeLanguage(lang)
+    }
+    document.getElementById('html')?.setAttribute('lang', i18n.language)
   }, [lang])
 
   return (
@@ -42,7 +46,7 @@ const App: React.FC<Props> = ({ lang }) => {
       }}
     >
       <div className="App">
-        <Navigation height={Options.navigationHeight} />
+        <Navigation height={options.navigationHeight} />
         <CardContent />
       </div>
     </ConfigProvider>

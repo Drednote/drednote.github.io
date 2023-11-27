@@ -10,7 +10,7 @@ interface Props {
 }
 
 const MarkdownAdapter: React.FC<Props> = (props) => {
-  const { children } = props
+  const { children, className } = props
   const [text, setText] = useState<string | undefined>(undefined)
 
   useEffect(() => {
@@ -20,7 +20,15 @@ const MarkdownAdapter: React.FC<Props> = (props) => {
   }, [children])
 
   return (
-    <Markdown remarkPlugins={[remarkGfm]} className="drednote-center markdown-adapter-base">
+    <Markdown
+      remarkPlugins={[remarkGfm]}
+      className="drednote-center markdown-adapter-base"
+      components={{
+        p(props) {
+          return <p className={className} {...props} />
+        },
+      }}
+    >
       {text}
     </Markdown>
   )

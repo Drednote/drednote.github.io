@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Row, Typography } from 'antd'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import { useTranslation } from 'react-i18next'
+import { useAdaptive } from '@components/adaptive/Adaptive'
 
 interface SkillProps {
   text: string
@@ -40,10 +41,14 @@ const Skill: React.FC<SkillProps> = ({ text, height = 45 }) => {
 
 const Skills: React.FC = () => {
   const { t } = useTranslation()
+  const { options } = useAdaptive()
+
   return (
     <Col className="drednote-col">
       <Row className="drednote-row-center">
-        <Typography.Title level={2}>{t('about_skills-title')}</Typography.Title>
+        <Typography.Title level={options.titleLevels.l2}>
+          {t('about_skills-title')}
+        </Typography.Title>
       </Row>
       <Row
         className="drednote-row-center"

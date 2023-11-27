@@ -1,8 +1,5 @@
 .drawer-close-icon {
-  color: var(--color-primary);
-}
-.drawer-close-icon:hover {
-  color: var(--color-primary-hover);
+  color: var(--primary);
 }
 
 /*# sourceMappingURL=mobile-navigation.css.map */

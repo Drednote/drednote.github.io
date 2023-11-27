@@ -10,6 +10,7 @@ interface Props {
 
 const HomeFooter: React.FC<Props> = ({ opacity }) => {
   const { colors } = useColorScheme()
+
   return (
     <>
       <Row

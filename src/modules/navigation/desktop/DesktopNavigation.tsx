@@ -1,8 +1,7 @@
 import React from 'react'
-import { Col, Space } from 'antd'
+import { Col } from 'antd'
 import Menu from '@modules/navigation/menu/Menu'
-import LinkToAnotherLang from '@modules/navigation/footer/LinkToAnotherLang'
-import ColorSchemeSwitcher from '@components/color-scheme/ColorSchemeSwitcher'
+import NavExtra from '@modules/navigation/NavExtra'
 
 interface Props {
   indentation: number | string
@@ -12,7 +11,7 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
   return (
     <>
       <Col>
-        <Menu />
+        <Menu direction="horizontal" />
       </Col>
       <Col
         style={{
@@ -21,11 +20,7 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
         }}
         className="drednote-center drednote-col"
       >
-        <Space size={36}>
-          {/*<SocialNetwork />*/}
-          <LinkToAnotherLang />
-          <ColorSchemeSwitcher />
-        </Space>
+        <NavExtra spaceSize={36} />
       </Col>
     </>
   )

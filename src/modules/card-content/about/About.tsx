@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import { Col, Row, Space, Typography } from 'antd'
-import { Options } from '@const/global-variables'
 import './about.scss'
 import { menuKeys } from '@modules/navigation/menu/const'
 import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
@@ -16,6 +15,7 @@ interface Props {
 
 const AboutContent: React.FC<Props> = ({ activeFade }) => {
   const { t } = useTranslation()
+  const { options } = useAdaptive()
   const classNames = activeFade
     ? 'drednote-area fade-bottom-content'
     : 'drednote-area fade-bottom-content__disable'
@@ -23,7 +23,7 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
   return (
     <Col className={classNames}>
       <Row className="drednote-center">
-        <Typography.Title level={1} style={{ zIndex: 10 }}>
+        <Typography.Title level={options.titleLevels.l1} style={{ zIndex: 10 }}>
           {t('about_title')}
         </Typography.Title>
       </Row>
@@ -59,7 +59,7 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
 const About: React.FC<{ id?: string }> = ({ id }) => {
   const { colors } = useColorScheme()
   const [activeFade, setActiveFade] = useState(false)
-  const { isMobile, isDesktop } = useAdaptive()
+  const { isMobile, isDesktop, options } = useAdaptive()
 
   const listener = () => {
     const element = document.getElementById(`${menuKeys.about}`)
@@ -80,7 +80,7 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
   const padding = isMobile ? 24 : 48
 
   const xTranslate = isDesktop ? '-270px' : '0'
-  const yTranslate = !isDesktop ? '450px' : '360px'
+  const yTranslate = !isDesktop ? '450px' : '400px'
 
   return (
     <Col
@@ -89,7 +89,7 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
       style={{
         minHeight: '100vh',
         backgroundColor: colors.backgroundDark(),
-        paddingTop: Options.navigationHeight + padding,
+        paddingTop: options.navigationHeight + padding,
         paddingLeft: padding,
         paddingRight: padding,
         paddingBottom: padding,
@@ -98,9 +98,9 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
       }}
     >
       <Background
-        fontSize={800}
+        fontSize={1000}
         style={{
-          fontSize: 800,
+          fontSize: 1000,
           position: 'absolute',
           color: colors.aboutBackground(0.8),
           height: 0,
