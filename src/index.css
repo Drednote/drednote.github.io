@@ -1,13 +1,91 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Jost', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace, 'Jost',
+    sans-serif;
+}
+
+:root {
+  --dark_primary: rgba(255, 255, 255, 1);
+  --light_primary: rgba(0, 0, 0, 1);
+
+  --dark_text: rgba(255, 255, 255, 1);
+  --light_text: rgba(0, 0, 0, 1);
+
+  /*--dark_backgroundDark2: rgba(6, 13, 25, 1);*/
+  --dark_backgroundDark: rgba(5, 23, 45, 1);
+  --dark_backgroundLight: rgba(4, 36, 65, 1);
+
+  --light_backgroundDark: rgba(161, 222, 255, 1);
+  --light_backgroundLight: rgba(255, 255, 255, 1);
+
+  --dark_navBorder: rgba(255, 255, 255, 1);
+  --light_navBorder: rgba(0, 0, 0, 1);
+
+  --dark_aboutBackground: rgb(0, 115, 121, 1);
+  --light_aboutBackground: rgba(255, 255, 255, 1);
+
+  --dark_aboutSkillsText: var(--dark_aboutBackground);
+  --light_aboutSkillsText: var(--light_text);
+  --dark_aboutSkillsBg: var(--dark_text);
+  --light_aboutSkillsBg: var(--light_aboutBackground);
+}
+
+[data-theme='light'] {
+  --primary: var(--light_primary);
+  --text: var(--light_text);
+
+  --backgroundDark: var(--light_backgroundDark);
+  --backgroundLight: var(--light_backgroundLight);
+
+  --navBorder: var(--light_navBorder);
+
+  --aboutBackground: var(--light_aboutBackground);
+
+  --aboutSkillsText: var(--light_aboutSkillsText);
+  --aboutSkillsBg: var(--light_aboutSkillsBg);
+}
+
+[data-theme='dark'] {
+  --primary: var(--dark_primary);
+  --text: var(--dark_text);
+
+  --backgroundDark: var(--dark_backgroundDark);
+  --backgroundLight: var(--dark_backgroundLight);
+
+  --navBorder: var(--dark_navBorder);
+
+  --aboutBackground: var(--dark_aboutBackground);
+
+  --aboutSkillsText: var(--dark_aboutSkillsText);
+  --aboutSkillsBg: var(--dark_aboutSkillsBg);
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src:
+    local('Jost'),
+    url('./fonts/Jost/static/Jost-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+  src:
+    local('Jost'),
+    url('./fonts/Jost/static/Jost-Italic.ttf') format('truetype');
+}
+
+@media (prefers-color-scheme: dark) {
 }

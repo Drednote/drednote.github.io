@@ -1,0 +1,15 @@
+.anchor-ink {
+  &.ant-anchor-wrapper .ant-anchor .ant-anchor-link {
+    display: flex;
+    justify-content: center;
+  }
+  &.ant-anchor-wrapper:not(.ant-anchor-wrapper-horizontal) .ant-anchor .ant-anchor-ink.ant-anchor-ink-visible {
+    display: none
+  }
+  & .ant-anchor::before {
+    display: none;
+  }
+  &.ant-anchor-wrapper-horizontal::before {
+    display: none;
+  }
+}

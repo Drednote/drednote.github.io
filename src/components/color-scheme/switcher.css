@@ -1,0 +1,11 @@
+.color-switcher.ant-switch .ant-switch-handle {
+  visibility: hidden;
+}
+.color-switcher.ant-switch.ant-switch-checked {
+  background-color: var(--primary);
+}
+.color-switcher.ant-switch {
+  background-color: var(--primary);
+}
+
+/*# sourceMappingURL=switcher.css.map */

@@ -1,0 +1,38 @@
+@keyframes moveArrow {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  50% {
+    top: 10px;
+    opacity: 0.3;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes moveText {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -5px;
+  }
+  100% {
+    top: 0;
+  }
+}
+.fade-in-text.ant-typography {
+  animation-name: fadeIn;
+  animation-duration: 2000ms;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  margin-bottom: 0.25em;
+  margin-top: 0;
+}
+
+/*# sourceMappingURL=home.css.map */
