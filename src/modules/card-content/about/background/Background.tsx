@@ -17,7 +17,7 @@ const Background: React.FC<Partial<CustomIconComponentProps> & Props> = (props) 
     const svgElement = document.getElementById(id)
     if (innerWidth < fontSize && svgElement) {
       const diff = (fontSize - innerWidth) * 2
-      const x = diff / 2
+      const x = Math.min(diff / 2, 650)
       setViewBox((prev) => {
         const split = prev.split(' ')
         split[0] = (x * 1.2).toString()

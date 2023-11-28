@@ -15,7 +15,7 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const domRect = document.body.getBoundingClientRect()
-      const diff = domRect.height / 3.5
+      const diff = window.innerHeight / 3.5
       const value = Math.max((domRect.y + diff) / diff, 0)
       setOpacity((prev) => (prev !== value ? value : prev))
     })
@@ -34,12 +34,20 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
       <Row className="drednote-center" style={{ marginTop: -48 }}>
         <Col>
           <Row className="drednote-center">
-            <Typography.Title level={options.titleLevels.l1} className="fade-in-text">
+            <Typography.Title
+              level={options.titleLevels.l1}
+              className="fade-in-text"
+              style={{ textAlign: 'center' }}
+            >
               {t('home_greeting-title')}
             </Typography.Title>
           </Row>
           <Row className="drednote-center">
-            <Typography.Title level={options.titleLevels.l2} className="fade-in-text">
+            <Typography.Title
+              level={options.titleLevels.l2}
+              className="fade-in-text"
+              style={{ textAlign: 'center' }}
+            >
               {t('home_greeting-text')}
             </Typography.Title>
           </Row>

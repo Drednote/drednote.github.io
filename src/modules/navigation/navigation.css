@@ -1,0 +1,15 @@
+.navigation-row {
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-style: solid;
+}
+
+/*# sourceMappingURL=navigation.css.map */

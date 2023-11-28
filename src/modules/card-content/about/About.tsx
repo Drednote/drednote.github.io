@@ -65,7 +65,8 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
     const element = document.getElementById(`${menuKeys.about}`)
     if (element) {
       const domRect = element.getBoundingClientRect()
-      const diff = domRect?.height - domRect.y > domRect.height / 3
+      const height = window.innerHeight
+      const diff = height - domRect.y > height / 3
       if (!activeFade && diff) {
         setActiveFade(diff)
         window.removeEventListener('scroll', listener)

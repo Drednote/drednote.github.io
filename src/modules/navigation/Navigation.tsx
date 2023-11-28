@@ -7,6 +7,7 @@ import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
 import DesktopNavigation from '@modules/navigation/desktop/DesktopNavigation'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import LogoIcon from '@icons/LogoIcon'
+import './navigation.scss'
 
 interface Props {
   height: number
@@ -63,35 +64,24 @@ const Navigation: React.FC<Props> = ({ height }) => {
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const domRect = document.body.getBoundingClientRect()
-      const rate = domRect.y !== 0 ? domRect.y / domRect.height : 0
+      const rate = domRect.y !== 0 ? domRect.y / (window.innerHeight * 2) : 0
       const value = Math.min(0.5, rate * -1)
       if (opacity !== value) setOpacity(value)
     })
   }, [])
 
   const backgroundColor = colors.backgroundDark(opacity)
-  const backdropFilter = 'blur(32px)'
 
   return (
     <nav>
       <Row
         style={{
           height,
-          position: 'fixed',
-          width: '100%',
-          top: 0,
-          zIndex: 100,
           backgroundColor,
-          backdropFilter,
           borderColor: colors.navBorder(Math.min(opacity, 0.1)),
-          borderBottomWidth: '1px',
-          borderTopWidth: '0',
-          borderLeftWidth: '0',
-          borderRightWidth: '0',
-          borderStyle: 'solid',
           boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
         }}
-        className="drednote-center"
+        className="drednote-center navigation-row"
       >
         <NavigationContainer height={height}>
           <Desktop>
