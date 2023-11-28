@@ -9,8 +9,6 @@ const App = () => {
   return <RouterProvider router={router} />
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as Element).render(
   <React.StrictMode>{App()}</React.StrictMode>,
 )

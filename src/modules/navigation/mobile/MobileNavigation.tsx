@@ -25,10 +25,12 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
     setOpen(false)
   }
 
-  const handleClickMenu = (item: MenuKey) => {
+  const resumeKey = 'resume'
+  const handleClickMenu = (item: string) => {
     const element = document.getElementById(`${item}`)
     element?.scrollIntoView({ behavior: 'smooth' })
     history.pushState({}, '', `#${item}`)
+    onClose()
   }
 
   return (
@@ -51,7 +53,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         onClose={onClose}
         open={open}
         key="left"
-        height={height + menu[i18n.language].length * 58}
+        height="inherit"
         closeIcon={<CloseOutlined className="drawer-close-icon" />}
         contentWrapperStyle={{
           minHeight: height,
@@ -63,13 +65,32 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         bodyStyle={{ display: 'flex', justifyContent: 'center', padding: 0 }}
       >
         <List
-          dataSource={menu[i18n.language]}
+          dataSource={[
+            ...menu[i18n.language],
+            {
+              key: resumeKey,
+              title: t('navigation_resume'),
+            },
+          ]}
           style={{ width: '100%' }}
           renderItem={(item) => (
             <List.Item
               key={item.key}
+              style={{
+                borderBlockEnd: '1px solid rgba(255, 255, 255, 0.94)',
+              }}
               actions={[
-                <Button type="text" onClick={() => handleClickMenu(item.key)} key={item.key}>
+                <Button
+                  type="text"
+                  onClick={() => handleClickMenu(item.key)}
+                  key={item.key}
+                  href={
+                    item.key === resumeKey
+                      ? 'https://hh.ru/resume/ba9fbaadff05d0cecb0039ed1f55464135414b?from=share_ios'
+                      : undefined
+                  }
+                  target={item.key === resumeKey ? '_blank' : undefined}
+                >
                   {item.title}
                 </Button>,
               ]}
