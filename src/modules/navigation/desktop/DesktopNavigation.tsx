@@ -18,7 +18,7 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
           paddingRight: indentation,
           justifyContent: 'end',
         }}
-        className="drednote-center drednote-col"
+        className="dr-center dr-col"
       >
         <NavExtra spaceSize={36} />
       </Col>

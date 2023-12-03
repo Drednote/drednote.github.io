@@ -9,8 +9,8 @@ import { AppColors } from '@components/color-scheme/helpers'
 import { OptionsProps } from '@const/global-variables'
 
 const Social: React.FC = () => (
-  <Col className="drednote-center">
-    <Space direction="vertical" className="drednote-center" size={8}>
+  <Col className="dr-center">
+    <Space direction="vertical" className="dr-center" size={8}>
       <Typography.Title
         level={5}
         style={{
@@ -47,7 +47,7 @@ const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }>
   text,
   options,
 }) => (
-  <Col className="drednote-center">
+  <Col className="dr-center">
     <LogoIcon style={{ fontSize: 64, color: colors.primary() }} />
     <Typography.Title
       level={options.titleLevels.l4}
@@ -71,7 +71,7 @@ const CardContentFooter: React.FC = () => {
         backgroundColor: colors.backgroundDark(),
         zIndex: 10,
       }}
-      className="drednote-row drednote-center"
+      className="dr-row dr-center"
     >
       <Row
         style={{

@@ -46,7 +46,7 @@ const getColors = (colorScheme: string): AppColors => {
       const key = entry[0]
       const value = entry[1]
       return {
-        [key]: (opacity = 1) => getCssVariable(`--${colorScheme}_${value}`, opacity),
+        [key]: (opacity: number) => getCssVariable(`--${colorScheme}_${value}`, opacity),
       }
     })
     .reduce((previousValue, currentValue) => {

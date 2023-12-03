@@ -1,5 +1,5 @@
-import navigationRu from './ru/navigation.json'
-import navigationEn from './en/navigation.json'
+import navigationRu from './ru/translation.json'
+import navigationEn from './en/translation.json'
 
 const resources = {
   ru: { translation: navigationRu },

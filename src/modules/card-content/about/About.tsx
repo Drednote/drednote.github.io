@@ -22,7 +22,7 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
 
   return (
     <Col className={classNames}>
-      <Row className="drednote-center">
+      <Row className="dr-center">
         <Typography.Title level={options.titleLevels.l1} style={{ zIndex: 10 }}>
           {t('about_title')}
         </Typography.Title>
@@ -37,15 +37,13 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
               alignItems: 'flex-start',
             }}
           >
-            <Col>
-              <AboutText />
-            </Col>
+            <AboutText />
             <Skills />
           </Space>
         </Row>
       </Desktop>
       <Mobile>
-        <Row className="drednote-row-center">
+        <Row className="dr-row-center">
           <Space size={48} direction="vertical">
             <AboutText />
             <Skills />
@@ -59,7 +57,7 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
 const About: React.FC<{ id?: string }> = ({ id }) => {
   const { colors } = useColorScheme()
   const [activeFade, setActiveFade] = useState(false)
-  const { isMobile, isDesktop, options } = useAdaptive()
+  const { isDesktop, options } = useAdaptive()
 
   const listener = () => {
     const element = document.getElementById(`${menuKeys.about}`)
@@ -78,24 +76,17 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
     window.addEventListener('scroll', listener)
   }, [])
 
-  const padding = isMobile ? 24 : 48
-
-  const xTranslate = isDesktop ? '-270px' : '0'
-  const yTranslate = !isDesktop ? '450px' : '400px'
+  const xTranslate = isDesktop ? '-290px' : '0'
+  const yTranslate = isDesktop ? '400px' : '450px'
 
   return (
-    <Col
+    <Row
       id={id}
-      className="drednote-row"
       style={{
-        minHeight: '100vh',
-        backgroundColor: colors.backgroundDark(),
-        paddingTop: options.navigationHeight + padding,
-        paddingLeft: padding,
-        paddingRight: padding,
-        paddingBottom: padding,
         display: 'flex',
         justifyContent: 'center',
+        maxWidth: options.maxWidth,
+        paddingTop: options.navigationHeight,
       }}
     >
       <Background
@@ -110,7 +101,7 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
         }}
       />
       <AboutContent activeFade={activeFade} />
-    </Col>
+    </Row>
   )
 }
 

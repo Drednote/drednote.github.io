@@ -8,5 +8,7 @@
   "home_greeting-text": "Я Java Spring Разработчик из Москвы",
   "about_title": "Обо мне",
   "about_text-title": "Приятно познакомиться",
-  "about_skills-title": "Ключевые навыки"
+  "about_skills-title": "Ключевые навыки",
+
+  "experience_present": "наст. время"
 }

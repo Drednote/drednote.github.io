@@ -3,27 +3,36 @@
   min-height: 100vh;
 }
 
-.drednote-center {
+.dr-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.drednote-area {
+.dr-area {
   max-width: 1200px;
 }
 
-.drednote-col {
+.dr-col {
   height: inherit;
 }
 
-.drednote-row {
+.dr-row {
   width: inherit;
 }
 
-.drednote-row-center {
+.dr-row-center {
   display: flex;
   justify-content: center;
+}
+
+.dr-col-center {
+  display: flex;
+  align-items: center;
+}
+
+.dr-wrap-text {
+  border-radius: 9999px;
 }
 
 @keyframes fadeIn {

@@ -3,6 +3,7 @@ import { Col, Row, Typography } from 'antd'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import { useTranslation } from 'react-i18next'
 import { useAdaptive } from '@components/adaptive/Adaptive'
+import WrapText from '@components/wrap-text/WrapText'
 
 interface SkillProps {
   text: string
@@ -10,32 +11,21 @@ interface SkillProps {
   height?: number
 }
 
-const Skill: React.FC<SkillProps> = ({ text, height = 45 }) => {
+const Skill: React.FC<SkillProps> = ({ text, height = 48 }) => {
   const { colors, isDark } = useColorScheme()
-  const rate = 1.15 - (text.length * 4) / 100
 
   return (
-    <div
-      className="drednote-center"
+    <WrapText
+      text={text}
       style={{
-        width: `${text.length * rate}em`,
+        color: colors.aboutSkillsText(),
         height: `${height}px`,
         backgroundColor: colors.aboutSkillsBg(isDark ? 0.95 : 0.85),
-        borderRadius: `50% / ${height / 2}px`,
-        marginRight: 8,
-        marginBottom: 8,
+        marginRight: 12,
+        marginBottom: 12,
         zIndex: 10,
       }}
-    >
-      <Typography.Text
-        strong
-        style={{
-          color: colors.aboutSkillsText(),
-        }}
-      >
-        {text}
-      </Typography.Text>
-    </div>
+    />
   )
 }
 
@@ -44,14 +34,14 @@ const Skills: React.FC = () => {
   const { options } = useAdaptive()
 
   return (
-    <Col className="drednote-col">
-      <Row className="drednote-row-center">
+    <Col className="dr-col">
+      <Row className="dr-row-center">
         <Typography.Title level={options.titleLevels.l2}>
           {t('about_skills-title')}
         </Typography.Title>
       </Row>
       <Row
-        className="drednote-row-center"
+        className="dr-row-center"
         style={{
           marginTop: 24,
         }}

@@ -6,6 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended',
   ],
   settings: {
     react: {
@@ -26,6 +27,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'no-unused-vars': 'off',
     'max-len': ['error', { code: 100 }],
+    '@typescript-eslint/no-var-requires': 0,
   },
   globals: {
     window: true,

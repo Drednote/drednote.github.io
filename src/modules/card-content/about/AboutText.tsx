@@ -11,11 +11,13 @@ const AboutText: React.FC = () => {
 
   return (
     <Col style={{}}>
-      <Row className="drednote-row-center">
+      <Row className="dr-row-center">
         <Typography.Title level={options.titleLevels.l2}>{t('about_text-title')}</Typography.Title>
       </Row>
       <Row style={{ fontSize: !isMobile ? 20 : 18 }}>
-        <MarkdownAdapter className="about-text">{content}</MarkdownAdapter>
+        <MarkdownAdapter itemClassName="compact-text" className="md-main-text">
+          {content}
+        </MarkdownAdapter>
       </Row>
     </Col>
   )

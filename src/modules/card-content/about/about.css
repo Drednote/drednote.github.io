@@ -16,8 +16,8 @@
   min-width: calc(50% - 24px);
 }
 
-p.about-text {
-  margin-top: 0;
+.md-main-text.markdown-adapter-base {
+  color: var(--text);
 }
 
 /*# sourceMappingURL=about.css.map */

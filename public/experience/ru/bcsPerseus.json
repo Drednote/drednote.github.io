@@ -1,0 +1,16 @@
+{
+  "title": "Ведущий разработчик",
+  "company": "БКС",
+  "startDate": "06-01-2021",
+  "href": "https://bcs.ru/",
+  "skills": [
+    "Java 11/17",
+    "Spring Boot",
+    "Spring Cloud",
+    "MongoDB",
+    "PostgreSQL",
+    "RabbitMQ",
+    "Kafka",
+    "Hibernate"
+  ]
+}

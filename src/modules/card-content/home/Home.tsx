@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Col, Row, Typography } from 'antd'
 import HomeFooter from '@modules/card-content/home/HomeFooter'
 import { useTranslation } from 'react-i18next'
@@ -8,18 +8,8 @@ import useColorScheme from '@components/color-scheme/useColorScheme'
 
 const Home: React.FC<{ id?: string }> = ({ id }) => {
   const { t } = useTranslation()
-  const [opacity, setOpacity] = useState(1)
   const { options } = useAdaptive()
   const { colors } = useColorScheme()
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const domRect = document.body.getBoundingClientRect()
-      const diff = window.innerHeight / 3.5
-      const value = Math.max((domRect.y + diff) / diff, 0)
-      setOpacity((prev) => (prev !== value ? value : prev))
-    })
-  }, [])
 
   return (
     <Col
@@ -29,11 +19,11 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
         background: `linear-gradient(${colors.backgroundLight()}, ${colors.backgroundDark()})`,
         height: '100vh',
       }}
-      className="drednote-center drednote-row drednote-col"
+      className="dr-center dr-row dr-col"
     >
-      <Row className="drednote-center" style={{ marginTop: -48 }}>
+      <Row className="dr-center" style={{ marginTop: -48 }}>
         <Col>
-          <Row className="drednote-center">
+          <Row className="dr-center">
             <Typography.Title
               level={options.titleLevels.l1}
               className="fade-in-text"
@@ -42,7 +32,7 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
               {t('home_greeting-title')}
             </Typography.Title>
           </Row>
-          <Row className="drednote-center">
+          <Row className="dr-center">
             <Typography.Title
               level={options.titleLevels.l2}
               className="fade-in-text"
@@ -53,7 +43,7 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
           </Row>
         </Col>
       </Row>
-      <HomeFooter opacity={opacity} />
+      <HomeFooter />
     </Col>
   )
 }

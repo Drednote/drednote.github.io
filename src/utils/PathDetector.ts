@@ -1,3 +1,5 @@
+import { Lang } from '@const/lang'
+
 export default {
   name: 'customPath',
 
@@ -8,6 +10,9 @@ export default {
       if (language instanceof Array && language.length) {
         found = language[language.length - 1].replace('/', '')
       }
+    }
+    if (found === undefined || !(found in Lang)) {
+      found = undefined
     }
     return found
   },
