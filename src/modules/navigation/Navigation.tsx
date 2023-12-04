@@ -10,7 +10,7 @@ import LogoIcon from '@icons/LogoIcon'
 import './navigation.scss'
 
 interface Props {
-  height: number
+  height?: number
 }
 
 const left = 24
@@ -27,17 +27,17 @@ const NavigationContainer: React.FC<{
     const element = document.getElementById(`${menuKeys.home}`)
     element?.scrollIntoView({ behavior: 'smooth' })
     history.pushState({}, '', `#${menuKeys.home}`)
-  }, [document])
+  }, [])
 
   return (
     <Row
-      className="drednote-center drednote-area drednote-row drednote-col"
+      className="dr-center dr-area dr-row dr-col"
       style={{ justifyContent: 'space-between' }}
     >
-      <Col style={{ paddingLeft: 0 }} className="drednote-center drednote-col">
+      <Col style={{ paddingLeft: 0 }} className="dr-center dr-col">
         <Button
           type="link"
-          className="drednote-center"
+          className="dr-center"
           style={{
             backgroundColor: 'transparent',
             height: '100%',
@@ -57,9 +57,10 @@ const NavigationContainer: React.FC<{
   )
 }
 
-const Navigation: React.FC<Props> = ({ height }) => {
+const Navigation: React.FC<Props> = () => {
   const [opacity, setOpacity] = useState(0)
   const { colors } = useColorScheme()
+  const { options } = useAdaptive()
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -76,19 +77,19 @@ const Navigation: React.FC<Props> = ({ height }) => {
     <nav>
       <Row
         style={{
-          height,
+          height: options.navigationHeight,
           backgroundColor,
           borderColor: colors.navBorder(Math.min(opacity, 0.1)),
           boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
         }}
-        className="drednote-center navigation-row"
+        className="dr-center navigation-row"
       >
-        <NavigationContainer height={height}>
+        <NavigationContainer height={options.navigationHeight}>
           <Desktop>
             <DesktopNavigation indentation={left} />
           </Desktop>
           <Mobile>
-            <MobileNavigation indentation={left} height={height} />
+            <MobileNavigation indentation={left} height={options.navigationHeight} />
           </Mobile>
         </NavigationContainer>
       </Row>

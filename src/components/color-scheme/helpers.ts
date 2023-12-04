@@ -10,6 +10,9 @@ export interface AppColors {
   aboutBackground: ColorWithOpacity
   aboutSkillsBg: ColorWithOpacity
   aboutSkillsText: ColorWithOpacity
+  textSecondary: ColorWithOpacity
+  experienceBackground: ColorWithOpacity
+  experienceBorder: ColorWithOpacity
 }
 
 export const cssColorsVariableNames: Record<keyof AppColors, string> = {
@@ -21,12 +24,15 @@ export const cssColorsVariableNames: Record<keyof AppColors, string> = {
   aboutBackground: 'aboutBackground',
   aboutSkillsBg: 'aboutSkillsBg',
   aboutSkillsText: 'aboutSkillsText',
+  textSecondary: 'textSecondary',
+  experienceBackground: 'experienceBackground',
+  experienceBorder: 'experienceBorder',
 }
 
-export const getCssVariable = (name: string, opacity = 1): string => {
+export const getCssVariable = (name: string, opacity?: number): string => {
   const propertyValue = getComputedStyle(document.documentElement).getPropertyValue(name)
 
-  if (!propertyValue || opacity === 1) {
+  if (!propertyValue || opacity === undefined) {
     return propertyValue
   }
 

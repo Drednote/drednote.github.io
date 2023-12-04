@@ -5,7 +5,8 @@ import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
 import './mobile-navigation.scss'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import NavExtra from '@modules/navigation/NavExtra'
-import { menu, MenuKey } from '@modules/navigation/menu/const'
+import { menu } from '@modules/navigation/menu/const'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   height: number
@@ -16,6 +17,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
   const [open, setOpen] = useState(false)
   const { t, i18n } = useTranslation()
   const { colors } = useColorScheme()
+  const navigate = useNavigate()
 
   const showDrawer = (): void => {
     setOpen(true)
@@ -35,10 +37,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
 
   return (
     <>
-      <Col
-        style={{ position: 'fixed', right: indentation, height: '100%' }}
-        className="drednote-center"
-      >
+      <Col style={{ position: 'fixed', right: indentation, height: '100%' }} className="dr-center">
         <Button
           icon={<MenuOutlined style={{ fontSize: 24 }} />}
           style={{ backgroundColor: 'transparent', border: 0 }}
@@ -67,10 +66,10 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         <List
           dataSource={[
             ...menu[i18n.language],
-            {
-              key: resumeKey,
-              title: t('navigation_resume'),
-            },
+            // {
+            //   key: resumeKey,
+            //   title: t('navigation_resume'),
+            // },
           ]}
           style={{ width: '100%' }}
           renderItem={(item) => (
@@ -82,13 +81,16 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
               actions={[
                 <Button
                   type="text"
-                  onClick={() => handleClickMenu(item.key)}
-                  key={item.key}
-                  href={
+                  onClick={
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     item.key === resumeKey
-                      ? 'https://hh.ru/resume/ba9fbaadff05d0cecb0039ed1f55464135414b?from=share_ios'
-                      : undefined
+                      ? () => navigate('resume')
+                      : () => handleClickMenu(item.key)
                   }
+                  key={item.key}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
                   target={item.key === resumeKey ? '_blank' : undefined}
                 >
                   {item.title}

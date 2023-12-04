@@ -1,6 +1,15 @@
 .markdown-adapter-base {
-  color: var(--text);
-  display: flex;
-  flex-flow: row wrap;
+  color: var(--textSecondary);
+  display: block;
   min-width: 0;
+}
+
+p.compact-text {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+ul.compact-text {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }

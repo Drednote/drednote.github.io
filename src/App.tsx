@@ -1,28 +1,12 @@
 import './App.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ConfigProvider } from 'antd'
-import Navigation from '@modules/navigation/Navigation'
-import { type Lang } from '@const/lang'
-import { useTranslation } from 'react-i18next'
-import CardContent from '@modules/card-content/CardContent'
 import useColorScheme from '@components/color-scheme/useColorScheme'
-import { useAdaptive } from '@components/adaptive/Adaptive'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@components/router/Router'
 
-interface Props {
-  lang: Lang
-}
-
-const App: React.FC<Props> = ({ lang }) => {
-  const { i18n } = useTranslation()
+const App: React.FC = () => {
   const { colors } = useColorScheme()
-  const { options } = useAdaptive()
-
-  useEffect(() => {
-    if (i18n.language !== lang.toString()) {
-      void i18n.changeLanguage(lang)
-    }
-    document.getElementById('html')?.setAttribute('lang', i18n.language)
-  }, [lang])
 
   return (
     <ConfigProvider
@@ -46,8 +30,7 @@ const App: React.FC<Props> = ({ lang }) => {
       }}
     >
       <div className="App">
-        <Navigation height={options.navigationHeight} />
-        <CardContent />
+        <RouterProvider router={router} />
       </div>
     </ConfigProvider>
   )

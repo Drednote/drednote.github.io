@@ -1,0 +1,16 @@
+{
+  "title": "Разработчик",
+  "company": "БКС",
+  "href": "https://bcs.ru/",
+  "startDate": "08-01-2019",
+  "endDate": "06-01-2021",
+  "skills": [
+    "Java 8/11",
+    "Spring Boot",
+    "Spring Cloud",
+    "MongoDB",
+    "RabbitMQ",
+    "TypeScript",
+    "React + Redux"
+  ]
+}
