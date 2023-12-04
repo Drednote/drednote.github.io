@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row, Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
 import experiences from '@public/experience/experience.json'
 import ExperienceContent, {
   Experience,
 } from '@modules/card-content/work-experience/ExperienceContent'
-import { useAdaptive } from '@components/adaptive/Adaptive'
+import { MarkdownData } from '@components/markdown/MarkdownAdapter'
+import context from '@const/context'
 
 const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
-  const { i18n } = useTranslation()
-  const { options } = useAdaptive()
+  const { options } = useContext(context.Adaptive)
+  const { i18n } = useContext(context.Translation)
+  const [content, setContent] = useState<Record<string, { json: Experience; md: MarkdownData }>>({})
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await Promise.all(
+        experiences.map(async (experience) => {
+          const work = require(
+            `@public/experience/${i18n.language}/${experience.rel}.json`,
+          ) as Experience
+          const text = (await import(
+            `@public/experience/${i18n.language}/${experience.rel}.md`
+          )) as MarkdownData
+          return { [experience.rel]: { json: work, md: text } }
+        }),
+      )
+      const reduce = data.reduce((prev, cur) => {
+        return { ...prev, ...cur }
+      })
+      setContent(reduce)
+    }
+    void loadData()
+  }, [i18n.language])
 
   return (
     <Col
@@ -23,13 +45,10 @@ const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
         Опыт
       </Typography.Title>
       <Row className="dr-row dr-row-center" style={{}}>
-        {experiences.map((experience, index) => {
-          const work = require(
-            `@public/experience/${i18n.language}/${experience.rel}.json`,
-          ) as Experience
-          const text = import(`@public/experience/${i18n.language}/${experience.rel}.md`)
-
-          return <ExperienceContent key={index} data={work} text={text} />
+        {Object.entries(content).map((entry) => {
+          const key = entry[0]
+          const data = entry[1]
+          return <ExperienceContent key={key} data={data.json} text={data.md} />
         })}
       </Row>
     </Col>

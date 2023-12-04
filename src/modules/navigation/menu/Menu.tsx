@@ -1,17 +1,17 @@
-import React from 'react'
-import { Anchor, Button, Row } from 'antd'
+import React, { useContext } from 'react'
+import { Anchor, Row } from 'antd'
 import { menu } from './const'
 import './menu.scss'
-import { useTranslation } from 'react-i18next'
 import { AnchorDirection } from 'antd/es/anchor/Anchor'
 import { useNavigate } from 'react-router-dom'
+import context from '@const/context'
 
 interface Props {
   direction: AnchorDirection
 }
 
 const Menu: React.FC<Props> = ({ direction }) => {
-  const { i18n, t } = useTranslation()
+  const { i18n, t } = useContext(context.Translation)
   const navigate = useNavigate()
 
   return (

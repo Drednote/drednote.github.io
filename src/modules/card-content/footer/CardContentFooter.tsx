@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
-import { useTranslation } from 'react-i18next'
-import useColorScheme from '@components/color-scheme/useColorScheme'
-import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
+import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import LogoIcon from '@icons/LogoIcon'
 import { AppColors } from '@components/color-scheme/helpers'
-import { OptionsProps } from '@const/global-variables'
+import { OptionsProps } from '@const/options'
+import context from '@const/context'
 
 const Social: React.FC = () => (
   <Col className="dr-center">
@@ -61,9 +60,9 @@ const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }>
 )
 
 const CardContentFooter: React.FC = () => {
-  const { t } = useTranslation()
-  const { colors } = useColorScheme()
-  const { options } = useAdaptive()
+  const { colors } = useContext(context.ColorScheme)
+  const { t } = useContext(context.Translation)
+  const { options } = useContext(context.Adaptive)
 
   return (
     <Row

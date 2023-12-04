@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Row, Typography } from 'antd'
 import HomeFooter from '@modules/card-content/home/HomeFooter'
-import { useTranslation } from 'react-i18next'
 import './home.scss'
-import { useAdaptive } from '@components/adaptive/Adaptive'
-import useColorScheme from '@components/color-scheme/useColorScheme'
+import context from '@const/context'
 
 const Home: React.FC<{ id?: string }> = ({ id }) => {
-  const { t } = useTranslation()
-  const { options } = useAdaptive()
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
+  const { t } = useContext(context.Translation)
+  const { options } = useContext(context.Adaptive)
 
   return (
     <Col

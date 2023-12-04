@@ -1,13 +1,13 @@
-import React, { HTMLAttributes, useEffect, useState } from 'react'
+import React, { HTMLAttributes } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './markdown-adapter.css'
 import { Typography } from 'antd'
 
-export type MarkdownData = Promise<{ default: string }>
+export type MarkdownData = { default: string }
 
 interface Props {
-  children: MarkdownData
+  children?: MarkdownData
   itemClassName?: string
   className?: string
 }
@@ -25,13 +25,6 @@ const GetHElement = (
 
 const MarkdownAdapter: React.FC<Props> = (props) => {
   const { children, itemClassName, className } = props
-  const [text, setText] = useState<string | undefined>(undefined)
-
-  useEffect(() => {
-    void children.then((it) => {
-      setText(it.default)
-    })
-  }, [children])
 
   return (
     <Markdown
@@ -61,7 +54,7 @@ const MarkdownAdapter: React.FC<Props> = (props) => {
         },
       }}
     >
-      {text}
+      {children?.default}
     </Markdown>
   )
 }

@@ -1,15 +1,15 @@
 import { Col, Row, Typography } from 'antd'
 import { ArrowDownOutlined } from '@ant-design/icons'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './home.scss'
-import useColorScheme from '@components/color-scheme/useColorScheme'
+import context from '@const/context'
 
 interface Props {
   opacity?: number
 }
 
 const HomeFooter: React.FC<Props> = () => {
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
   const [opacity, setOpacity] = useState(1)
 
   useEffect(() => {

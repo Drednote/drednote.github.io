@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Switch } from 'antd'
-import useColorScheme from '@components/color-scheme/useColorScheme'
 import '@components/color-scheme/switcher.scss'
+import context from '@const/context'
 
 const ColorSchemeSwitcher: React.FC = () => {
-  const { isDark, setIsDark } = useColorScheme()
+  const { isDark, setIsDark } = useContext(context.ColorScheme)
 
   return (
     <Switch

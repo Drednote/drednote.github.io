@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import useColorScheme from '@components/color-scheme/useColorScheme'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import './about.scss'
 import { menuKeys } from '@modules/navigation/menu/const'
-import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
+import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import AboutText from '@modules/card-content/about/AboutText'
 import Skills from '@modules/card-content/about/Skills'
 import Background from '@modules/card-content/about/background/Background'
-import { useTranslation } from 'react-i18next'
+import context from '@const/context'
 
 interface Props {
   activeFade: boolean
 }
 
 const AboutContent: React.FC<Props> = ({ activeFade }) => {
-  const { t } = useTranslation()
-  const { options } = useAdaptive()
+  const { t } = useContext(context.Translation)
+  const { options } = useContext(context.Adaptive)
   const classNames = activeFade
     ? 'drednote-area fade-bottom-content'
     : 'drednote-area fade-bottom-content__disable'
@@ -55,9 +54,9 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
 }
 
 const About: React.FC<{ id?: string }> = ({ id }) => {
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
+  const { options, isDesktop } = useContext(context.Adaptive)
   const [activeFade, setActiveFade] = useState(false)
-  const { isDesktop, options } = useAdaptive()
 
   const listener = () => {
     const element = document.getElementById(`${menuKeys.about}`)

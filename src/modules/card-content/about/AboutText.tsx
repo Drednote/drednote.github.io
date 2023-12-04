@@ -1,13 +1,20 @@
-import React from 'react'
-import MarkdownAdapter from '@components/markdown/MarkdownAdapter'
+import React, { useContext, useEffect, useState } from 'react'
+import MarkdownAdapter, { MarkdownData } from '@components/markdown/MarkdownAdapter'
 import { Col, Row, Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
-import { useAdaptive } from '@components/adaptive/Adaptive'
+import context from '@const/context'
 
 const AboutText: React.FC = () => {
-  const { t, i18n } = useTranslation()
-  const { options, isMobile } = useAdaptive()
-  const content = import(`@public/text/${i18n.language}/about-me.md`)
+  const { t, i18n } = useContext(context.Translation)
+  const { options, isMobile } = useContext(context.Adaptive)
+  const [text, setText] = useState<MarkdownData>()
+
+  useEffect(() => {
+    async function loadText() {
+      const loadedText = (await import(`@public/text/${i18n.language}/about-me.md`)) as MarkdownData
+      setText(loadedText)
+    }
+    void loadText()
+  }, [i18n.language])
 
   return (
     <Col style={{}}>
@@ -16,7 +23,7 @@ const AboutText: React.FC = () => {
       </Row>
       <Row style={{ fontSize: !isMobile ? 20 : 18 }}>
         <MarkdownAdapter itemClassName="compact-text" className="md-main-text">
-          {content}
+          {text}
         </MarkdownAdapter>
       </Row>
     </Col>

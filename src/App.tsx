@@ -4,9 +4,15 @@ import { ConfigProvider } from 'antd'
 import useColorScheme from '@components/color-scheme/useColorScheme'
 import { RouterProvider } from 'react-router-dom'
 import { router } from '@components/router/Router'
+import Context from '@const/context'
+import { useAdaptive } from '@components/adaptive/Adaptive'
+import { useTranslation } from 'react-i18next'
 
 const App: React.FC = () => {
-  const { colors } = useColorScheme()
+  const colorScheme = useColorScheme()
+  const options = useAdaptive()
+  const translation = useTranslation()
+  const { colors } = colorScheme
 
   return (
     <ConfigProvider
@@ -29,9 +35,15 @@ const App: React.FC = () => {
         },
       }}
     >
-      <div className="App">
-        <RouterProvider router={router} />
-      </div>
+      <Context.ColorScheme.Provider value={colorScheme}>
+        <Context.Adaptive.Provider value={options}>
+          <Context.Translation.Provider value={translation}>
+            <div className="App" id="app">
+              <RouterProvider router={router} />
+            </div>
+          </Context.Translation.Provider>
+        </Context.Adaptive.Provider>
+      </Context.ColorScheme.Provider>
     </ConfigProvider>
   )
 }

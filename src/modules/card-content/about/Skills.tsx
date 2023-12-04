@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Row, Typography } from 'antd'
-import useColorScheme from '@components/color-scheme/useColorScheme'
-import { useTranslation } from 'react-i18next'
-import { useAdaptive } from '@components/adaptive/Adaptive'
 import WrapText from '@components/wrap-text/WrapText'
+import context from '@const/context'
 
 interface SkillProps {
   text: string
@@ -12,7 +10,7 @@ interface SkillProps {
 }
 
 const Skill: React.FC<SkillProps> = ({ text, height = 48 }) => {
-  const { colors, isDark } = useColorScheme()
+  const { colors, isDark } = useContext(context.ColorScheme)
 
   return (
     <WrapText
@@ -30,8 +28,8 @@ const Skill: React.FC<SkillProps> = ({ text, height = 48 }) => {
 }
 
 const Skills: React.FC = () => {
-  const { t } = useTranslation()
-  const { options } = useAdaptive()
+  const { t } = useContext(context.Translation)
+  const { options } = useContext(context.Adaptive)
 
   return (
     <Col className="dr-col">

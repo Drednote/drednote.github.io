@@ -1,11 +1,11 @@
 import { Col, Row, Typography } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRouteError } from 'react-router-dom'
-import useColorScheme from '@components/color-scheme/useColorScheme'
+import context from '@const/context'
 
 const NotFoundOrError = () => {
   const error = useRouteError()
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
 
   const text = error ? 'Something went wrong' : 'Page was not found'
 

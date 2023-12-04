@@ -1,13 +1,12 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 import { Button, Col, Row, Typography } from 'antd'
-import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
-import { useTranslation } from 'react-i18next'
+import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import { menuKeys } from '@modules/navigation/menu/const'
 import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
 import DesktopNavigation from '@modules/navigation/desktop/DesktopNavigation'
-import useColorScheme from '@components/color-scheme/useColorScheme'
 import LogoIcon from '@icons/LogoIcon'
 import './navigation.scss'
+import context from '@const/context'
 
 interface Props {
   height?: number
@@ -19,9 +18,9 @@ const NavigationContainer: React.FC<{
   children: ReactNode
   height: number | string
 }> = ({ children, height }) => {
-  const { t } = useTranslation()
-  const { colors } = useColorScheme()
-  const { isMobile } = useAdaptive()
+  const { colors } = useContext(context.ColorScheme)
+  const { isMobile } = useContext(context.Adaptive)
+  const { t } = useContext(context.Translation)
 
   const handleClick = useCallback(() => {
     const element = document.getElementById(`${menuKeys.home}`)
@@ -30,10 +29,7 @@ const NavigationContainer: React.FC<{
   }, [])
 
   return (
-    <Row
-      className="dr-center dr-area dr-row dr-col"
-      style={{ justifyContent: 'space-between' }}
-    >
+    <Row className="dr-center dr-area dr-row dr-col" style={{ justifyContent: 'space-between' }}>
       <Col style={{ paddingLeft: 0 }} className="dr-center dr-col">
         <Button
           type="link"
@@ -59,26 +55,24 @@ const NavigationContainer: React.FC<{
 
 const Navigation: React.FC<Props> = () => {
   const [opacity, setOpacity] = useState(0)
-  const { colors } = useColorScheme()
-  const { options } = useAdaptive()
+  const { colors } = useContext(context.ColorScheme)
+  const { options } = useContext(context.Adaptive)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const domRect = document.body.getBoundingClientRect()
       const rate = domRect.y !== 0 ? domRect.y / (window.innerHeight * 2) : 0
       const value = Math.min(0.5, rate * -1)
-      if (opacity !== value) setOpacity(value)
+      setOpacity((prevState) => (prevState !== value ? value : prevState))
     })
   }, [])
-
-  const backgroundColor = colors.backgroundDark(opacity)
 
   return (
     <nav>
       <Row
         style={{
           height: options.navigationHeight,
-          backgroundColor,
+          backgroundColor: colors.backgroundDark(opacity),
           borderColor: colors.navBorder(Math.min(opacity, 0.1)),
           boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
         }}

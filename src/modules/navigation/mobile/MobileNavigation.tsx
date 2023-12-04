@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Drawer, List } from 'antd'
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
 import './mobile-navigation.scss'
-import useColorScheme from '@components/color-scheme/useColorScheme'
 import NavExtra from '@modules/navigation/NavExtra'
 import { menu } from '@modules/navigation/menu/const'
 import { useNavigate } from 'react-router-dom'
+import context from '@const/context'
 
 interface Props {
   height: number
@@ -15,8 +14,8 @@ interface Props {
 
 const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
   const [open, setOpen] = useState(false)
-  const { t, i18n } = useTranslation()
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
+  const { t, i18n } = useContext(context.Translation)
   const navigate = useNavigate()
 
   const showDrawer = (): void => {

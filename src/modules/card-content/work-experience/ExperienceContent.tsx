@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import WrapText from '@components/wrap-text/WrapText'
-import { useTranslation } from 'react-i18next'
 import './experience.scss'
-import useColorScheme from '@components/color-scheme/useColorScheme'
 import MarkdownAdapter, { MarkdownData } from '@components/markdown/MarkdownAdapter'
 import { AppColors } from '@components/color-scheme/helpers'
-import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
+import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import { LinkOutlined } from '@ant-design/icons'
+import context from '@const/context'
 
 export interface Experience {
   title: string
@@ -46,7 +45,7 @@ const BodyRenderer: React.FC<
     colors: AppColors
   }
 > = ({ title, skills, company, colors, text, href }) => {
-  const { options } = useAdaptive()
+  const { options } = useContext(context.Adaptive)
 
   return (
     <Space
@@ -105,8 +104,8 @@ const BodyRenderer: React.FC<
 }
 
 const ExperienceContent: React.FC<{ data: Experience; text: MarkdownData }> = ({ data, text }) => {
-  const { i18n, t } = useTranslation()
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
+  const { t, i18n } = useContext(context.Translation)
 
   const dateRenderer = (
     <DateRenderer
