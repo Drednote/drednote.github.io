@@ -1,30 +1,30 @@
-##### Команда Персей
+##### Team Perseus
 
-Персей собрал в одном месте всю необходимую информацию (данные клиентов, данные о торгуемых
-инструментах и тд), а также все необходимые функции, такие как торговля активами, моделирование
-портфеля или общение с клиентом через чат, чтобы персональный брокер мог быстро и качественно
-оказывать свои услуги.
+**Perseus** has collected in one place all the necessary information (client data, data on traded
+instruments, etc.), as well as all the necessary functions, such as **asset trading, portfolio
+modeling or communication with the client via chat**, so that personal the broker could provide his
+services quickly and efficiently.
 
-##### Обязанности:
+##### Responsibilities:
 
-- Разработка back-end части с использованием микросервисной архитектуры и Spring;
-- Проектирование и разработка архитектуры и взаимодействия микросервисов исходя из требований
-  заказчиков, с использованием технологий Docker, Kubernetes, OpenShift;
-- Настройка общения между микросервисами с использованием Rest API, RabbitMQ, Kafka;
-- Тестирование сервисов и выявление ошибок. Устранение выявленных проблем;
-- Покрытие тестами (spring test, junit, mockito);
-- Техническая поддержка сервисов на всех этапах их использования;
-- Код ревью;
-- Подготовка релизов;
-- Проведение технических собеседований.
+- **Development of back-end** parts using microservice architecture and `Spring`;
+- **Design and development of architecture** and interaction of microservices based on customer
+  requirements, using `Docker`, `OpenShift`, `Rest API`, `RabbitMQ`, `Kafka` technologies;
+- **Testing services** and identifying errors. Elimination of identified problems. Test
+  coverage (`spring test`, `junit`, `mockito`);
+- Technical support of services at all stages of their use;
+- Code review;
+- Preparation of releases;
+- Conducting **technical interviews**;
+- **Mentorship** of 2 developers;
 
-##### Достижения:
+##### Achievements:
 
-- Интегрировал совместно с командой чат платформы в Персей;
-- Написал сервис нотификации;
-- Реализовал swagger gateway (springdoc-openapi);
-- Проработал архитектуру и реализовал сервис для сбора статистики по большому потоку внутридневных
-  сделок;
-- Внедрил написание тестов с помощью testcontainers;
-- Внедрил использование своих библиотек, в том числе spring starters и написал для них GitLab CI;
-- Написал множество полезных утилит;
+- **Integrated** together with the team of the chat platform in Perseus;
+- **Wrote notification service**;
+- Implemented **swagger gateway** (springdoc-openapi);
+- **Worked out the architecture and implemented the service** for collecting statistics on a large
+  flow of intraday transactions;
+- Implemented writing tests using `testcontainers`;
+- **Implemented the use of my libraries**, including spring starters and wrote `GitLab CI` for them;
+- Wrote many useful utilities;

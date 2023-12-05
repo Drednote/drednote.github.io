@@ -20,3 +20,17 @@
     transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+
+[data-theme='dark'] {
+  .skills {
+    color: rgb(93, 233, 212);
+    background-color: rgb(0, 115, 121, 0.3);
+  }
+}
+
+[data-theme='light'] {
+  .skills {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255, 0.7);
+  }
+}

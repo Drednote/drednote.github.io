@@ -15,4 +15,14 @@
   transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+[data-theme=dark] .skills {
+  color: #5de9d4;
+  background-color: rgba(0, 115, 121, 0.3);
+}
+
+[data-theme=light] .skills {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
 /*# sourceMappingURL=experience.css.map */

@@ -37,6 +37,12 @@ const MarkdownAdapter: React.FC<Props> = (props) => {
         ul(props) {
           return <ul className={itemClassName} {...props} />
         },
+        code(props) {
+          return <code className={`${itemClassName} markdown-adapter-code`} {...props} />
+        },
+        strong(props) {
+          return <strong className={`${itemClassName} markdown-adapter-strong`} {...props} />
+        },
         h1(props) {
           return GetHElement({ ...props, className: itemClassName }, 1)
         },

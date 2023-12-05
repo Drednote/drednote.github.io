@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Lang } from '@const/lang'
 import Redirect from '@components/router/Redirect'
 import context from '@const/context'
+import moment from 'moment/moment'
 
 const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { i18n } = useContext(context.Translation)
@@ -15,6 +16,7 @@ const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
       if (i18n.language !== lang) {
         void i18n.changeLanguage(lang)
       }
+      moment.locale(lang)
       document.getElementById('html')?.setAttribute('lang', i18n.language)
     }
   }, [lang])

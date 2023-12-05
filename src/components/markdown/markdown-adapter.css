@@ -13,3 +13,19 @@ ul.compact-text {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+.markdown-adapter-code {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.markdown-adapter-strong {
+  color: var(--text);
+  font-weight: bold;
+}
+
+[data-theme='dark'] {
+  .markdown-adapter-code {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}

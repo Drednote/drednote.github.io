@@ -88,10 +88,9 @@ const BodyRenderer: React.FC<
           <WrapText
             text={skill}
             key={skill}
+            className="skills"
             small
             style={{
-              backgroundColor: colors.aboutSkillsText(0.3),
-              color: 'rgb(93,233,212)',
               fontSize: '.9rem',
               marginRight: 8,
               marginBottom: 8,
