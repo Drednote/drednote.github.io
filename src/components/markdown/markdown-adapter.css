@@ -1,5 +1,5 @@
 .markdown-adapter-base {
-  color: var(--textSecondary);
+  color: var(--color-textSecondary);
   display: block;
   min-width: 0;
 }
@@ -20,7 +20,7 @@ ul.compact-text {
 }
 
 .markdown-adapter-strong {
-  color: var(--text);
+  color: var(--color-text);
   font-weight: bold;
 }
 

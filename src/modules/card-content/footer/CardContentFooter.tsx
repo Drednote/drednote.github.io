@@ -3,11 +3,14 @@ import { Col, Row, Space, Typography } from 'antd'
 import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
 import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import LogoIcon from '@icons/LogoIcon'
-import { AppColors } from '@components/color-scheme/helpers'
 import { OptionsProps } from '@const/options'
 import context from '@const/context'
+import './footer.scss'
+import { TFunction } from 'i18next'
 
-const Social: React.FC = () => (
+const Social: React.FC<{
+  t: TFunction
+}> = ({ t }) => (
   <Col className="dr-center">
     <Space direction="vertical" className="dr-center" size={8}>
       <Typography.Title
@@ -17,7 +20,7 @@ const Social: React.FC = () => (
           marginBottom: 0,
         }}
       >
-        Social
+        {t('footer_social-title')}
       </Typography.Title>
       <SocialNetwork fontSize={26} />
     </Space>
@@ -41,13 +44,9 @@ const Copyright: React.FC = () => (
   </Col>
 )
 
-const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }> = ({
-  colors,
-  text,
-  options,
-}) => (
+const Name: React.FC<{ text: string; options: OptionsProps }> = ({ text, options }) => (
   <Col className="dr-center">
-    <LogoIcon style={{ fontSize: 64, color: colors.primary() }} />
+    <LogoIcon className="logo" style={{ fontSize: 64 }} />
     <Typography.Title
       level={options.titleLevels.l4}
       style={{
@@ -60,37 +59,22 @@ const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }>
 )
 
 const CardContentFooter: React.FC = () => {
-  const { colors } = useContext(context.ColorScheme)
   const { t } = useContext(context.Translation)
   const { options } = useContext(context.Adaptive)
 
   return (
-    <Row
-      style={{
-        backgroundColor: colors.backgroundDark(),
-        zIndex: 10,
-      }}
-      className="dr-row dr-center"
-    >
+    <Row className="dr-row dr-center footer-outer-row">
       <Row
         style={{
-          justifyContent: 'space-between',
           maxWidth: options.maxWidth,
-          width: 'inherit',
-          padding: 12,
-          borderTopColor: colors.navBorder(),
-          borderTopWidth: 2,
-          borderLeftWidth: '0',
-          borderRightWidth: '0',
-          borderBottomWidth: '0',
-          borderStyle: 'solid',
         }}
+        className="footer-inner-row"
       >
-        <Name colors={colors} text={t('navigation-title')} options={options} />
+        <Name text={t('navigation-title')} options={options} />
         <Desktop>
           <Copyright />
         </Desktop>
-        <Social />
+        <Social t={t} />
       </Row>
       <Mobile>
         <Row

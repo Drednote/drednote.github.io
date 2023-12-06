@@ -10,6 +10,29 @@
   border-left-width: 0;
   border-right-width: 0;
   border-style: solid;
+  background-color: var(--color-primarySecond);
+  border-color: var(--color-border);
+  box-shadow: 0 1px 3px var(--color-box);
+}
+
+.header-button {
+  background-color: transparent;
+  height: 100%;
+  padding: 2px 0;
+  color: var(--color-text);
+}
+.header-button.ant-btn-link:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-text);
+}
+
+[data-theme=dark] .navigation-row {
+  --color-border: rgba(255, 255, 255, min(var(--dr-opacity), 0.1));
+  --color-box: rgba(255, 255, 255, min(var(--dr-opacity), 0.3));
+}
+
+[data-theme=light] .navigation-row {
+  --color-border: rgba(0, 0, 0, min(var(--dr-opacity), 0.1));
+  --color-box: rgba(0, 0, 0, min(var(--dr-opacity), 0.3));
 }
 
 /*# sourceMappingURL=navigation.css.map */

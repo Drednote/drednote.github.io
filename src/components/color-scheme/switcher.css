@@ -2,10 +2,10 @@
   visibility: hidden;
 }
 .color-switcher.ant-switch.ant-switch-checked {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 .color-switcher.ant-switch {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 
 /*# sourceMappingURL=switcher.css.map */

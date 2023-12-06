@@ -18,7 +18,6 @@ const NavigationContainer: React.FC<{
   children: ReactNode
   height: number | string
 }> = ({ children, height }) => {
-  const { colors } = useContext(context.ColorScheme)
   const { isMobile } = useContext(context.Adaptive)
   const { t } = useContext(context.Translation)
 
@@ -31,17 +30,7 @@ const NavigationContainer: React.FC<{
   return (
     <Row className="dr-center dr-area dr-row dr-col" style={{ justifyContent: 'space-between' }}>
       <Col style={{ paddingLeft: 0 }} className="dr-center dr-col">
-        <Button
-          type="link"
-          className="dr-center"
-          style={{
-            backgroundColor: 'transparent',
-            height: '100%',
-            padding: '2px 0',
-            color: colors.text(),
-          }}
-          onClick={handleClick}
-        >
+        <Button type="link" className="dr-center header-button" onClick={handleClick}>
           <LogoIcon style={{ fontSize: height }} />
           <Typography.Title level={isMobile ? 4 : 3} className="dre-center" style={{ margin: 0 }}>
             {t('navigation-title')}
@@ -55,7 +44,6 @@ const NavigationContainer: React.FC<{
 
 const Navigation: React.FC<Props> = () => {
   const [opacity, setOpacity] = useState(0)
-  const { colors } = useContext(context.ColorScheme)
   const { options } = useContext(context.Adaptive)
 
   useEffect(() => {
@@ -70,12 +58,12 @@ const Navigation: React.FC<Props> = () => {
   return (
     <nav>
       <Row
-        style={{
-          height: options.navigationHeight,
-          backgroundColor: colors.backgroundDark(opacity),
-          borderColor: colors.navBorder(Math.min(opacity, 0.1)),
-          boxShadow: `0px 1px 3px ${colors.navBorder(Math.min(opacity, 0.3))}`,
-        }}
+        style={
+          {
+            height: options.navigationHeight,
+            '--dr-opacity': opacity,
+          } as React.CSSProperties
+        }
         className="dr-center navigation-row"
       >
         <NavigationContainer height={options.navigationHeight}>

@@ -54,8 +54,7 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
 }
 
 const About: React.FC<{ id?: string }> = ({ id }) => {
-  const { colors } = useContext(context.ColorScheme)
-  const { options, isDesktop } = useContext(context.Adaptive)
+  const { options } = useContext(context.Adaptive)
   const [activeFade, setActiveFade] = useState(false)
 
   const listener = () => {
@@ -75,9 +74,6 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
     window.addEventListener('scroll', listener)
   }, [])
 
-  const xTranslate = isDesktop ? '-290px' : '0'
-  const yTranslate = isDesktop ? '400px' : '450px'
-
   return (
     <Row
       id={id}
@@ -88,17 +84,7 @@ const About: React.FC<{ id?: string }> = ({ id }) => {
         paddingTop: options.navigationHeight,
       }}
     >
-      <Background
-        fontSize={1000}
-        style={{
-          fontSize: 1000,
-          position: 'absolute',
-          color: colors.aboutBackground(0.8),
-          height: 0,
-          translate: `${xTranslate} ${yTranslate}`,
-          width: isDesktop ? undefined : '100%',
-        }}
-      />
+      <Background fontSize={1000} className="background-image" />
       <AboutContent activeFade={activeFade} />
     </Row>
   )

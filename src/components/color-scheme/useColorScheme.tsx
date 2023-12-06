@@ -1,7 +1,7 @@
-import { useMediaQuery } from 'react-responsive'
 import { useLocalStorage } from 'usehooks-ts'
-import { AppColors, cssColorsVariableNames, getCssVariable } from '@components/color-scheme/helpers'
+import { getCssVariable } from '@components/color-scheme/helpers'
 import { useEffect } from 'react'
+import { AppColors, cssColorsVariableNames } from '@const/colors'
 
 export const COLOR_SCHEMA_KEY = 'COLOR_SCHEME'
 const dark = 'dark'
@@ -15,12 +15,14 @@ export interface ColorScheme {
 }
 
 export function useColorScheme(): ColorScheme {
-  const systemPrefersDark = useMediaQuery(
+  const systemPrefersDark = true
+  // by default will be open dark theme. maybe will change in future
+  /*useMediaQuery(
     {
       query: '(prefers-color-scheme: dark)',
     },
     undefined,
-  )
+  )*/
   const [colorScheme, setColorScheme] = useLocalStorage(
     COLOR_SCHEMA_KEY,
     systemPrefersDark ? dark : light,

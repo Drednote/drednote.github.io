@@ -46,7 +46,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
       </Col>
       <Drawer
         title={t('navigation-drawer-title')}
-        extra={<NavExtra spaceSize={24} />}
+        extra={<NavExtra spaceSize={16} />}
         placement="top"
         onClose={onClose}
         open={open}
@@ -58,7 +58,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         }}
         // headerStyle={{ border: 0 }}
         style={{
-          backgroundColor: colors.backgroundDark(),
+          backgroundColor: colors.primarySecond(),
         }}
         bodyStyle={{ display: 'flex', justifyContent: 'center', padding: 0 }}
       >

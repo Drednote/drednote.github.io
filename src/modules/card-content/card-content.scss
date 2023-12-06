@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.card-content-col {
+  background-color: var(--color-primarySecond);
+  @media (max-width: $--adaptive-mobile) {
+    padding: 24px;
+  }
+  @media (min-width: $--adaptive-tablet) {
+    padding: 48px;
+  }
+}

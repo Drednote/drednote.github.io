@@ -1,4 +1,5 @@
 :root {
+  --dr-opacity: 1;
   --dark_primary: rgba(255, 255, 255, 1);
   --light_primary: rgba(0, 0, 0, 1);
 
@@ -8,66 +9,24 @@
   --dark_textSecondary: rgba(255, 255, 255, 0.7);
   --light_textSecondary: rgba(0, 0, 0, 0.8);
 
-  --dark_backgroundDark: rgba(5, 23, 45, 1);
-  --dark_backgroundLight: rgba(4, 36, 65, 1);
-
-  --light_backgroundDark: rgba(161, 222, 255, 1);
-  --light_backgroundLight: rgba(255, 255, 255, 1);
-
-  --dark_navBorder: rgba(255, 255, 255, 1);
-  --light_navBorder: rgba(0, 0, 0, 1);
-
-  --dark_aboutBackground: rgb(0, 115, 121, 1);
-  --light_aboutBackground: rgba(255, 255, 255, 1);
-
-  --dark_aboutSkillsText: rgb(0, 115, 121, 1);
-  --light_aboutSkillsText: rgba(0, 0, 0, 1);
-  --dark_aboutSkillsBg: rgba(255, 255, 255, 1);
-  --light_aboutSkillsBg: rgba(255, 255, 255, 1);
-
-  --dark_experienceBackground: rgb(255, 255, 255, 0.03);
-  --light_experienceBackground: rgba(255, 255, 255, 0);
-
-  --dark_experienceBorder: rgb(255, 255, 255, 0.15);
-  --light_experienceBorder: rgba(255, 255, 255, 0.6);
+  --dark_primarySecond: rgba(5, 23, 45, var(--dr-opacity));
+  --light_primarySecond: rgba(161, 222, 255, var(--dr-opacity));
 }
 
 [data-theme='dark'] {
-  --primary: var(--dark_primary);
-  --text: var(--dark_text);
-  --textSecondary: var(--dark_textSecondary);
-
-  --backgroundDark: var(--dark_backgroundDark);
-  --backgroundLight: var(--dark_backgroundLight);
-
-  --navBorder: var(--dark_navBorder);
-
-  --aboutBackground: var(--dark_aboutBackground);
-
-  --aboutSkillsText: var(--dark_aboutSkillsText);
-  --aboutSkillsBg: var(--dark_aboutSkillsBg);
-
-  --experienceBackground: var(--dark_experienceBackground);
-
-  --experienceBorder: var(--dark_experienceBorder);
+  & * {
+    --color-primary: var(--dark_primary);
+    --color-text: var(--dark_text);
+    --color-textSecondary: var(--dark_textSecondary);
+    --color-primarySecond: rgba(5, 23, 45, var(--dr-opacity));
+  }
 }
 
 [data-theme='light'] {
-  --primary: var(--light_primary);
-  --text: var(--light_text);
-  --textSecondary: var(--light_textSecondary);
-
-  --backgroundDark: var(--light_backgroundDark);
-  --backgroundLight: var(--light_backgroundLight);
-
-  --navBorder: var(--light_navBorder);
-
-  --aboutBackground: var(--light_aboutBackground);
-
-  --aboutSkillsText: var(--light_aboutSkillsText);
-  --aboutSkillsBg: var(--light_aboutSkillsBg);
-
-  --experienceBackground: var(--light_experienceBackground);
-
-  --experienceBorder: var(--light_experienceBorder);
+  & * {
+    --color-primary: var(--light_primary);
+    --color-text: var(--light_text);
+    --color-textSecondary: var(--light_textSecondary);
+    --color-primarySecond: rgba(161, 222, 255, var(--dr-opacity));
+  }
 }

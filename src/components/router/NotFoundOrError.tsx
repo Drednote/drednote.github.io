@@ -13,7 +13,7 @@ const NotFoundOrError = () => {
     <Row
       className="app-logo-container"
       align="middle"
-      style={{ backgroundColor: colors.backgroundDark(), width: '100%' }}
+      style={{ backgroundColor: colors.primarySecond(), width: '100%' }}
     >
       <Col span={24}>
         <Row justify="center" align="middle">

@@ -20,7 +20,7 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
         }}
         className="dr-center dr-col"
       >
-        <NavExtra spaceSize={36} />
+        <NavExtra spaceSize={16} />
       </Col>
     </>
   )

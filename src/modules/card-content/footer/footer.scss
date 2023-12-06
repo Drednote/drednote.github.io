@@ -1,0 +1,20 @@
+.footer-inner-row {
+  justify-content: space-between;
+  width: inherit;
+  padding: 12px;
+  border-top-color: var(--color-primary);
+  border-top-width: 2px;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-style: solid;
+}
+
+.footer-outer-row {
+  background-color: var(--color-primarySecond);
+  z-index: 10;
+}
+
+.logo {
+  color: var(--color-primary);
+}

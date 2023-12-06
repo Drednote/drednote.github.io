@@ -3,23 +3,16 @@ import { Button, Space } from 'antd'
 import { GithubFilled, LinkedinFilled } from '@ant-design/icons'
 import { type ButtonProps } from 'antd/es/button/button'
 import TelegramIconFill from '@icons/TelegramIconFill'
+import HHIcon from '@icons/HHIcon'
 
 interface SocialProps extends CSSProperties {
   fontSize: number
 }
 
-interface Props extends ButtonProps, Pick<SocialProps, 'fontSize'> {
-  custom?: boolean
-}
-
-const marginMap = {
-  ant: '-5px 0 0 -1px',
-  custom: '-9px 0 0 -5px',
-}
+interface Props extends ButtonProps, Pick<SocialProps, 'fontSize'> {}
 
 const FooterButton: React.FC<Props> = (props) => {
-  const { custom = false, shape = 'circle', fontSize, ...otherProps } = props
-  const margin = custom ? marginMap.custom : marginMap.ant
+  const { shape = 'circle', fontSize, ...otherProps } = props
 
   return (
     <Button
@@ -30,8 +23,9 @@ const FooterButton: React.FC<Props> = (props) => {
       }}
       size="middle"
       shape={shape}
-      styles={{ icon: { margin } }}
+      styles={{ icon: { margin: '-5px 0 0 -1px' } }}
       target="_blank"
+      rel="noreferrer"
       {...otherProps}
     />
   )
@@ -41,9 +35,8 @@ const SocialNetwork: React.FC<SocialProps> = ({ fontSize, color = 'inherit' }) =
   return (
     <Space size={8} direction="horizontal">
       <FooterButton
-        icon={<TelegramIconFill style={{ fontSize: fontSize + 4, color }} />}
+        icon={<TelegramIconFill style={{ fontSize: fontSize + 3, color }} />}
         href="https://t.me/mr_drednote"
-        custom
         fontSize={fontSize}
       />
       <FooterButton
@@ -56,6 +49,11 @@ const SocialNetwork: React.FC<SocialProps> = ({ fontSize, color = 'inherit' }) =
         shape="default"
         fontSize={fontSize}
         href="https://www.linkedin.com/in/drednote/"
+      />
+      <FooterButton
+        icon={<HHIcon style={{ fontSize: fontSize, color }} />}
+        fontSize={fontSize}
+        href="https://hh.ru/resume/ba9fbaadff05d0cecb0039ed1f55464135414b?from=share_ios"
       />
     </Space>
   )

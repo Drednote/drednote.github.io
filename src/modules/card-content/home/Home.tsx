@@ -5,7 +5,6 @@ import './home.scss'
 import context from '@const/context'
 
 const Home: React.FC<{ id?: string }> = ({ id }) => {
-  const { colors } = useContext(context.ColorScheme)
   const { t } = useContext(context.Translation)
   const { options } = useContext(context.Adaptive)
 
@@ -14,10 +13,8 @@ const Home: React.FC<{ id?: string }> = ({ id }) => {
       id={id}
       style={{
         paddingTop: options.navigationHeight,
-        background: `linear-gradient(${colors.backgroundLight()}, ${colors.backgroundDark()})`,
-        height: '100vh',
       }}
-      className="dr-center dr-row dr-col"
+      className="dr-center dr-row dr-col home-row"
     >
       <Row className="dr-center" style={{ marginTop: -48 }}>
         <Col>
