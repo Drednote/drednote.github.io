@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Drawer, List } from 'antd'
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons'
 import './mobile-navigation.scss'
-import useColorScheme from '@components/color-scheme/useColorScheme'
 import NavExtra from '@modules/navigation/NavExtra'
-import { menu, MenuKey } from '@modules/navigation/menu/const'
+import { menu } from '@modules/navigation/menu/const'
+import { useNavigate } from 'react-router-dom'
+import context from '@const/context'
 
 interface Props {
   height: number
@@ -14,8 +14,9 @@ interface Props {
 
 const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
   const [open, setOpen] = useState(false)
-  const { t, i18n } = useTranslation()
-  const { colors } = useColorScheme()
+  const { colors } = useContext(context.ColorScheme)
+  const { t, i18n } = useContext(context.Translation)
+  const navigate = useNavigate()
 
   const showDrawer = (): void => {
     setOpen(true)
@@ -35,20 +36,17 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
 
   return (
     <>
-      <Col
-        style={{ position: 'fixed', right: indentation, height: '100%' }}
-        className="drednote-center"
-      >
+      <Col style={{ position: 'fixed', right: indentation, height: '100%' }} className="dr-center">
         <Button
           icon={<MenuOutlined style={{ fontSize: 24 }} />}
-          style={{ backgroundColor: 'transparent', border: 0 }}
+          style={{ backgroundColor: 'transparent', border: 0, color: colors.primary() }}
           size="large"
           onClick={showDrawer}
         />
       </Col>
       <Drawer
         title={t('navigation-drawer-title')}
-        extra={<NavExtra spaceSize={24} />}
+        extra={<NavExtra spaceSize={16} />}
         placement="top"
         onClose={onClose}
         open={open}
@@ -60,17 +58,17 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
         }}
         // headerStyle={{ border: 0 }}
         style={{
-          backgroundColor: colors.backgroundDark(),
+          backgroundColor: colors.primarySecond(),
         }}
         bodyStyle={{ display: 'flex', justifyContent: 'center', padding: 0 }}
       >
         <List
           dataSource={[
             ...menu[i18n.language],
-            {
-              key: resumeKey,
-              title: t('navigation_resume'),
-            },
+            // {
+            //   key: resumeKey,
+            //   title: t('navigation_resume'),
+            // },
           ]}
           style={{ width: '100%' }}
           renderItem={(item) => (
@@ -82,13 +80,16 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
               actions={[
                 <Button
                   type="text"
-                  onClick={() => handleClickMenu(item.key)}
-                  key={item.key}
-                  href={
+                  onClick={
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     item.key === resumeKey
-                      ? 'https://hh.ru/resume/ba9fbaadff05d0cecb0039ed1f55464135414b?from=share_ios'
-                      : undefined
+                      ? () => navigate('resume')
+                      : () => handleClickMenu(item.key)
                   }
+                  key={item.key}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
                   target={item.key === resumeKey ? '_blank' : undefined}
                 >
                   {item.title}

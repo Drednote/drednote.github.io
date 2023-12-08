@@ -1,6 +1,31 @@
 .markdown-adapter-base {
-  color: var(--text);
-  display: flex;
-  flex-flow: row wrap;
+  color: var(--color-textSecondary);
+  display: block;
   min-width: 0;
+}
+
+p.compact-text {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+ul.compact-text {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.markdown-adapter-code {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.markdown-adapter-strong {
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+[data-theme='dark'] {
+  .markdown-adapter-code {
+    color: rgba(255, 255, 255, 0.9);
+  }
 }

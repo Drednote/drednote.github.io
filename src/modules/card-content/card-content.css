@@ -1,0 +1,15 @@
+.card-content-col {
+  background-color: var(--color-primarySecond);
+}
+@media (max-width: 480px) {
+  .card-content-col {
+    padding: 24px;
+  }
+}
+@media (min-width: 480px) {
+  .card-content-col {
+    padding: 48px;
+  }
+}
+
+/*# sourceMappingURL=card-content.css.map */

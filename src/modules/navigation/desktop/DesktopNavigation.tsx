@@ -7,7 +7,7 @@ interface Props {
   indentation: number | string
 }
 
-const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
+const DesktopNavigation: React.FC<Props> = () => {
   return (
     <>
       <Col>
@@ -15,12 +15,11 @@ const DesktopNavigation: React.FC<Props> = ({ indentation }) => {
       </Col>
       <Col
         style={{
-          paddingRight: indentation,
           justifyContent: 'end',
         }}
-        className="drednote-center drednote-col"
+        className="dr-center dr-col"
       >
-        <NavExtra spaceSize={36} />
+        <NavExtra spaceSize={16} />
       </Col>
     </>
   )

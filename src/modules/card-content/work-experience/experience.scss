@@ -1,0 +1,48 @@
+.experience-layout {
+  @media (min-width: 992px) {
+    background-color: var(--color-background);
+    box-shadow:
+      2px -2px 5px var(--color-border),
+      -2px 2px 5px var(--color-border);
+  }
+}
+
+.propagation_disable {
+  :hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.link-button {
+  margin-top: 0;
+  border-bottom: 2px var(--color-border) solid;
+  padding-bottom: 4px;
+  margin-bottom: 0 !important;
+  a:hover svg {
+    transform: translate(3px, -3px);
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+[data-theme='dark'] {
+  .skills {
+    color: rgb(93, 233, 212);
+    background-color: rgba(0, 115, 121, 0.3);
+  }
+  :is(.skills, .experience-layout, .link-button) {
+    --color-border: rgba(255, 255, 255, 0.15);
+    --color-background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+[data-theme='light'] {
+  .skills {
+    color: var(--color-text);
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  :is(.skills, .experience-layout, .link-button) {
+    --color-border: rgba(255, 255, 255, 0.6);
+    --color-background: rgba(255, 255, 255, 0);
+  }
+}

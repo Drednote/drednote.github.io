@@ -1,35 +1,66 @@
-import React, { CSSProperties, useEffect, useState } from 'react'
+import React, { HTMLAttributes } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './markdown-adapter.css'
+import { Typography } from 'antd'
+
+export type MarkdownData = { default: string }
 
 interface Props {
-  children: Promise<{ default: string }>
+  children?: MarkdownData
+  itemClassName?: string
   className?: string
-  style?: CSSProperties
 }
 
-const MarkdownAdapter: React.FC<Props> = (props) => {
-  const { children, className } = props
-  const [text, setText] = useState<string | undefined>(undefined)
+type TL = 1 | 2 | 3 | 4 | 5 | undefined
 
-  useEffect(() => {
-    void children.then((it) => {
-      setText(it.default)
-    })
-  }, [children])
+const GetHElement = (
+  props: React.ClassAttributes<HTMLHeadElement> & HTMLAttributes<HTMLHeadElement>,
+  level: TL,
+) => (
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  <Typography.Title level={level} {...props} />
+)
+
+const MarkdownAdapter: React.FC<Props> = (props) => {
+  const { children, itemClassName, className } = props
 
   return (
     <Markdown
       remarkPlugins={[remarkGfm]}
-      className="drednote-center markdown-adapter-base"
+      className={`${className} markdown-adapter-base`}
       components={{
         p(props) {
-          return <p className={className} {...props} />
+          return <p className={itemClassName} {...props} />
+        },
+        ul(props) {
+          return <ul className={itemClassName} {...props} />
+        },
+        code(props) {
+          return <code className={`${itemClassName} markdown-adapter-code`} {...props} />
+        },
+        strong(props) {
+          return <strong className={`${itemClassName} markdown-adapter-strong`} {...props} />
+        },
+        h1(props) {
+          return GetHElement({ ...props, className: itemClassName }, 1)
+        },
+        h2(props) {
+          return GetHElement({ ...props, className: itemClassName }, 2)
+        },
+        h3(props) {
+          return GetHElement({ ...props, className: itemClassName }, 3)
+        },
+        h4(props) {
+          return GetHElement({ ...props, className: itemClassName }, 4)
+        },
+        h5(props) {
+          return GetHElement({ ...props, className: itemClassName }, 5)
         },
       }}
     >
-      {text}
+      {children?.default}
     </Markdown>
   )
 }

@@ -1,54 +1,62 @@
 import { Col, Row, Typography } from 'antd'
 import { ArrowDownOutlined } from '@ant-design/icons'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './home.scss'
-import useColorScheme from '@components/color-scheme/useColorScheme'
+import context from '@const/context'
 
 interface Props {
-  opacity: number
+  opacity?: number
 }
 
-const HomeFooter: React.FC<Props> = ({ opacity }) => {
-  const { colors } = useColorScheme()
+const HomeFooter: React.FC<Props> = () => {
+  const { colors } = useContext(context.ColorScheme)
+  const [opacity, setOpacity] = useState(1)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const domRect = document.body.getBoundingClientRect()
+      const diff = window.innerHeight / 3.5
+      const value = Math.max((domRect.y + diff) / diff, 0)
+      setOpacity((prev) => (prev !== value ? value : prev))
+    })
+  }, [])
 
   return (
-    <>
-      <Row
-        className="drednote-center"
-        style={{
-          position: 'absolute',
-          bottom: '2vh',
-        }}
-      >
-        <Col>
-          <Row>
-            <Typography.Text
+    <Row
+      className="dr-center"
+      style={{
+        position: 'absolute',
+        bottom: '2vh',
+      }}
+    >
+      <Col>
+        <Row>
+          <Typography.Text
+            style={{
+              animation: 'moveText 2.5s backwards infinite',
+              position: 'relative',
+              opacity,
+            }}
+          >
+            Scroll
+          </Typography.Text>
+        </Row>
+        <Row className="dr-center">
+          <div
+            style={{
+              position: 'relative',
+              animation: 'moveArrow 2.5s backwards infinite',
+            }}
+          >
+            <ArrowDownOutlined
               style={{
-                animation: 'moveText 2.5s backwards infinite',
-                position: 'relative',
-                opacity,
+                color: colors.text(opacity),
               }}
-            >
-              Scroll
-            </Typography.Text>
-          </Row>
-          <Row className="drednote-center">
-            <div
-              style={{
-                position: 'relative',
-                animation: 'moveArrow 2.5s backwards infinite',
-              }}
-            >
-              <ArrowDownOutlined
-                style={{
-                  color: colors.text(opacity),
-                }}
-              />
-            </div>
-          </Row>
-        </Col>
-      </Row>
-    </>
+            />
+          </div>
+        </Row>
+      </Col>
+    </Row>
   )
 }
 

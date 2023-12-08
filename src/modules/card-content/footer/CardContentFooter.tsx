@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
-import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
-import { useTranslation } from 'react-i18next'
-import useColorScheme from '@components/color-scheme/useColorScheme'
-import { Desktop, Mobile, useAdaptive } from '@components/adaptive/Adaptive'
+import SocialNetwork from '@modules/card-content/footer/SocialNetwork'
+import { Desktop, DesktopOrTablet, Mobile } from '@components/adaptive/Adaptive'
 import LogoIcon from '@icons/LogoIcon'
-import { AppColors } from '@components/color-scheme/helpers'
-import { OptionsProps } from '@const/global-variables'
+import { OptionsProps } from '@const/options'
+import context from '@const/context'
+import './footer.scss'
+import { TFunction } from 'i18next'
 
-const Social: React.FC = () => (
-  <Col className="drednote-center">
-    <Space direction="vertical" className="drednote-center" size={8}>
+const Social: React.FC<{
+  t: TFunction
+}> = ({ t }) => (
+  <Col className="dr-center">
+    <Space direction="vertical" className="dr-center" size={8}>
       <Typography.Title
         level={5}
         style={{
@@ -18,7 +20,7 @@ const Social: React.FC = () => (
           marginBottom: 0,
         }}
       >
-        Social
+        {t('footer_social-title')}
       </Typography.Title>
       <SocialNetwork fontSize={26} />
     </Space>
@@ -42,13 +44,9 @@ const Copyright: React.FC = () => (
   </Col>
 )
 
-const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }> = ({
-  colors,
-  text,
-  options,
-}) => (
-  <Col className="drednote-center">
-    <LogoIcon style={{ fontSize: 64, color: colors.primary() }} />
+const Name: React.FC<{ text: string; options: OptionsProps }> = ({ text, options }) => (
+  <Col className="dr-center">
+    <LogoIcon className="logo" style={{ fontSize: 42 }} />
     <Typography.Title
       level={options.titleLevels.l4}
       style={{
@@ -61,37 +59,24 @@ const Name: React.FC<{ colors: AppColors; text: string; options: OptionsProps }>
 )
 
 const CardContentFooter: React.FC = () => {
-  const { t } = useTranslation()
-  const { colors } = useColorScheme()
-  const { options } = useAdaptive()
+  const { t } = useContext(context.Translation)
+  const { options, isDesktop } = useContext(context.Adaptive)
 
   return (
-    <Row
-      style={{
-        backgroundColor: colors.backgroundDark(),
-        zIndex: 10,
-      }}
-      className="drednote-row drednote-center"
-    >
+    <Row className="dr-row dr-center footer-outer-row">
       <Row
         style={{
-          justifyContent: 'space-between',
           maxWidth: options.maxWidth,
-          width: 'inherit',
-          padding: 12,
-          borderTopColor: colors.navBorder(),
-          borderTopWidth: 2,
-          borderLeftWidth: '0',
-          borderRightWidth: '0',
-          borderBottomWidth: '0',
-          borderStyle: 'solid',
+          justifyContent: isDesktop ? undefined : 'center',
+          display: 'inline-flex',
         }}
+        className="footer-inner-row"
       >
-        <Name colors={colors} text={t('navigation-title')} options={options} />
         <Desktop>
+          <Name text={t('navigation-title')} options={options} />
           <Copyright />
         </Desktop>
-        <Social />
+        <Social t={t} />
       </Row>
       <Mobile>
         <Row

@@ -3,45 +3,57 @@
   min-height: 100vh;
 }
 
-.drednote-center {
+.dr-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.drednote-area {
+.dr-area {
   max-width: 1200px;
 }
 
-.drednote-col {
+.dr-col {
   height: inherit;
 }
 
-.drednote-row {
+.dr-row {
   width: inherit;
 }
 
-.drednote-row-center {
+.dr-row-center {
   display: flex;
   justify-content: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.dr-col-center {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes fadeBottom {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.dr-wrap-text {
+  border-radius: 9999px;
 }
+
+.dr-button-default {
+  border-radius: 100px;
+  border: 0;
+}
+.dr-button-default.ant-btn-default {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-primary {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+
+/*# sourceMappingURL=App.css.map */

@@ -4,9 +4,16 @@
   "navigation-drawer-title": "Menu",
   "navigation-title": "Ivan Galushko",
   "navigation_resume": "Resume",
+  "navigation_contact": "Get in touch",
   "home_greeting-title": "Hi, my name is Ivan",
   "home_greeting-text": "I`m Java Spring Developer from Moscow",
   "about_title": "About me",
   "about_text-title": "Get to know me",
-  "about_skills-title": "Key skills"
+  "about_skills-title": "Key skills",
+
+  "experience_present": "Present",
+  "experience_title": "Experience",
+  "experience_text": "Work experience",
+
+  "footer_social-title": "Social"
 }

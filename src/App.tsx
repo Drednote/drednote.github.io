@@ -1,31 +1,22 @@
-import './App.css'
-import React, { useEffect } from 'react'
+import './App.scss'
+import React from 'react'
 import { ConfigProvider } from 'antd'
-import Navigation from '@modules/navigation/Navigation'
-import { type Lang } from '@const/lang'
-import { useTranslation } from 'react-i18next'
-import CardContent from '@modules/card-content/CardContent'
 import useColorScheme from '@components/color-scheme/useColorScheme'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@components/router/Router'
+import Context from '@const/context'
 import { useAdaptive } from '@components/adaptive/Adaptive'
+import { useTranslation } from 'react-i18next'
 
-interface Props {
-  lang: Lang
-}
-
-const App: React.FC<Props> = ({ lang }) => {
-  const { i18n } = useTranslation()
-  const { colors } = useColorScheme()
-  const { options } = useAdaptive()
-
-  useEffect(() => {
-    if (i18n.language !== lang.toString()) {
-      void i18n.changeLanguage(lang)
-    }
-    document.getElementById('html')?.setAttribute('lang', i18n.language)
-  }, [lang])
+const App: React.FC = () => {
+  const colorScheme = useColorScheme()
+  const options = useAdaptive()
+  const translation = useTranslation()
+  const { colors } = colorScheme
 
   return (
     <ConfigProvider
+      button={{ className: 'dr-button-default' }}
       theme={{
         token: {
           colorPrimary: colors.primary(),
@@ -42,13 +33,21 @@ const App: React.FC<Props> = ({ lang }) => {
           Layout: {
             headerBg: 'inherit',
           },
+          Modal: {
+            contentBg: colors.primarySecond(),
+          },
         },
       }}
     >
-      <div className="App">
-        <Navigation height={options.navigationHeight} />
-        <CardContent />
-      </div>
+      <Context.ColorScheme.Provider value={colorScheme}>
+        <Context.Adaptive.Provider value={options}>
+          <Context.Translation.Provider value={translation}>
+            <div className="App" id="app">
+              <RouterProvider router={router} />
+            </div>
+          </Context.Translation.Provider>
+        </Context.Adaptive.Provider>
+      </Context.ColorScheme.Provider>
     </ConfigProvider>
   )
 }

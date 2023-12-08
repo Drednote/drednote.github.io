@@ -1,3 +1,16 @@
+.home-row {
+  background: linear-gradient(var(--backgroundLight), var(--color-primarySecond));
+  height: 100vh;
+}
+
+[data-theme=dark] .home-row {
+  --backgroundLight: rgba(4, 36, 65, 1);
+}
+
+[data-theme=light] .home-row {
+  --backgroundLight: rgba(255, 255, 255, 1);
+}
+
 @keyframes moveArrow {
   0% {
     top: 0;

@@ -3,9 +3,9 @@
     visibility: hidden;
   }
   &.ant-switch.ant-switch-checked {
-    background-color: var(--primary);
+    background-color: var(--color-primary);
   }
   &.ant-switch {
-    background-color: var(--primary);
+    background-color: var(--color-primary);
   }
 }

@@ -12,4 +12,4 @@ attend swimming classes.
 
 I am open to collaboration opportunities where I can contribute, learn and grow. I expect
 interesting tasks from my new job, without monotony and with visible results. If you have a good
-opportunity that matches my skills and experience, don't hesitate to contact me.
+opportunity that matches my skills and experience, contact me.
