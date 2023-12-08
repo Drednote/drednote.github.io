@@ -1,14 +1,12 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Jost', sans-serif;
+  font-family: 'Jost', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace, 'Jost',
-    sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 @font-face {
@@ -31,5 +29,36 @@ code {
     url('./fonts/Jost/static/Jost-Italic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src:
+      local('Jost'),
+      url('fonts/Inter/Inter-Regular.ttf') format('truetype');
+}
+
 @media (prefers-color-scheme: dark) {
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeBottom {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

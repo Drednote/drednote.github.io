@@ -18,3 +18,12 @@
 .logo {
   color: var(--color-primary);
 }
+
+.social-network {
+  &.ant-btn-default {
+    &:not(:disabled):not(.ant-btn-disabled):hover {
+      color: var(--color-primary);
+    }
+    color: var(--color-primary);
+  }
+}

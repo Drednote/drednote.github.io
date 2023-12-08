@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import React from 'react'
 import { ConfigProvider } from 'antd'
 import useColorScheme from '@components/color-scheme/useColorScheme'
@@ -16,6 +16,7 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider
+      button={{ className: 'dr-button-default' }}
       theme={{
         token: {
           colorPrimary: colors.primary(),
@@ -31,6 +32,9 @@ const App: React.FC = () => {
           },
           Layout: {
             headerBg: 'inherit',
+          },
+          Modal: {
+            contentBg: colors.primarySecond(),
           },
         },
       }}

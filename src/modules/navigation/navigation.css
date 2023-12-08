@@ -14,6 +14,16 @@
   border-color: var(--color-border);
   box-shadow: 0 1px 3px var(--color-box);
 }
+@media (max-width: 480px) {
+  .navigation-row {
+    padding: 0 24px;
+  }
+}
+@media (min-width: 480px) {
+  .navigation-row {
+    padding: 0 48px;
+  }
+}
 
 .header-button {
   background-color: transparent;
@@ -23,6 +33,19 @@
 }
 .header-button.ant-btn-link:not(:disabled):not(.ant-btn-disabled):hover {
   color: var(--color-text);
+}
+
+.navigation-extra-button {
+  --dr-opacity: 1;
+  background-color: var(--color-primary);
+  border: 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 100px;
+  color: var(--color-buttonText);
+}
+.navigation-extra-button.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-buttonText);
 }
 
 [data-theme=dark] .navigation-row {

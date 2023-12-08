@@ -6,6 +6,7 @@ export interface AppColors {
   text: ColorWithOpacity
   textSecondary: ColorWithOpacity
   primarySecond: ColorWithOpacity
+  buttonText: ColorWithOpacity
 }
 
 export const cssColorsVariableNames: Record<keyof AppColors, string> = {
@@ -13,4 +14,5 @@ export const cssColorsVariableNames: Record<keyof AppColors, string> = {
   text: 'text',
   textSecondary: 'textSecondary',
   primarySecond: 'primarySecond',
+  buttonText: 'buttonText',
 }

@@ -31,7 +31,7 @@
 }
 
 [data-theme=light] .skills {
-  color: black;
+  color: var(--color-text);
   background-color: rgba(255, 255, 255, 0.7);
 }
 [data-theme=light] :is(.skills, .experience-layout, .link-button) {

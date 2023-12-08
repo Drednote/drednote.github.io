@@ -19,4 +19,11 @@
   color: var(--color-primary);
 }
 
+.social-network.ant-btn-default {
+  color: var(--color-primary);
+}
+.social-network.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-primary);
+}
+
 /*# sourceMappingURL=footer.css.map */

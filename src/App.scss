@@ -1,0 +1,57 @@
+.App {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dr-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dr-area {
+  max-width: 1200px;
+}
+
+.dr-col {
+  height: inherit;
+}
+
+.dr-row {
+  width: inherit;
+}
+
+.dr-row-center {
+  display: flex;
+  justify-content: center;
+}
+
+.dr-col-center {
+  display: flex;
+  align-items: center;
+}
+
+.dr-wrap-text {
+  border-radius: 9999px;
+}
+
+.dr-button-default {
+  border-radius: 100px;
+  border: 0;
+  &.ant-btn-default {
+    &:not(:disabled):not(.ant-btn-disabled):hover {
+      color: var(--color-buttonText);
+      background-color: var(--color-primary);
+    }
+    color: var(--color-buttonText);
+    background-color: var(--color-primary);
+  }
+  &.ant-btn-primary {
+    &:not(:disabled):not(.ant-btn-disabled):hover {
+      color: var(--color-buttonText);
+      background-color: var(--color-primary);
+    }
+    color: var(--color-buttonText);
+    background-color: var(--color-primary);
+  }
+}

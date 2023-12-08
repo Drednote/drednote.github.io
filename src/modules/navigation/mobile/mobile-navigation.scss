@@ -1,3 +1,12 @@
 .drawer-close-icon {
   color: var(--color-primary);
 }
+
+.contact-button {
+  &.dr-button-default.ant-btn-default {
+    &:not(:disabled):not(.ant-btn-disabled):hover {
+      background-color: rgba(78, 204, 188, 1);
+    }
+    background-color: rgba(78, 204, 188, 1);
+  }
+}

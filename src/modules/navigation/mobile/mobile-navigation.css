@@ -2,4 +2,11 @@
   color: var(--color-primary);
 }
 
+.contact-button.dr-button-default.ant-btn-default {
+  background-color: #4eccbc;
+}
+.contact-button.dr-button-default.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #4eccbc;
+}
+
 /*# sourceMappingURL=mobile-navigation.css.map */

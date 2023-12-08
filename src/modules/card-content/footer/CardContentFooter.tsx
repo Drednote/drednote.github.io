@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
-import SocialNetwork from '@modules/navigation/footer/SocialNetwork'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
+import SocialNetwork from '@modules/card-content/footer/SocialNetwork'
+import { Desktop, DesktopOrTablet, Mobile } from '@components/adaptive/Adaptive'
 import LogoIcon from '@icons/LogoIcon'
 import { OptionsProps } from '@const/options'
 import context from '@const/context'
@@ -46,7 +46,7 @@ const Copyright: React.FC = () => (
 
 const Name: React.FC<{ text: string; options: OptionsProps }> = ({ text, options }) => (
   <Col className="dr-center">
-    <LogoIcon className="logo" style={{ fontSize: 64 }} />
+    <LogoIcon className="logo" style={{ fontSize: 42 }} />
     <Typography.Title
       level={options.titleLevels.l4}
       style={{
@@ -60,18 +60,20 @@ const Name: React.FC<{ text: string; options: OptionsProps }> = ({ text, options
 
 const CardContentFooter: React.FC = () => {
   const { t } = useContext(context.Translation)
-  const { options } = useContext(context.Adaptive)
+  const { options, isDesktop } = useContext(context.Adaptive)
 
   return (
     <Row className="dr-row dr-center footer-outer-row">
       <Row
         style={{
           maxWidth: options.maxWidth,
+          justifyContent: isDesktop ? undefined : 'center',
+          display: 'inline-flex',
         }}
         className="footer-inner-row"
       >
-        <Name text={t('navigation-title')} options={options} />
         <Desktop>
+          <Name text={t('navigation-title')} options={options} />
           <Copyright />
         </Desktop>
         <Social t={t} />

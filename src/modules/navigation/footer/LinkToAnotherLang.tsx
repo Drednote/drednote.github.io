@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import './link-lang.scss'
+import './footer.scss'
 import ruIcon from '@icons/lang/ru-icon.svg'
 import enIcon from '@icons/lang/en-icon.svg'
 import Icon from '@ant-design/icons'

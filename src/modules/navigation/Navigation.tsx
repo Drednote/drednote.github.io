@@ -16,8 +16,7 @@ const left = 24
 
 const NavigationContainer: React.FC<{
   children: ReactNode
-  height: number | string
-}> = ({ children, height }) => {
+}> = ({ children }) => {
   const { isMobile } = useContext(context.Adaptive)
   const { t } = useContext(context.Translation)
 
@@ -31,7 +30,7 @@ const NavigationContainer: React.FC<{
     <Row className="dr-center dr-area dr-row dr-col" style={{ justifyContent: 'space-between' }}>
       <Col style={{ paddingLeft: 0 }} className="dr-center dr-col">
         <Button type="link" className="dr-center header-button" onClick={handleClick}>
-          <LogoIcon style={{ fontSize: height }} />
+          <LogoIcon style={{ fontSize: 42 }} />
           <Typography.Title level={isMobile ? 4 : 3} className="dre-center" style={{ margin: 0 }}>
             {t('navigation-title')}
           </Typography.Title>
@@ -66,7 +65,7 @@ const Navigation: React.FC<Props> = () => {
         }
         className="dr-center navigation-row"
       >
-        <NavigationContainer height={options.navigationHeight}>
+        <NavigationContainer>
           <Desktop>
             <DesktopNavigation indentation={left} />
           </Desktop>

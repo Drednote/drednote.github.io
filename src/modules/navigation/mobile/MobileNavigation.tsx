@@ -39,7 +39,7 @@ const MobileNavigation: React.FC<Props> = ({ height, indentation }) => {
       <Col style={{ position: 'fixed', right: indentation, height: '100%' }} className="dr-center">
         <Button
           icon={<MenuOutlined style={{ fontSize: 24 }} />}
-          style={{ backgroundColor: 'transparent', border: 0 }}
+          style={{ backgroundColor: 'transparent', border: 0, color: colors.primary() }}
           size="large"
           onClick={showDrawer}
         />

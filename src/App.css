@@ -35,22 +35,25 @@
   border-radius: 9999px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.dr-button-default {
+  border-radius: 100px;
+  border: 0;
+}
+.dr-button-default.ant-btn-default {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-primary {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
+}
+.dr-button-default.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  color: var(--color-buttonText);
+  background-color: var(--color-primary);
 }
 
-@keyframes fadeBottom {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+/*# sourceMappingURL=App.css.map */
