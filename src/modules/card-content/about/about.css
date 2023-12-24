@@ -52,7 +52,10 @@
   --color-bg: rgba(0, 115, 121, 0.5);
 }
 [data-theme=dark] .background-image {
-  --color-bg: rgb(0, 115, 121, 0.8);
+  --color-bg: rgba(0, 115, 121, 0.8);
+}
+[data-theme=dark] .about-text a {
+  color: var(--color-text);
 }
 
 [data-theme=light] .skills-element {
@@ -61,6 +64,9 @@
 }
 [data-theme=light] .background-image {
   --color-bg: rgba(255, 255, 255, 0.8);
+}
+[data-theme=light] .about-text a {
+  color: var(--color-text);
 }
 
 /*# sourceMappingURL=about.css.map */

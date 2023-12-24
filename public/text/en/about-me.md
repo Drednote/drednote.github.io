@@ -5,7 +5,7 @@ seriously.
 
 I love learning new technologies, practices and framework capabilities. I strive to constantly
 improve and not stand still in developing my skills. I also like to experiment and implement my
-ideas in personal projects. You can find out more about this on my GitHub page.
+ideas in personal projects. You can find out more about this on my [GitHub](https://github.com/Drednote) page.
 
 When I'm not coding, I read books, research topics that interest me, or play video/board games, and
 attend swimming classes.

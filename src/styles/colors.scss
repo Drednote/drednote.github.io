@@ -1,0 +1,51 @@
+:root {
+  --dr-opacity: 1;
+  --dark_primary: rgba(255, 255, 255, 1);
+  --light_primary: rgba(5, 23, 45, 1);
+
+  --dark_text: rgba(255, 255, 255, 1);
+  --light_text: rgba(5, 23, 45, 1);
+
+  --dark_textSecondary: rgba(255, 255, 255, 0.7);
+  --light_textSecondary: rgba(5, 23, 45, 0.8);
+
+  --dark_primarySecond: rgba(5, 23, 45, 1);
+  --light_primarySecond: rgba(161, 222, 255, 1);
+
+  --light_buttonText: rgba(255, 255, 255, 1);
+  --dark_buttonText: rgba(5, 23, 45, 1);
+}
+
+[data-theme='dark'] {
+  & * {
+    --color-primary: var(--dark_primary);
+    --color-text: var(--dark_text);
+    --color-textSecondary: var(--dark_textSecondary);
+    --color-primarySecond: rgba(5, 23, 45, var(--dr-opacity));
+    --color-buttonText: var(--dark_buttonText);
+  }
+  & :root {
+    --color-primary: var(--dark_primary);
+    --color-text: var(--dark_text);
+    --color-textSecondary: var(--dark_textSecondary);
+    --color-primarySecond: rgba(5, 23, 45, var(--dr-opacity));
+    --color-buttonText: var(--dark_buttonText);
+  }
+}
+
+[data-theme='light'] {
+  & * {
+    --color-primary: var(--light_primary);
+    --color-text: var(--light_text);
+    --color-textSecondary: var(--light_textSecondary);
+    --color-primarySecond: rgba(161, 222, 255, var(--dr-opacity));
+    --color-buttonText: var(--light_buttonText);
+  }
+  & :root {
+    --color-primary: var(--light_primary);
+    --color-text: var(--light_text);
+    --color-textSecondary: var(--light_textSecondary);
+    --color-primarySecond: rgba(161, 222, 255, var(--dr-opacity));
+    --color-buttonText: var(--light_buttonText);
+  }
+}

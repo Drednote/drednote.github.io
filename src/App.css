@@ -35,6 +35,14 @@
   border-radius: 9999px;
 }
 
+.dr-link a:hover {
+  color: var(--color-textSecondary) !important;
+}
+.dr-link a:hover svg {
+  transform: translate(3px, -3px);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .dr-button-default {
   border-radius: 100px;
   border: 0;
