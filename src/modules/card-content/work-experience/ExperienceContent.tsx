@@ -6,6 +6,8 @@ import MarkdownAdapter, { MarkdownData } from '@components/markdown/MarkdownAdap
 import { Desktop, Mobile } from '@components/adaptive/Adaptive'
 import { LinkOutlined } from '@ant-design/icons'
 import context from '@const/context'
+import moment from 'moment'
+import { DATE_FORMAT } from '@const/time'
 
 export interface Experience {
   title: string
@@ -25,7 +27,7 @@ const DateRenderer: React.FC<
     if (!date) {
       return present
     }
-    const dateS = new Date(date)
+    const dateS = moment(date, DATE_FORMAT).toDate()
     const month = dateS.toLocaleString(locale, { month: 'short' })
     const year = dateS.toLocaleString(locale, { year: 'numeric' })
     return `${month} ${year}`
