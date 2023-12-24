@@ -1,5 +1,3 @@
-- Даты надо писать в американском стиле
-
 ```typescript
 interface Experience {
   title: string

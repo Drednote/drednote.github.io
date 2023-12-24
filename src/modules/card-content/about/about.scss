@@ -53,7 +53,10 @@
     --color-bg: rgba(0, 115, 121, 0.5);
   }
   & .background-image {
-    --color-bg: rgb(0, 115, 121, 0.8);
+    --color-bg: rgba(0, 115, 121, 0.8);
+  }
+  & .about-text a {
+    color: var(--color-text);
   }
 }
 
@@ -64,5 +67,8 @@
   }
   & .background-image {
     --color-bg: rgba(255, 255, 255, 0.8);
+  }
+  & .about-text a {
+    color: var(--color-text);
   }
 }

@@ -3,6 +3,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import './markdown-adapter.css'
 import { Typography } from 'antd'
+import { LinkOutlined } from '@ant-design/icons'
 
 export type MarkdownData = { default: string }
 
@@ -29,8 +30,26 @@ const MarkdownAdapter: React.FC<Props> = (props) => {
   return (
     <Markdown
       remarkPlugins={[remarkGfm]}
-      className={`${className} markdown-adapter-base`}
+      className={`${className} markdown-adapter-base dr-link`}
       components={{
+        a(props) {
+          return (
+            <a
+              style={{ display: 'inline-flex', alignItems: 'start' }}
+              href={props.href}
+              target="_blank"
+              rel="noreferrer"
+              className={`${itemClassName} dr-link`}
+            >
+              {props.children}
+              <LinkOutlined
+                style={{
+                  fontSize: 10,
+                }}
+              />
+            </a>
+          )
+        },
         p(props) {
           return <p className={itemClassName} {...props} />
         },

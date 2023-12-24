@@ -22,7 +22,7 @@ const AboutText: React.FC = () => {
         <Typography.Title level={options.titleLevels.l2}>{t('about_text-title')}</Typography.Title>
       </Row>
       <Row style={{ fontSize: !isMobile ? 20 : 18 }}>
-        <MarkdownAdapter itemClassName="compact-text" className="md-main-text">
+        <MarkdownAdapter itemClassName="compact-text about-text" className="md-main-text">
           {text}
         </MarkdownAdapter>
       </Row>
