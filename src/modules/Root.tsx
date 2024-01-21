@@ -1,7 +1,7 @@
 import React from 'react'
 import CardContent from '@modules/card-content/CardContent'
 import Navigation from '@modules/navigation/Navigation'
-import { Mobile } from '@components/adaptive/Adaptive'
+import { MobileOrTablet } from '@components/adaptive/Adaptive'
 import ContactFooter from '@modules/navigation/mobile/ContactFooter'
 
 const Root: React.FC = () => {
@@ -9,9 +9,9 @@ const Root: React.FC = () => {
     <>
       <Navigation />
       <CardContent />
-      <Mobile>
+      <MobileOrTablet>
         <ContactFooter />
-      </Mobile>
+      </MobileOrTablet>
     </>
   )
 }

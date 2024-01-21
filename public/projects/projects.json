@@ -1,0 +1,8 @@
+[
+  {
+    "rel": "telegramBot"
+  },
+  {
+    "rel": "telegramStatemachine"
+  }
+]

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import SocialNetwork from '@modules/card-content/footer/SocialNetwork'
-import { Desktop, DesktopOrTablet, Mobile } from '@components/adaptive/Adaptive'
-import LogoIcon from '@icons/LogoIcon'
+import { Desktop, DesktopOrTablet, MobileOrTablet } from '@components/adaptive/Adaptive'
+import LogoIcon from '@icons/logo/LogoIcon'
 import { OptionsProps } from '@const/options'
 import context from '@const/context'
 import './footer.scss'
@@ -39,7 +39,7 @@ const Copyright: React.FC = () => (
         fontSize: 14,
       }}
     >
-      Copyright © 2023. Made by Ivan Galushko
+      Copyright © 2024. Made by Ivan Galushko
     </Typography.Text>
   </Col>
 )
@@ -78,7 +78,7 @@ const CardContentFooter: React.FC = () => {
         </Desktop>
         <Social t={t} />
       </Row>
-      <Mobile>
+      <MobileOrTablet>
         <Row
           style={{
             paddingBottom: 12,
@@ -86,7 +86,7 @@ const CardContentFooter: React.FC = () => {
         >
           <Copyright />
         </Row>
-      </Mobile>
+      </MobileOrTablet>
     </Row>
   )
 }

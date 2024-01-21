@@ -38,7 +38,12 @@ export const DesktopOrTablet: React.FC<WithChildren> = ({ children }) => {
   return isDesktop || isTablet ? children : null
 }
 
-export const Mobile: React.FC<WithChildren> = ({ children }) => {
+export const MobileOrTablet: React.FC<WithChildren> = ({ children }) => {
   const { isMobile, isTablet } = useContext(context.Adaptive)
   return isTablet || isMobile ? children : null
+}
+
+export const Mobile: React.FC<WithChildren> = ({ children }) => {
+  const { isMobile } = useContext(context.Adaptive)
+  return isMobile ? children : null
 }

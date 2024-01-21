@@ -10,10 +10,9 @@ and IPO.
 - **Development of back-end** part of the `OMS` module using microservice architecture and `Spring`;
 - **Development of front-end** part of the `OMS` module using `React + Redux`;
 - **Design and development of architecture** and interaction of microservices based on customer
-  requirements, using `Docker`, `OpenShift`, `Rest API`, `RabbitMQ` technologies;
+  requirements, using `Docker`, `OpenShift`, `RabbitMQ`, `MongoDB` technologies;
 - **Testing services** and identifying errors. Elimination of identified problems. Test
   coverage (`spring test`, `junit`, `mockito`);
-- Technical support of services at all stages of their use;
 - Code review;
 - Preparation of releases;
 - **Supervision** of 2 developers;

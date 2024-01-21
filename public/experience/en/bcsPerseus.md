@@ -7,24 +7,24 @@ services quickly and efficiently.
 
 ##### Responsibilities:
 
+- Conducting **technical interviews**;
+- **Mentorship** developers;
 - **Development of back-end** parts using microservice architecture and `Spring`;
 - **Design and development of architecture** and interaction of microservices based on customer
-  requirements, using `Docker`, `OpenShift`, `Rest API`, `RabbitMQ`, `Kafka` technologies;
+  requirements, using `Docker`, `OpenShift`, `MongoDB`, `PostgreSQL`,`RabbitMQ`, `Kafka`
+  technologies;
 - **Testing services** and identifying errors. Elimination of identified problems. Test
   coverage (`spring test`, `junit`, `mockito`);
-- Technical support of services at all stages of their use;
 - Code review;
 - Preparation of releases;
-- Conducting **technical interviews**;
-- **Mentorship** of 2 developers;
 
 ##### Achievements:
 
-- **Integrated** together with the team of the chat platform in Perseus;
-- **Wrote notification service**;
-- Implemented **swagger gateway** (springdoc-openapi);
-- **Worked out the architecture and implemented the service** for collecting statistics on a large
-  flow of intraday transactions;
-- Implemented writing tests using `testcontainers`;
 - **Implemented the use of my libraries**, including spring starters and wrote `GitLab CI` for them;
 - Wrote many useful utilities;
+- Implemented **swagger gateway** (springdoc-openapi);
+- Implemented writing tests using `testcontainers`;
+- **Collected statistics** on cluster resources and optimized their use
+- **Wrote notification service**;
+- **Worked out the architecture and implemented the service** for collecting statistics on a large
+  flow of intraday transactions;

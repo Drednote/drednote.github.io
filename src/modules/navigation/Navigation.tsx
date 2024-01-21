@@ -1,10 +1,10 @@
 import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 import { Button, Col, Row, Typography } from 'antd'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
+import { Desktop, MobileOrTablet } from '@components/adaptive/Adaptive'
 import { menuKeys } from '@modules/navigation/menu/const'
 import MobileNavigation from '@modules/navigation/mobile/MobileNavigation'
 import DesktopNavigation from '@modules/navigation/desktop/DesktopNavigation'
-import LogoIcon from '@icons/LogoIcon'
+import LogoIcon from '@icons/logo/LogoIcon'
 import './navigation.scss'
 import context from '@const/context'
 
@@ -69,9 +69,9 @@ const Navigation: React.FC<Props> = () => {
           <Desktop>
             <DesktopNavigation indentation={left} />
           </Desktop>
-          <Mobile>
+          <MobileOrTablet>
             <MobileNavigation indentation={left} height={options.navigationHeight} />
-          </Mobile>
+          </MobileOrTablet>
         </NavigationContainer>
       </Row>
     </nav>

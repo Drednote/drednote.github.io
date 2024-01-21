@@ -6,6 +6,7 @@ import { Col, Row, Space } from 'antd'
 import CardContentFooter from '@modules/card-content/footer/CardContentFooter'
 import WorkExperience from '@modules/card-content/work-experience/WorkExperience'
 import './card-content.scss'
+import Projects from '@modules/card-content/projects/Projects'
 
 const CardContent: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const CardContent: React.FC = () => {
         >
           <About key={menuKeys.about} id={menuKeys.about} />
           <WorkExperience key={menuKeys.work} id={menuKeys.work} />
+          <Projects key={menuKeys.projects} id={menuKeys.projects} />
         </Space>
       </Col>
       <CardContentFooter />
