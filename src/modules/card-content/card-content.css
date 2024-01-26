@@ -20,7 +20,7 @@
 }
 
 [data-theme=dark] .skills {
-  color: #5de9d4;
+  color: rgb(93, 233, 212);
   background-color: rgba(0, 115, 121, 0.3);
 }
 [data-theme=dark] :is(.skills, .dr-block-layout, .dr-subblock-layout, .link-button) {
