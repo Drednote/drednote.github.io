@@ -4,7 +4,7 @@
   "navigation-drawer-title": "Меню",
   "navigation-title": "Иван Галушко",
   "navigation_resume": "Резюме",
-  "navigation_contact": "Написать",
+  "navigation_contact": "Связаться",
   "home_greeting-title": "Привет, меня зовут Иван",
   "home_greeting-text": "Я Java Spring Разработчик из Москвы",
   "about_title": "Обо мне",
@@ -14,6 +14,8 @@
   "experience_present": "наст. время",
   "experience_title": "Опыт",
   "experience_text": "Опыт работы",
+
+  "projects_title": "Проекты",
 
   "footer_social-title": "Контакты"
 }

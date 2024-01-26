@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import WrapText from '@components/wrap-text/WrapText'
-import './experience.scss'
+import './block-layout.scss'
 import MarkdownAdapter, { MarkdownData } from '@components/markdown/MarkdownAdapter'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
-import { LinkOutlined } from '@ant-design/icons'
+import { Desktop, MobileOrTablet } from '@components/adaptive/Adaptive'
 import context from '@const/context'
 import moment from 'moment'
 import { DATE_FORMAT } from '@const/time'
+import LinkIconOutlined from '@icons/link/LinkIconOutlined'
 
 export interface Experience {
   title: string
@@ -57,7 +57,7 @@ const BodyRenderer: React.FC<
         marginTop: 0,
       }}
     >
-      <Typography.Title level={options.titleLevels.l4} className="link-button">
+      <Typography.Title level={options.titleLevels.l4} className="link-button delimiter">
         {title} ·{' '}
         <a
           style={{ color: 'inherit', display: 'inline-flex', alignItems: 'start' }}
@@ -66,9 +66,10 @@ const BodyRenderer: React.FC<
           rel="noreferrer"
         >
           {company}
-          <LinkOutlined
+          <LinkIconOutlined
             style={{
               fontSize: 10,
+              paddingLeft: 4,
             }}
           />
         </a>
@@ -105,7 +106,7 @@ const ExperienceContent: React.FC<{ data: Experience; text: MarkdownData }> = ({
 
   return (
     <Row
-      className="dr-row experience-layout"
+      className="dr-row dr-block-layout"
       style={{
         marginBottom: 24,
         borderRadius: 'inherit',
@@ -121,10 +122,10 @@ const ExperienceContent: React.FC<{ data: Experience; text: MarkdownData }> = ({
           {bodyRenderer}
         </Col>
       </Desktop>
-      <Mobile>
+      <MobileOrTablet>
         {dateRenderer}
         {bodyRenderer}
-      </Mobile>
+      </MobileOrTablet>
     </Row>
   )
 }

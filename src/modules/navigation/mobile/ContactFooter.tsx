@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'antd'
 import ContactModal from '@modules/navigation/ContactModal'
-import ChatIcon from '@icons/ChatIcon'
+import ChatIcon from '@icons/chat/ChatIcon'
 import './mobile-navigation.scss'
 
 const ContactFooter: React.FC = () => {

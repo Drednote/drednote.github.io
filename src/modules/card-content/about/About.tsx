@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row, Space, Typography } from 'antd'
 import './about.scss'
 import { menuKeys } from '@modules/navigation/menu/const'
-import { Desktop, Mobile } from '@components/adaptive/Adaptive'
+import { Desktop, MobileOrTablet } from '@components/adaptive/Adaptive'
 import AboutText from '@modules/card-content/about/AboutText'
 import Skills from '@modules/card-content/about/Skills'
 import Background from '@modules/card-content/about/background/Background'
@@ -41,14 +41,14 @@ const AboutContent: React.FC<Props> = ({ activeFade }) => {
           </Space>
         </Row>
       </Desktop>
-      <Mobile>
+      <MobileOrTablet>
         <Row className="dr-row-center">
           <Space size={48} direction="vertical">
             <AboutText />
             <Skills />
           </Space>
         </Row>
-      </Mobile>
+      </MobileOrTablet>
     </Col>
   )
 }

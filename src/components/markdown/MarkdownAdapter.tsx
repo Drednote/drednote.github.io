@@ -9,6 +9,8 @@ export type MarkdownData = { default: string }
 
 interface Props {
   children?: MarkdownData
+  // if you want to pass raw text. Has priority over children
+  text?: string
   itemClassName?: string
   className?: string
 }
@@ -25,7 +27,7 @@ const GetHElement = (
 )
 
 const MarkdownAdapter: React.FC<Props> = (props) => {
-  const { children, itemClassName, className } = props
+  const { children, itemClassName, className, text } = props
 
   return (
     <Markdown
@@ -79,7 +81,7 @@ const MarkdownAdapter: React.FC<Props> = (props) => {
         },
       }}
     >
-      {children?.default}
+      {text ? text : children?.default}
     </Markdown>
   )
 }
