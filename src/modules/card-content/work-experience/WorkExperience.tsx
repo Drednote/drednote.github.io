@@ -8,6 +8,7 @@ import { MarkdownData } from '@components/markdown/MarkdownAdapter'
 import context from '@const/context'
 import moment, { Moment } from 'moment'
 import { DATE_FORMAT } from '@const/time'
+import { Link } from 'react-router-dom'
 
 const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
   const { options } = useContext(context.Adaptive)
@@ -79,6 +80,7 @@ const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
             }}
           >{`${t('experience_text')} ${years} ${months}`}</Typography.Text>
         </Space>
+        <Link to="resume">PDF</Link>
       </Typography.Title>
       <Row className="dr-row dr-row-center" style={{}}>
         {Object.entries(content).map((entry) => {

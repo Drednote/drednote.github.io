@@ -13,10 +13,7 @@ export interface Project {
 
 type Props = { data: Project; text: MarkdownData }
 
-const BodyRenderer: React.FC<{
-  text: Props['text']
-  data: Props['data']
-}> = ({ text, data: { title, skills, href } }) => {
+const BodyRenderer: React.FC<Props> = ({ text, data: { title, skills, href } }) => {
   const { options } = useContext(context.Adaptive)
 
   return (

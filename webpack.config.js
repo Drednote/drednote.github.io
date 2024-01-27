@@ -20,6 +20,9 @@ module.exports = {
       '@types': path.resolve('src/types'),
       '@public': path.resolve('public'),
     },
+    fallback: {
+      fs: false,
+    },
   },
   module: {
     rules: [
@@ -33,7 +36,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jp(e*)g|gif)$/,
+        test: /\.(png|jp(e*)g|gif|ttf)$/,
         type: 'asset/resource',
       },
       {
