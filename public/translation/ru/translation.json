@@ -16,6 +16,9 @@
   "experience_text": "Опыт работы",
 
   "projects_title": "Проекты",
+  "resume_download-button": "Скачать PDF",
+  "resume_download-description": "PDF будет создан из данных сайта и сразу скачан.",
+  "resume_download-error": "Не удалось создать PDF. Попробуйте еще раз.",
 
   "footer_social-title": "Контакты"
 }

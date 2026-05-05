@@ -17,6 +17,7 @@
     "i18next-browser-languagedetector": "7.1.0",
     "lodash": "4.17.21",
     "moment": "2.29.4",
+    "pdfmake": "0.2.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "13.2.2",
@@ -32,7 +33,7 @@
     "build": "webpack --mode production && cp public/404.html dist/404.html",
     "lint": "eslint . --fix",
     "test": "echo 'No tests found'",
-    "install": "npm install"
+    "install": "install"
   },
   "devDependencies": {
     "@babel/core": "7.22.15",
@@ -41,6 +42,7 @@
     "@babel/preset-typescript": "7.22.15",
     "@svgr/webpack": "8.1.0",
     "@types/lodash": "4.14.199",
+    "@types/pdfmake": "0.2.9",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "6.6.0",

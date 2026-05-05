@@ -16,6 +16,9 @@
   "experience_text": "Work experience",
 
   "projects_title": "Projects",
+  "resume_download-button": "Download PDF",
+  "resume_download-description": "The PDF will be generated from the site data and downloaded immediately.",
+  "resume_download-error": "Failed to create PDF. Please try again.",
 
   "footer_social-title": "Social"
 }
