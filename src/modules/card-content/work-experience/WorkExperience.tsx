@@ -9,6 +9,25 @@ import context from '@const/context'
 import moment, { Moment } from 'moment'
 import { DATE_FORMAT } from '@const/time'
 
+const formatDurationUnit = (
+  value: number,
+  locale: string,
+  singularKey: 'M' | 'y',
+  pluralKey: 'MM' | 'yy',
+) =>
+  moment.localeData(locale).relativeTime(value, true, value === 1 ? singularKey : pluralKey, false)
+
+const getExperienceDuration = (startDate: Moment, locale: string) => {
+  const now = moment()
+  const yearsCount = now.diff(startDate, 'years')
+  const monthsCount = now.diff(startDate.clone().add(yearsCount, 'years'), 'months')
+
+  const years = yearsCount > 0 ? formatDurationUnit(yearsCount, locale, 'y', 'yy') : ''
+  const months = monthsCount > 0 ? formatDurationUnit(monthsCount, locale, 'M', 'MM') : ''
+
+  return { years, months }
+}
+
 const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
   const { options } = useContext(context.Adaptive)
   const { i18n, t } = useContext(context.Translation)
@@ -42,18 +61,7 @@ const WorkExperience: React.FC<{ id?: string }> = ({ id }) => {
     void loadData()
   }, [i18n.language])
 
-  const days = moment(earliestDate).set({ year: moment().year() })
-  const diff = days.diff(moment(), 'days')
-
-  let years
-  let months
-  if (diff < -310) {
-    years = earliestDate.subtract(1, 'year').fromNow(true)
-    months = ''
-  } else {
-    years = earliestDate.fromNow(true)
-    months = days.fromNow(true)
-  }
+  const { years, months } = getExperienceDuration(earliestDate, i18n.language)
 
   return (
     <Col

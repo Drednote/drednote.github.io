@@ -16,9 +16,17 @@
   "experience_text": "Опыт работы",
 
   "projects_title": "Проекты",
+  "resume_about-title": "Обо мне",
+  "resume_contacts-title": "Контакты",
   "resume_download-button": "Скачать PDF",
   "resume_download-description": "PDF будет создан из данных сайта и сразу скачан.",
   "resume_download-error": "Не удалось создать PDF. Попробуйте еще раз.",
+  "resume_education-title": "Образование",
+  "resume_preferred-contact": "предпочитаемый способ связи",
+  "resume_position-title": "Желаемая должность и зарплата",
+  "resume_skills-title": "Навыки",
+  "resume_stack-prefix": "Стек технологий",
+  "resume_work-title": "Опыт работы",
 
   "footer_social-title": "Контакты"
 }

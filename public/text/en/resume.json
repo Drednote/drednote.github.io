@@ -1,0 +1,20 @@
+{
+  "fileName": "Ivan Galushko.pdf",
+  "name": "Ivan Galushko",
+  "headline": "Male, 28 years old, born September 10, 1997",
+  "phone": "+7 (925) 384-61-39",
+  "preferredContact": "telegram",
+  "contacts": ["telegram: @mr_drednote", "galushko.ivan8@gmail.com", "https://drednote.github.io"],
+  "location": "Location: Moscow",
+  "availability": "Ready to work remotely, not ready for business trips.",
+  "position": "Java Developer",
+  "positionDetails": "Specialization: software developer. Employment: full-time. Work format: remote.",
+  "education": [
+    {
+      "year": "2019",
+      "title": "Bauman Moscow State Technical University, Moscow",
+      "description": "Robotics and Mechatronics. Incomplete higher education."
+    }
+  ],
+  "languages": "Languages: Russian - native; English - B2 - upper-intermediate."
+}

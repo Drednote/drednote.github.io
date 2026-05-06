@@ -1,18 +1,38 @@
 import moment from 'moment'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+import { TFunction } from 'i18next'
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces'
 import { DATE_FORMAT } from '@const/time'
-import { Lang } from '@const/lang'
 import experiences from '@public/experience/experience.json'
 import projects from '@public/projects/projects.json'
 import { Experience } from '@modules/card-content/work-experience/ExperienceContent'
 import { Project } from '@modules/card-content/projects/ProjectContent'
 
 type MarkdownModule = { default: string }
+type ResumeMeta = {
+  fileName: string
+  name: string
+  headline: string
+  phone: string
+  preferredContact: string
+  contacts: string[]
+  location: string
+  availability: string
+  position: string
+  positionDetails: string
+  education: {
+    year: string
+    title: string
+    description: string
+  }[]
+  languages: string
+}
+
 type ResumeData = {
   about: string
   contact: string
+  resume: ResumeMeta
   experiences: { json: Experience; md: string }[]
   projects: { json: Project; md: string }[]
 }
@@ -23,25 +43,12 @@ type PdfFonts = {
   }
 }
 
-const FILE_NAME = 'Галушко Иван.pdf'
+type MarkdownBlock = {
+  type: 'title' | 'paragraph' | 'bullet'
+  text: string
+}
 
-const SKILLS = [
-  'Java',
-  'Spring Boot',
-  'Spring Framework',
-  'MongoDB',
-  'Gradle',
-  'RabbitMQ',
-  'Linux',
-  'Apache Kafka',
-  'PostgreSQL',
-  'Hibernate ORM',
-  'Gitlab CI',
-  'TypeScript',
-  'React + Redux',
-  'Docker',
-  'Kubernetes',
-]
+type RichText = string | { text: string; bold?: boolean; style?: string; color?: string }[]
 
 const styles: StyleDictionary = {
   name: {
@@ -50,7 +57,12 @@ const styles: StyleDictionary = {
     margin: [0, 0, 0, 6],
   },
   subtitle: {
-    fontSize: 9.2,
+    fontSize: 8.9,
+    color: '#333333',
+    margin: [0, 0, 0, 3],
+  },
+  contactLine: {
+    fontSize: 8.4,
     color: '#333333',
     margin: [0, 0, 0, 3],
   },
@@ -86,6 +98,10 @@ const styles: StyleDictionary = {
     fontSize: 8.5,
     lineHeight: 1.18,
   },
+  code: {
+    color: '#333333',
+    background: '#eeeeee',
+  },
   blockTitle: {
     bold: true,
     fontSize: 9.2,
@@ -93,12 +109,16 @@ const styles: StyleDictionary = {
   },
 }
 
-const loadResumeData = async (lang: Lang): Promise<ResumeData> => {
+const loadResumeData = async (lang: string): Promise<ResumeData> => {
   const aboutModule = (await import(`@public/text/${lang}/about-me.md`)) as MarkdownModule
   const contactModule = (await import(`@public/text/${lang}/contact.md`)) as MarkdownModule
+  const resumeModule = (await import(`@public/text/${lang}/resume.json`)) as {
+    default: ResumeMeta
+  }
 
   const experienceData = await Promise.all(
     (experiences as { rel: string }[]).map(async (experience) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const json = (await import(`@public/experience/${lang}/${experience.rel}.json`))
         .default as Experience
       const md = (
@@ -110,8 +130,8 @@ const loadResumeData = async (lang: Lang): Promise<ResumeData> => {
 
   const projectData = await Promise.all(
     (projects as { rel: string }[]).map(async (project) => {
-      const json = (await import(`@public/projects/${lang}/${project.rel}.json`))
-        .default as Project
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      const json = (await import(`@public/projects/${lang}/${project.rel}.json`)).default as Project
       const md = ((await import(`@public/projects/${lang}/${project.rel}.md`)) as MarkdownModule)
         .default
       return { json, md }
@@ -121,31 +141,116 @@ const loadResumeData = async (lang: Lang): Promise<ResumeData> => {
   return {
     about: aboutModule.default,
     contact: contactModule.default,
+    resume: resumeModule.default,
     experiences: experienceData,
     projects: projectData,
   }
 }
 
-const stripMarkdown = (text: string) =>
+const inlineMarkdown = (text: string): RichText => {
+  const parts: Exclude<RichText, string> = []
+  const pattern = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push({ text: text.slice(lastIndex, match.index) })
+    }
+
+    const token = match[0]
+    if (token.startsWith('**')) {
+      parts.push({ text: token.slice(2, -2), bold: true })
+    } else if (token.startsWith('`')) {
+      parts.push({ text: token.slice(1, -1), style: 'code' })
+    } else {
+      const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(token)
+      parts.push({ text: link ? `${link[1]}: ${link[2]}` : token, color: '#4779bd' })
+    }
+
+    lastIndex = match.index + token.length
+  }
+
+  if (lastIndex < text.length) {
+    parts.push({ text: text.slice(lastIndex) })
+  }
+
+  return parts.length === 1 &&
+    !('bold' in parts[0]) &&
+    !('style' in parts[0]) &&
+    !('color' in parts[0])
+    ? parts[0].text
+    : parts
+}
+
+const markdownBlocks = (text: string): MarkdownBlock[] => {
+  const blocks: MarkdownBlock[] = []
+  const paragraph: string[] = []
+  let lastBullet: MarkdownBlock | undefined
+
+  const flushParagraph = () => {
+    if (!paragraph.length) {
+      return
+    }
+
+    blocks.push({ type: 'paragraph', text: paragraph.join(' ') })
+    paragraph.length = 0
+  }
+
   text
-    .replace(/\[(.*?)\]\((.*?)\)/g, '$1: $2')
-    .replace(/[`*_>#]/g, '')
     .replace(/\r/g, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim()
-
-const markdownToLines = (text: string) =>
-  stripMarkdown(text)
     .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
+    .forEach((rawLine) => {
+      const line = rawLine.trim()
 
-const formatDateRange = (startDate: string, endDate: string | undefined, lang: Lang) => {
+      if (!line) {
+        flushParagraph()
+        lastBullet = undefined
+        return
+      }
+
+      const title = /^#{1,6}\s+(.+)$/.exec(line)
+      if (title) {
+        flushParagraph()
+        blocks.push({ type: 'title', text: title[1] })
+        lastBullet = undefined
+        return
+      }
+
+      const bullet = /^-\s+(.+)$/.exec(line)
+      if (bullet) {
+        flushParagraph()
+        lastBullet = { type: 'bullet', text: bullet[1] }
+        blocks.push(lastBullet)
+        return
+      }
+
+      if (/^\s/.test(rawLine) && lastBullet) {
+        lastBullet.text = `${lastBullet.text} ${line}`
+        return
+      }
+
+      lastBullet = undefined
+      paragraph.push(line)
+    })
+
+  flushParagraph()
+  return blocks
+}
+
+const formatDateRange = (
+  startDate: string,
+  endDate: string | undefined,
+  lang: string,
+  present: string,
+) => {
   const start = moment(startDate, DATE_FORMAT).locale(lang)
   const end = endDate ? moment(endDate, DATE_FORMAT).locale(lang) : null
-  const present = lang === Lang.ru ? 'настоящее время' : 'Present'
   return `${start.format('MMMM YYYY')} - ${end ? end.format('MMMM YYYY') : present}`
 }
+
+const getExperienceSkills = (items: ResumeData['experiences']) =>
+  Array.from(new Set(items.flatMap((item) => item.json.skills)))
 
 const section = (title: string): Content[] => [
   {
@@ -167,34 +272,56 @@ const section = (title: string): Content[] => [
 
 const markdownContent = (text: string, maxParagraphs?: number): Content[] => {
   const content: Content[] = []
-  const lines = markdownToLines(text)
-  const limitedLines = typeof maxParagraphs === 'number' ? lines.slice(0, maxParagraphs) : lines
+  const blocks = markdownBlocks(text)
+  const limitedBlocks = typeof maxParagraphs === 'number' ? blocks.slice(0, maxParagraphs) : blocks
 
-  limitedLines.forEach((line) => {
-    if (line.endsWith(':')) {
-      content.push({ text: line, style: 'blockTitle' })
+  limitedBlocks.forEach((block) => {
+    if (block.type === 'title') {
+      content.push({ text: inlineMarkdown(block.text), style: 'blockTitle' })
       return
     }
 
-    if (line.startsWith('- ')) {
+    if (block.type === 'bullet') {
       content.push({
-        ul: [{ text: line.replace(/^-\s*/, ''), style: 'small' }],
-        margin: [0, 0, 0, 1],
+        ul: [{ text: inlineMarkdown(block.text), style: 'small' }],
+        margin: [0, 0, 0, 2],
       })
       return
     }
 
-    content.push({ text: line, style: 'paragraph' })
+    content.push({ text: inlineMarkdown(block.text), style: 'paragraph' })
   })
 
   return content
 }
 
-const experienceBlock = (item: { json: Experience; md: string }, lang: Lang): Content => ({
+const divider = (margin: [number, number, number, number] = [0, 4, 0, 8]): Content => ({
+  canvas: [
+    {
+      type: 'line',
+      x1: 0,
+      y1: 0,
+      x2: 503,
+      y2: 0,
+      lineWidth: 0.45,
+      lineColor: '#e6e6e6',
+    },
+  ],
+  margin,
+})
+
+const separated = (items: Content[], margin?: [number, number, number, number]) =>
+  items.flatMap((item, index) => (index === items.length - 1 ? [item] : [item, divider(margin)]))
+
+const experienceBlock = (
+  item: { json: Experience; md: string },
+  lang: string,
+  t: TFunction,
+): Content => ({
   columns: [
     {
       width: 112,
-      text: formatDateRange(item.json.startDate, item.json.endDate, lang),
+      text: formatDateRange(item.json.startDate, item.json.endDate, lang, t('experience_present')),
       style: 'date',
     },
     {
@@ -205,9 +332,7 @@ const experienceBlock = (item: { json: Experience; md: string }, lang: Lang): Co
         { text: item.json.href, style: 'link' },
         ...markdownContent(item.md),
         {
-          text: `${lang === Lang.ru ? 'Стек технологий' : 'Tech stack'}: ${item.json.skills.join(
-            ', ',
-          )}`,
+          text: `${t('resume_stack-prefix')}: ${item.json.skills.join(', ')}`,
           style: 'small',
           margin: [0, 3, 0, 10],
         },
@@ -218,99 +343,108 @@ const experienceBlock = (item: { json: Experience; md: string }, lang: Lang): Co
   margin: [0, 0, 0, 4],
 })
 
-const projectBlock = (item: { json: Project; md: string }, lang: Lang): Content => ({
+const projectBlock = (item: { json: Project; md: string }, t: TFunction): Content => ({
   stack: [
     { text: item.json.title, style: 'roleTitle' },
     { text: item.json.href, style: 'link' },
     ...markdownContent(item.md, 3),
     {
-      text: `${lang === Lang.ru ? 'Стек технологий' : 'Tech stack'}: ${item.json.skills.join(
-        ', ',
-      )}`,
+      text: `${t('resume_stack-prefix')}: ${item.json.skills.join(', ')}`,
       style: 'small',
       margin: [0, 2, 0, 8],
     },
   ],
 })
 
-const buildDocumentDefinition = (data: ResumeData, lang: Lang): TDocumentDefinitions => {
-  const isRu = lang === Lang.ru
+const educationBlock = (education: ResumeMeta['education'][number]): Content => ({
+  columns: [
+    { width: 112, text: education.year, style: 'date' },
+    {
+      width: '*',
+      stack: [
+        {
+          text: education.title,
+          style: 'roleTitle',
+        },
+        {
+          text: education.description,
+          style: 'paragraph',
+        },
+      ],
+    },
+  ],
+  columnGap: 10,
+  margin: [0, 0, 0, 4],
+})
+
+const buildDocumentDefinition = (
+  data: ResumeData,
+  lang: string,
+  t: TFunction,
+): TDocumentDefinitions => {
+  const { resume } = data
   const content: Content[] = [
-    { text: isRu ? 'Галушко Иван' : 'Ivan Galushko', style: 'name' },
-    {
-      text: isRu
-        ? 'Мужчина, 28 лет, родился 10 сентября 1997'
-        : 'Male, 28 years old, born September 10, 1997',
-      style: 'subtitle',
-    },
-    {
-      text: isRu
-        ? '+7 (925) 384-61-39 - предпочитаемый способ связи: telegram'
-        : '+7 (925) 384-61-39 - preferred contact method: telegram',
-      style: 'subtitle',
-    },
-    {
-      text: 'telegram: @mr_drednote • galushko.ivan8@gmail.com • https://drednote.github.io',
-      style: 'subtitle',
-    },
-    {
-      text: isRu
-        ? 'Проживает: Москва. Готов работать удаленно, не готов к командировкам.'
-        : 'Location: Moscow. Ready to work remotely, not ready for business trips.',
-      style: 'subtitle',
-      margin: [0, 0, 0, 8],
-    },
-    ...section(isRu ? 'Желаемая должность и зарплата' : 'Target position'),
-    { text: 'Java Developer', bold: true, fontSize: 12, margin: [0, 0, 0, 4] },
-    {
-      text: isRu
-        ? 'Специализации: программист, разработчик. Тип занятости: полная занятость. Формат работы: удаленно.'
-        : 'Specialization: software developer. Employment: full-time. Work format: remote.',
-      style: 'paragraph',
-    },
-    ...section(isRu ? 'Опыт работы' : 'Work experience'),
-    ...data.experiences.map((item) => experienceBlock(item, lang)),
-    ...section(isRu ? 'Образование' : 'Education'),
     {
       columns: [
-        { width: 112, text: '2019', style: 'date' },
         {
           width: '*',
           stack: [
+            { text: resume.name, style: 'name' },
+            { text: resume.headline, style: 'subtitle' },
+            { text: `${resume.location}. ${resume.availability}`, style: 'subtitle' },
+          ],
+        },
+        {
+          width: 188,
+          stack: [
             {
-              text: isRu
-                ? 'Московский государственный технический университет им. Н.Э. Баумана, Москва'
-                : 'Bauman Moscow State Technical University, Moscow',
-              style: 'roleTitle',
+              text: `${resume.phone}`,
+              bold: true,
+              style: 'contactLine',
+              alignment: 'right',
             },
             {
-              text: isRu
-                ? 'Факультет специального машиностроения, Робототехника и мехатроника. Неоконченное высшее.'
-                : 'Robotics and Mechatronics. Incomplete higher education.',
-              style: 'paragraph',
+              text: `${t('resume_preferred-contact')}: ${resume.preferredContact}`,
+              style: 'contactLine',
+              alignment: 'right',
             },
+            ...resume.contacts.map((contact) => ({
+              text: contact,
+              style: 'contactLine',
+              alignment: 'right' as const,
+            })),
           ],
         },
       ],
-      columnGap: 10,
+      columnGap: 18,
+      margin: [0, 0, 0, 7],
     },
-    ...section(isRu ? 'Навыки' : 'Skills'),
+    divider([0, 0, 0, 8]),
+    ...section(t('resume_position-title')),
+    { text: resume.position, bold: true, fontSize: 12, margin: [0, 0, 0, 4] },
+    { text: resume.positionDetails, style: 'paragraph' },
+    ...section(t('resume_work-title')),
+    ...separated(
+      data.experiences.map((item) => experienceBlock(item, lang, t)),
+      [122, 2, 0, 8],
+    ),
+    ...section(t('resume_education-title')),
+    ...separated(resume.education.map(educationBlock), [122, 2, 0, 8]),
+    ...section(t('resume_skills-title')),
+    { text: resume.languages, style: 'paragraph' },
     {
-      text: isRu
-        ? 'Знание языков: Русский - родной; Английский - B2 - средне-продвинутый.'
-        : 'Languages: Russian - native; English - B2 - upper-intermediate.',
-      style: 'paragraph',
-    },
-    {
-      text: SKILLS.join('      '),
+      text: getExperienceSkills(data.experiences).join('      '),
       style: 'small',
       margin: [0, 0, 0, 5],
     },
-    ...section(isRu ? 'Обо мне' : 'About'),
+    ...section(t('resume_about-title')),
     ...markdownContent(data.about, 4),
-    ...section(isRu ? 'Проекты' : 'Projects'),
-    ...data.projects.map((item) => projectBlock(item, lang)),
-    ...section(isRu ? 'Контакты' : 'Contacts'),
+    ...section(t('projects_title')),
+    ...separated(
+      data.projects.map((item) => projectBlock(item, t)),
+      [0, 2, 0, 8],
+    ),
+    ...section(t('resume_contacts-title')),
     ...markdownContent(data.contact),
   ]
 
@@ -327,12 +461,12 @@ const buildDocumentDefinition = (data: ResumeData, lang: Lang): TDocumentDefinit
   }
 }
 
-export const downloadResumePdf = async (lang: Lang) => {
+export const downloadResumePdf = async (lang: string, t: TFunction) => {
   pdfMake.vfs = (pdfFonts as PdfFonts).pdfMake.vfs
   const data = await loadResumeData(lang)
-  const documentDefinition = buildDocumentDefinition(data, lang)
+  const documentDefinition = buildDocumentDefinition(data, lang, t)
 
   await new Promise<void>((resolve) => {
-    pdfMake.createPdf(documentDefinition).download(FILE_NAME, resolve)
+    pdfMake.createPdf(documentDefinition).download(data.resume.fileName, resolve)
   })
 }
