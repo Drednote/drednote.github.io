@@ -1,0 +1,14 @@
+{
+  "title": "Tech Lead",
+  "company": "VTB",
+  "startDate": "01-04-2024",
+  "href": "https://vtbcareer.com",
+  "skills": [
+    "Java 17",
+    "Spring Boot",
+    "Spring Cloud",
+    "PostgreSQL",
+    "Kafka",
+    "Hibernate"
+  ]
+}

@@ -1,11 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import Redirect from '@components/router/Redirect'
 import NotFoundOrError from '@components/router/NotFoundOrError'
 import LanguageProvider from '@components/language/LanguageProvider'
 import Root from '@modules/Root'
-
-const Resume = lazy(() => import('@modules/resume/Resume'))
 
 export const router = createBrowserRouter([
   {
@@ -20,17 +18,6 @@ export const router = createBrowserRouter([
     element: (
       <LanguageProvider>
         <Root />
-      </LanguageProvider>
-    ),
-  },
-  {
-    path: '/:lang/resume',
-    errorElement: <NotFoundOrError />,
-    element: (
-      <LanguageProvider>
-        <Suspense>
-          <Resume />
-        </Suspense>
       </LanguageProvider>
     ),
   },

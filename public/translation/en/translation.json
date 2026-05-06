@@ -16,6 +16,17 @@
   "experience_text": "Work experience",
 
   "projects_title": "Projects",
+  "resume_about-title": "About",
+  "resume_contacts-title": "Contacts",
+  "resume_download-button": "Download PDF",
+  "resume_download-description": "The PDF will be generated from the site data and downloaded immediately.",
+  "resume_download-error": "Failed to create PDF. Please try again.",
+  "resume_education-title": "Education",
+  "resume_preferred-contact": "preferred contact method",
+  "resume_position-title": "Target position",
+  "resume_skills-title": "Skills",
+  "resume_stack-prefix": "Tech stack",
+  "resume_work-title": "Work experience",
 
   "footer_social-title": "Social"
 }
